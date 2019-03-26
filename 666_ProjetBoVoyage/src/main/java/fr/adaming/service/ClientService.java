@@ -1,5 +1,5 @@
 package fr.adaming.service;
 
-public class thr {
+public class ClientService {
 
 }

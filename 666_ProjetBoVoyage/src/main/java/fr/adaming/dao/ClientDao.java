@@ -1,5 +1,5 @@
 package fr.adaming.dao;
 
-public class ytr {
+public class ClientDao {
 
 }

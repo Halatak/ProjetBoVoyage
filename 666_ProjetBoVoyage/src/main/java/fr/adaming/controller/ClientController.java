@@ -1,5 +1,5 @@
 package fr.adaming.controller;
 
-public class zrefe {
+public class ClientController {
 
 }

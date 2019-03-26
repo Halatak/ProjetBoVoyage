@@ -1,5 +1,5 @@
 package fr.adaming.model;
 
-public class rgf {
+public class Client {
 
 }
