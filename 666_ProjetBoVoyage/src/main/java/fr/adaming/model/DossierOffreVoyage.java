@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,20 @@ public class DossierOffreVoyage implements Serializable {
 	private int numero;
 	private String etat;
 
+	//trabsformation asso
+	@OneToOne
+	@JoinColumn(name="v_id",referencedColumnName="id_v")
+	private Voyage voyage;
+	
+	//agence voyage
+	@OneToOne
+	@JoinColumn(name="ag_id",referencedColumnName="id_ag")
+	private AgenceVoyage agenceVoyage;
+	
+	//conseiller marketing
+	@ManyToOne
+	@JoinColumn(name="conm_id",referencedColumnName="id_conm")
+	private ConseillerMarketing conseillerMarketing;
 	// Constructeur
 	public DossierOffreVoyage() {
 		super();
@@ -62,6 +79,31 @@ public class DossierOffreVoyage implements Serializable {
 
 	public void setEtat(String etat) {
 		this.etat = etat;
+	}
+
+	
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
+	}
+
+	public AgenceVoyage getAgenceVoyage() {
+		return agenceVoyage;
+	}
+
+	public void setAgenceVoyage(AgenceVoyage agenceVoyage) {
+		this.agenceVoyage = agenceVoyage;
+	}
+
+	public ConseillerMarketing getConseillerMarketing() {
+		return conseillerMarketing;
+	}
+
+	public void setConseillerMarketing(ConseillerMarketing conseillerMarketing) {
+		this.conseillerMarketing = conseillerMarketing;
 	}
 
 	// To String

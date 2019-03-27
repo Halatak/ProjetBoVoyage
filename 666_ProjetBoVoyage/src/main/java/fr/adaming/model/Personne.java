@@ -2,6 +2,10 @@ package fr.adaming.model;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass	//classe abstraite
 public abstract class Personne {
 	
 	//attributs
@@ -10,44 +14,31 @@ public abstract class Personne {
 	private String prenom;
 	private String telephone;
 	private Date dateNaissance;
-	private String numCarteBanquaire;
+	
+	
+	
+	//Transformation de l'association UML en JAVA
+	//Lier l'adresse a l'accompagnant
+	@Embedded
+	private Adresse adresse; //Il ne faudra pas oublier de SET l'adresse a l'accompagnant dans le DAO !
 	
 	//constructeurs
 	public Personne() {
 		super();
 	}
 
-	public Personne(String civilite, String nom, String prenom, String telephone, Date dateNaissance,
-			String numCarteBanquaire) {
+	public Personne(String civilite, String nom, String prenom, String telephone, Date dateNaissance) {
 		super();
 		this.civilite = civilite;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
 		this.dateNaissance = dateNaissance;
-		this.numCarteBanquaire = numCarteBanquaire;
 	}
 
-	public Personne(int id, String civilite, String nom, String prenom, String telephone, Date dateNaissance,
-			String numCarteBanquaire) {
-		super();
-		this.id = id;
-		this.civilite = civilite;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.telephone = telephone;
-		this.dateNaissance = dateNaissance;
-		this.numCarteBanquaire = numCarteBanquaire;
-	}
 
 	//getters setters
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getCivilite() {
 		return civilite;
@@ -89,18 +80,19 @@ public abstract class Personne {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public String getNumCarteBanquaire() {
-		return numCarteBanquaire;
+
+	public Adresse getAdresse() {
+		return adresse;
 	}
 
-	public void setNumCarteBanquaire(String numCarteBanquaire) {
-		this.numCarteBanquaire = numCarteBanquaire;
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	@Override
 	public String toString() {
-		return "Personne [id=" + id + ", civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", telephone="
-				+ telephone + ", dateNaissance=" + dateNaissance + ", numCarteBanquaire=" + numCarteBanquaire + "]";
+		return "Personne [civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", telephone="
+				+ telephone + ", dateNaissance=" + dateNaissance + "]";
 	}
 	
 	

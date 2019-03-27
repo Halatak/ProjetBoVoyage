@@ -1,12 +1,15 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +25,16 @@ public class ConseillerClientele extends Personne implements Serializable{
 	private String mdp;
 
 	//Transformation de l'association UML en JAVA
+	@OneToMany(mappedBy="conseillerClientele")
+	private List<CampagneCommerciale> listeCampagneCommerciale;
 	
+	//dossier
+	@OneToMany(mappedBy="conseillerClientele")
+	private List<Dossier> listeDossier;
+	
+	//role
+	@OneToMany(mappedBy="conseillerClientele")
+	private List<Role> listeRole;
 	//constructeur
 
 	public ConseillerClientele() {
@@ -60,6 +72,25 @@ public class ConseillerClientele extends Personne implements Serializable{
 	}
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+	
+	public List<CampagneCommerciale> getListeCampagneCommerciale() {
+		return listeCampagneCommerciale;
+	}
+	public void setListeCampagneCommerciale(List<CampagneCommerciale> listeCampagneCommerciale) {
+		this.listeCampagneCommerciale = listeCampagneCommerciale;
+	}
+	public List<Dossier> getListeDossier() {
+		return listeDossier;
+	}
+	public void setListeDossier(List<Dossier> listeDossier) {
+		this.listeDossier = listeDossier;
+	}
+	public List<Role> getListeRole() {
+		return listeRole;
+	}
+	public void setListeRole(List<Role> listeRole) {
+		this.listeRole = listeRole;
 	}
 	@Override
 	public String toString() {

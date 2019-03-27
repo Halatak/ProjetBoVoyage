@@ -1,17 +1,20 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "conseillersMarketing")
-public class ConseillerMarketing implements Serializable {
+public class ConseillerMarketing extends Personne implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// declaration des attributs
@@ -22,6 +25,14 @@ public class ConseillerMarketing implements Serializable {
 	private String mail;
 	private String mdp;
 
+	//transformation de l'association
+	@OneToMany(mappedBy="conseillerMarketing")
+	private List<DossierOffreVoyage> listeDossierOffreVoyage;
+	
+	//role
+	@OneToOne(mappedBy="conseillerMarketing")
+	private Role role;
+	
 	// Constructeurs
 	public ConseillerMarketing() {
 		super();
@@ -63,6 +74,22 @@ public class ConseillerMarketing implements Serializable {
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public List<DossierOffreVoyage> getListeDossierOffreVoyage() {
+		return listeDossierOffreVoyage;
+	}
+
+	public void setListeDossierOffreVoyage(List<DossierOffreVoyage> listeDossierOffreVoyage) {
+		this.listeDossierOffreVoyage = listeDossierOffreVoyage;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	// To String

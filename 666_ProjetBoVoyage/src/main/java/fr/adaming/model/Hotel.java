@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -31,6 +32,10 @@ public class Hotel {
 	@Transient
 	private String img;
 
+	//transformation association
+	@OneToOne(mappedBy="hotel")
+	private Formule formule;
+	
 	// constructeurs
 	public Hotel() {
 		super();
@@ -113,6 +118,14 @@ public class Hotel {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public Formule getFormule() {
+		return formule;
+	}
+
+	public void setFormule(Formule formule) {
+		this.formule = formule;
 	}
 
 	@Override

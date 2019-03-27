@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +25,9 @@ public class Assurance {
 	private double prix;
 
 	// transformation de l'association uml en java
-
+	@OneToMany(mappedBy="assurance")
+	private List<Dossier> listeDossier;
+	
 	// constructeur
 
 	public Assurance(int id, String type, double prix) {
@@ -66,6 +71,15 @@ public class Assurance {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	
+	public List<Dossier> getListeDossier() {
+		return listeDossier;
+	}
+
+	public void setListeDossier(List<Dossier> listeDossier) {
+		this.listeDossier = listeDossier;
 	}
 
 	@Override

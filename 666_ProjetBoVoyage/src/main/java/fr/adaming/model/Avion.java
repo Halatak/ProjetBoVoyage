@@ -4,7 +4,11 @@ import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -13,6 +17,9 @@ import javax.persistence.Transient;
 public class Avion {
 
 	// declaration des attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_av")
 	private int idAvion;
 
 	@Column(name = "description", columnDefinition = "VARCHAR(5000)")
@@ -25,6 +32,9 @@ public class Avion {
 	@Transient
 	private String img;
 
+	//transformation de l'asso
+	@OneToOne(mappedBy="avion")
+	private Formule formule;
 	// constructeurs
 	public Avion() {
 		super();
@@ -86,6 +96,16 @@ public class Avion {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+	
+	
+
+	public Formule getFormule() {
+		return formule;
+	}
+
+	public void setFormule(Formule formule) {
+		this.formule = formule;
 	}
 
 	// ToString

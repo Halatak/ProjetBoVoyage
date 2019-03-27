@@ -1,12 +1,16 @@
 package fr.adaming.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,29 @@ public class Voyage {
 	@Column(name = "prix_v")
 	private double prix;
 
+	//association uml
+	@OneToOne
+	@JoinColumn(name="dest_id",referencedColumnName="id_dest")
+	private Destination destination;
+	
+	//voyage
+	@OneToOne
+	@JoinColumn(name="h_id",referencedColumnName="id_h")
+	private Hebergement hebergement;
+	
+	//formule
+	@OneToOne
+	@JoinColumn(name="f_id",referencedColumnName="id_f")
+	private Formule formule;
+	
+	//dossierOffreVoyage
+	@OneToOne(mappedBy="voyage")
+	private DossierOffreVoyage dossierOffreVoyage;
+	
+	//dossier
+	@OneToMany(mappedBy="voyage")
+	private List<Dossier> listeDossier;
+	
 	// constructeurs
 	public Voyage() {
 		super();
@@ -100,6 +127,46 @@ public class Voyage {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
+	public Hebergement getHebergement() {
+		return hebergement;
+	}
+
+	public void setHebergement(Hebergement hebergement) {
+		this.hebergement = hebergement;
+	}
+
+	public Formule getFormule() {
+		return formule;
+	}
+
+	public void setFormule(Formule formule) {
+		this.formule = formule;
+	}
+
+	public DossierOffreVoyage getDossierOffreVoyage() {
+		return dossierOffreVoyage;
+	}
+
+	public void setDossierOffreVoyage(DossierOffreVoyage dossierOffreVoyage) {
+		this.dossierOffreVoyage = dossierOffreVoyage;
+	}
+
+	public List<Dossier> getListeDossier() {
+		return listeDossier;
+	}
+
+	public void setListeDossier(List<Dossier> listeDossier) {
+		this.listeDossier = listeDossier;
 	}
 
 	@Override

@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -30,6 +32,11 @@ public class Continent {
 	@Transient
 	private String img;
 
+	//association uml
+	@OneToOne
+	@JoinColumn(name="dest_id",referencedColumnName="id_dest")
+	private Destination destination;
+	
 	//constructeurs
 	public Continent() {
 		super();
@@ -81,6 +88,14 @@ public class Continent {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
 	}
 
 	//ToString

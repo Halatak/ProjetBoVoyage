@@ -3,12 +3,18 @@ package fr.adaming.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+@Table(name="cartebancaires")
 public class CarteBancaire {
 	
 	//attributs
@@ -21,6 +27,11 @@ public class CarteBancaire {
 	private String prenom;
 	@Temporal(TemporalType.DATE)
 	private Date dateExpiration;
+	
+	//transformation
+	@OneToOne
+	@JoinColumn(name="cl_id",referencedColumnName="id_cl")
+	private Client client;
 	
 	//constructeurs
 	public CarteBancaire() {
@@ -83,6 +94,16 @@ public class CarteBancaire {
 
 	public void setDateExpiration(Date dateExpiration) {
 		this.dateExpiration = dateExpiration;
+	}
+
+	
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	//ToString

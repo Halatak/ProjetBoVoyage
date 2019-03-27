@@ -2,12 +2,16 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +27,10 @@ public class CampagneCommerciale implements Serializable{
 	 private Date date;
 	 
 	 //Association uml en java
+	 @ManyToOne
+	 @JoinColumn(name="con_id",referencedColumnName="id_con")
+	 private ConseillerClientele conseillerClientele;
+	 
 	 
 	 //constructeur
 	public CampagneCommerciale(int id, Date date) {
@@ -50,6 +58,14 @@ public class CampagneCommerciale implements Serializable{
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	
+	public ConseillerClientele getConseillerClientele() {
+		return conseillerClientele;
+	}
+	public void setConseillerClientele(ConseillerClientele conseillerClientele) {
+		this.conseillerClientele = conseillerClientele;
 	}
 	@Override
 	public String toString() {

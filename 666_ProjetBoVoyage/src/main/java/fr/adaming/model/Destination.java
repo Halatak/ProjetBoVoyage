@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -29,6 +30,14 @@ public class Destination {
 	@Transient
 	private String img;
 
+	//association uml
+	//continent
+	@OneToOne(mappedBy="destination")
+	private Continent continent;
+	
+	//voyage
+	@OneToOne(mappedBy="destination")
+	private Voyage voyage;
 	
 	//Constructeurs
 	public Destination() {
@@ -104,6 +113,26 @@ public class Destination {
 	public void setImg(String img) {
 		this.img = img;
 	}
+
+	public Continent getContinent() {
+		return continent;
+	}
+
+
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}
+
+
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
+	}
+
 
 	//ToString
 	@Override

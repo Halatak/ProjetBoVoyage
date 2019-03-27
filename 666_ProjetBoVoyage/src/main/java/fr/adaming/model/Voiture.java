@@ -3,12 +3,16 @@ package fr.adaming.model;
 import java.util.Arrays;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
-
+@Entity
+@Table(name="voitures")
 public class Voiture {
 
 	@Id
@@ -27,6 +31,9 @@ public class Voiture {
 	@Transient
 	private String img;
 
+	//transformation de l'association
+	@OneToOne(mappedBy="voiture")
+	private Formule formule;
 	// Constructeurs
 	public Voiture() {
 		super();
@@ -98,6 +105,14 @@ public class Voiture {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public Formule getFormule() {
+		return formule;
+	}
+
+	public void setFormule(Formule formule) {
+		this.formule = formule;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -29,6 +30,10 @@ public class Hebergement {
 	@Transient
 	private String img;
 
+	//association
+	 @OneToOne(mappedBy="hebergement")
+	private Voyage voyage;
+	 
 	//constructeurs
 	public Hebergement() {
 		super();
@@ -80,6 +85,14 @@ public class Hebergement {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
 	}
 
 	@Override

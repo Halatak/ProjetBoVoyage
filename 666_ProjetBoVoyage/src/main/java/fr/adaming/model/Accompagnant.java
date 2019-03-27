@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +20,13 @@ public class Accompagnant extends Personne{
 	@Column(name="id_accomp")
 	private int numeroSequentiel;
 	
-	//Transformation de l'association UML en JAVA
-	//Lier l'adresse a l'accompagnant
-	@Embedded
-	private Adresse adresse; //Il ne faudra pas oublier de SET l'adresse a l'accompagnant dans le DAO !
+	//association uml
+	@ManyToOne
+	@JoinColumn(name="cl_id",referencedColumnName="id_cl")
+	private Client client;
+	
+	
+	
 	
 	//constructeurs
 	public Accompagnant() {
@@ -42,13 +47,26 @@ public class Accompagnant extends Personne{
 		this.numeroSequentiel = numeroSequentiel;
 	}
 
+	
+	
+	
+	
+	
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	//ToString
 	@Override
 	public String toString() {
-		return "Accompagnant [numeroSequentiel=" + numeroSequentiel + ", adresse=" + adresse + ", getId()=" + getId()
-				+ ", getCivilite()=" + getCivilite() + ", getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
+		return "Accompagnant [numeroSequentiel=" + numeroSequentiel + ", getCivilite()=" + getCivilite() + ", getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
 				+ ", getTelephone()=" + getTelephone() + ", getDateNaissance()=" + getDateNaissance()
-				+ ", getNumCarteBanquaire()=" + getNumCarteBanquaire() + "]";
+				+ "]";
 	}
 	
 	

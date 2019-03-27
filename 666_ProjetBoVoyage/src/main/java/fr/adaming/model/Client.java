@@ -2,12 +2,15 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +28,25 @@ public class Client extends Personne implements Serializable{
 
 	
 	//Transformation de l'association UML en JAVA
+	//association avec carte bancaire
+	@OneToOne(mappedBy="client")
+	private CarteBancaire carteBancaire;
 	
+	//association avec accompagnant
+	@OneToMany(mappedBy="client")
+	private List<Accompagnant> listeAccompagnant;
+	
+	//association questionnaire
+	@OneToOne(mappedBy="client")
+	private Questionnaire questionnaire;
+	
+	//dossier
+	@OneToOne(mappedBy="client")
+	private Dossier dossier;
+	
+	//role
+	@OneToOne(mappedBy="client")
+	private Role Role;
 	
 	
 	//constructeur
@@ -75,6 +96,49 @@ public class Client extends Personne implements Serializable{
 
 	public void setIdCl(int idCl) {
 		this.idCl = idCl;
+	}
+
+	
+	
+	public CarteBancaire getCarteBancaire() {
+		return carteBancaire;
+	}
+
+	public void setCarteBancaire(CarteBancaire carteBancaire) {
+		this.carteBancaire = carteBancaire;
+	}
+
+	public List<Accompagnant> getListeAccompagnant() {
+		return listeAccompagnant;
+	}
+
+	public void setListeAccompagnant(List<Accompagnant> listeAccompagnant) {
+		this.listeAccompagnant = listeAccompagnant;
+	}
+
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+	public Dossier getDossier() {
+		return dossier;
+	}
+
+	public void setDossier(Dossier dossier) {
+		this.dossier = dossier;
+	}
+
+	
+	public Role getRole() {
+		return Role;
+	}
+
+	public void setRole(Role role) {
+		Role = role;
 	}
 
 	@Override

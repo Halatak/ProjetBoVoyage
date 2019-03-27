@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +30,7 @@ public class Role implements Serializable{
 
 	//transformation de l'association UML en Java
 	//avec le client
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="cl_id", referencedColumnName="id_cl")
 	private Client client;
 	//avec le conseiller clientele
@@ -37,7 +38,7 @@ public class Role implements Serializable{
 	@JoinColumn(name="conCl_id", referencedColumnName="id_con")
 	private ConseillerClientele conseillerClientele;
 	//avec le conseiller clientele
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="conMark_id", referencedColumnName="id_conm")
 	private ConseillerMarketing conseillerMarketing;
 
