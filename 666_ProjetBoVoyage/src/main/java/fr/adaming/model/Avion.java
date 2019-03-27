@@ -9,42 +9,45 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="avions")
+@Table(name = "avions")
 public class Avion {
-	
-	//declaration des attributs
+
+	// declaration des attributs
 	private int idAvion;
-	
-	@Column(name="description", columnDefinition="VARCHAR(5000)")
+
+	@Column(name = "description", columnDefinition = "VARCHAR(5000)")
 	private String description;
-	
+	private double prix;
+
 	@Lob
 	private byte[] photo;
-	
+
 	@Transient
 	private String img;
-	
-	//constructeurs
+
+	// constructeurs
 	public Avion() {
 		super();
 	}
 
-	public Avion(String description, byte[] photo, String img) {
+	public Avion(String description, byte[] photo, String img, double prix) {
 		super();
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
 
-	public Avion(int idAvion, String description, byte[] photo, String img) {
+	public Avion(int idAvion, String description, byte[] photo, String img, double prix) {
 		super();
 		this.idAvion = idAvion;
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
-	
-	//getter et setter
+
+	// getter et setter
 	public int getIdAvion() {
 		return idAvion;
 	}
@@ -77,10 +80,19 @@ public class Avion {
 		this.img = img;
 	}
 
-	//ToString
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	// ToString
 	@Override
 	public String toString() {
-		return "Avion [idAvion=" + idAvion + ", description=" + description + ", photo=" + Arrays.toString(photo) + "]";
+		return "Avion [idAvion=" + idAvion + ", description=" + description + ", prix=" + prix + ", photo="
+				+ Arrays.toString(photo) + ", img=" + img + "]";
 	}
-	
+
 }

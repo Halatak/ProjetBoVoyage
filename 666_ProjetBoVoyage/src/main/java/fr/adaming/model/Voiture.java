@@ -10,45 +10,48 @@ import javax.persistence.Lob;
 import javax.persistence.Transient;
 
 public class Voiture {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_voit")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_voit")
 	private int idVoiture;
 	private String marque;
-	
-	@Column(name="description", columnDefinition="VARCHAR(5000)")
+	private double prix;
+
+	@Column(name = "description", columnDefinition = "VARCHAR(5000)")
 	private String description;
-	
+
 	@Lob
 	private byte[] photo;
-	
+
 	@Transient
 	private String img;
 
-	//Constructeurs
+	// Constructeurs
 	public Voiture() {
 		super();
 	}
 
-	public Voiture(String marque, String description, byte[] photo, String img) {
+	public Voiture(String marque, String description, byte[] photo, String img, double prix) {
 		super();
 		this.marque = marque;
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
 
-	public Voiture(int idVoiture, String marque, String description, byte[] photo, String img) {
+	public Voiture(int idVoiture, String marque, String description, byte[] photo, String img, double prix) {
 		super();
 		this.idVoiture = idVoiture;
 		this.marque = marque;
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
-	
-	//getter et setter
+
+	// getter et setter
 	public int getIdVoiture() {
 		return idVoiture;
 	}
@@ -89,12 +92,18 @@ public class Voiture {
 		this.img = img;
 	}
 
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 	@Override
 	public String toString() {
-		return "Voiture [idVoiture=" + idVoiture + ", marque=" + marque + ", description=" + description + ", photo="
-				+ Arrays.toString(photo) + "]";
+		return "Voiture [idVoiture=" + idVoiture + ", marque=" + marque + ", prix=" + prix + ", description="
+				+ description + ", photo=" + Arrays.toString(photo) + ", img=" + img + "]";
 	}
-	
-	
 
 }
