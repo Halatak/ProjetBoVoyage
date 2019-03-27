@@ -195,6 +195,7 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Libs pour bootstrap et jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
