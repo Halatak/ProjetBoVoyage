@@ -13,33 +13,20 @@ public class ConseillerMarkDao implements IConseillerMarkDao {
 
 	@Autowired
 	private SessionFactory sf;
-	
-	// le setter pour l'injection dépendance
-		public void setSf(SessionFactory sf) {
-			this.sf = sf;
-		}
 
 	@Override
-	public ConseillerMarketing isExist(ConseillerMarketing conMark) {
-
-		//récupérer la session
-		Session s = sf.getCurrentSession();
+	public ConseillerMarketing getConsMarkByMail(String mail) {
+		Session s=sf.getCurrentSession();
 		
-		//requete HQL
-		String req = "FROM ConseillerMarketing as conMark WHERE conMark.mail=:pMail AND conMark.mdp=:pMdp";
+		String req="FROM ConseillerMarketing cons WHERE cons.mail=:pMail";
 		
-		//Récupérer un objet de type query
-		Query query = s.createQuery(req);
-				
-		//passage des paramètres
-		query.setParameter("pMail", conMark.getMail());
-		query.setParameter("pMail", conMark.getMdp());
+		Query query=s.createQuery(req);
 		
-		try {
-			return (ConseillerMarketing) query.uniqueResult();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		return null;
+		query.setParameter("pMail", mail);
+		return (ConseillerMarketing) query.uniqueResult();
 	}
+	
+	
+
+	
 }

@@ -4,6 +4,6 @@ import fr.adaming.model.ConseillerMarketing;
 
 public interface IConseillerMarkDao {
 	
-	public ConseillerMarketing isExist (ConseillerMarketing conMark);
+	public ConseillerMarketing getConsMarkByMail(String mail);
 
 }
