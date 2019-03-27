@@ -49,10 +49,20 @@
 	<!-- Etape 2: La partie authentification -->
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<!-- Utilisation de la base de données pour la déclaration des utilisateurs -->
+			<!-- Utilisation de la base de données pour la déclaration des clients -->
 			<security:jdbc-user-service
-				data-source-ref="dataSourceBean1" users-by-username-query=""
-				authorities-by-username-query="" />
+				data-source-ref="dataSourceBean1" users-by-username-query="SELECT mail, mdp, active FROM clients WHERE mail=?"
+				authorities-by-username-query="SELECT cl.mail, r.roleName FROM clients as cl, roles as r WHERE cl.mail=? AND cl.id_cl=r.cl_id" />
+				
+				<!-- Utilisation de la base de données pour la déclaration des clients -->
+			<security:jdbc-user-service
+				data-source-ref="dataSourceBean1" users-by-username-query="SELECT mail, mdp, active FROM conseillerClienteles WHERE mail=?"
+				authorities-by-username-query="SELECT cc.mail, r.roleName FROM conseillerClienteles as cc, roles as r WHERE cc.mail=? AND cc.id_con=r.conCl_id" />
+				
+				<!-- Utilisation de la base de données pour la déclaration des clients -->
+			<security:jdbc-user-service
+				data-source-ref="dataSourceBean1" users-by-username-query="SELECT mail, mdp, active FROM conseillersMarketing WHERE mail=?"
+				authorities-by-username-query="SELECT cm.mail, r.roleName FROM conseillersMarketing as cm, roles as r WHERE cm.mail=? AND cm.id_conm=r.conMark_id" />
 
 
 		</security:authentication-provider>
