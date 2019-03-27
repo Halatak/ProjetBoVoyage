@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import fr.adaming.model.ConseillerMarketing;
 
 @Repository
-public class ConseillerMarkDao implements IConseillerMarkDao {
+public class ConseillerMarkDaoImpl implements IConseillerMarkDao {
 
 	@Autowired
 	private SessionFactory sf;
