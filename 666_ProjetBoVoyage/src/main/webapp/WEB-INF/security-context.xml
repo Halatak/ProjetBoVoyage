@@ -24,8 +24,12 @@
 	<security:http>
 		<!-- Specifier les URL à sécuriser avec la balise intercept-url et donner 
 			les autorisations -->
-		<security:intercept-url pattern=""
-			access="" />
+		<security:intercept-url pattern="/client/**"
+			access="ROLE_CLIENT" />
+		<security:intercept-url pattern="/conseillerClient/**"
+			access="ROLE_CON_CLIENT" />
+		<security:intercept-url pattern="/conseillerMarketing/**"
+			access="ROLE_CON_MARK" />
 
 		<!-- utilisation d'un formulaire perso -->
 		<security:form-login login-page="/loginUrl"
