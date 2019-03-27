@@ -19,7 +19,6 @@ public class Destination {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_dest")
 	private int idDestination;
-	private String continent;
 	private String pays;
 	@Column(name="description", columnDefinition="VARCHAR(5000)")
 	private String description;
@@ -37,9 +36,8 @@ public class Destination {
 	}
 
 
-	public Destination(String continent, String pays, String description, byte[] photo, String img) {
+	public Destination(String pays, String description, byte[] photo, String img) {
 		super();
-		this.continent = continent;
 		this.pays = pays;
 		this.description = description;
 		this.photo = photo;
@@ -47,10 +45,9 @@ public class Destination {
 	}
 
 
-	public Destination(int idDestination, String continent, String pays, String description, byte[] photo, String img) {
+	public Destination(int idDestination, String pays, String description, byte[] photo, String img) {
 		super();
 		this.idDestination = idDestination;
-		this.continent = continent;
 		this.pays = pays;
 		this.description = description;
 		this.photo = photo;
@@ -66,16 +63,6 @@ public class Destination {
 
 	public void setIdDestination(int idDestination) {
 		this.idDestination = idDestination;
-	}
-
-
-	public String getContinent() {
-		return continent;
-	}
-
-
-	public void setContinent(String continent) {
-		this.continent = continent;
 	}
 
 
@@ -121,7 +108,7 @@ public class Destination {
 	//ToString
 	@Override
 	public String toString() {
-		return "Destination [idDestination=" + idDestination + ", continent=" + continent + ", pays=" + pays
+		return "Destination [idDestination=" + idDestination + ", pays=" + pays
 				+ ", description=" + description + ", photo=" + Arrays.toString(photo) + "]";
 	}
 	
