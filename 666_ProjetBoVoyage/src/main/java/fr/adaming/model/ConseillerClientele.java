@@ -61,5 +61,10 @@ public class ConseillerClientele extends Personne implements Serializable{
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	@Override
+	public String toString() {
+		return "ConseillerClientele [idCon=" + idCon + ", mail=" + mail + ", mdp=" + mdp + "]";
+	}
+	
 	
 }

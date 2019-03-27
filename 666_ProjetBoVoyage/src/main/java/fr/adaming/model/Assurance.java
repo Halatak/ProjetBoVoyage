@@ -52,6 +52,10 @@ public class Assurance {
 	public void setType(String type) {
 		this.type = type;
 	}
+	@Override
+	public String toString() {
+		return "Assurance [id=" + id + ", type=" + type + "]";
+	}
 	
-
+	
 }
