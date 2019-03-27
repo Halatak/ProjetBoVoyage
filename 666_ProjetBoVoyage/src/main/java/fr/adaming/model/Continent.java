@@ -12,14 +12,15 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="destinations")
-public class Destination {
+@Table(name="continents")
+public class Continent {
 	
+	//declaration des attributs
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_dest")
-	private int idDestination;
-	private String pays;
+	@Column(name="id_conti")
+	private int idContinent;
+	
 	@Column(name="description", columnDefinition="VARCHAR(5000)")
 	private String description;
 	
@@ -29,77 +30,54 @@ public class Destination {
 	@Transient
 	private String img;
 
-	
-	//Constructeurs
-	public Destination() {
+	//constructeurs
+	public Continent() {
 		super();
 	}
 
-
-	public Destination(String pays, String description, byte[] photo, String img) {
+	public Continent(String description, byte[] photo, String img) {
 		super();
-		this.pays = pays;
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
 	}
 
-
-	public Destination(int idDestination, String pays, String description, byte[] photo, String img) {
+	public Continent(int idContinent, String description, byte[] photo, String img) {
 		super();
-		this.idDestination = idDestination;
-		this.pays = pays;
+		this.idContinent = idContinent;
 		this.description = description;
 		this.photo = photo;
 		this.img = img;
 	}
 
-	
 	//getter et setter
-	public int getIdDestination() {
-		return idDestination;
+	public int getIdContinent() {
+		return idContinent;
 	}
 
-
-	public void setIdDestination(int idDestination) {
-		this.idDestination = idDestination;
+	public void setIdContinent(int idContinent) {
+		this.idContinent = idContinent;
 	}
-
-
-	public String getPays() {
-		return pays;
-	}
-
-
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public byte[] getPhoto() {
 		return photo;
 	}
 
-
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
-
 	public String getImg() {
 		return img;
 	}
-
 
 	public void setImg(String img) {
 		this.img = img;
@@ -108,8 +86,7 @@ public class Destination {
 	//ToString
 	@Override
 	public String toString() {
-		return "Destination [idDestination=" + idDestination + ", pays=" + pays
-				+ ", description=" + description + ", photo=" + Arrays.toString(photo) + "]";
+		return "Continent [description=" + description + ", photo=" + Arrays.toString(photo) + "]";
 	}
-	
+
 }
