@@ -76,6 +76,12 @@ public class Client extends Personne implements Serializable{
 	public void setIdCl(int idCl) {
 		this.idCl = idCl;
 	}
+
+	@Override
+	public String toString() {
+		return "Client [idCl=" + idCl + ", mail=" + mail + ", mdp=" + mdp + "]";
+	}
+	
 	
 
 }
