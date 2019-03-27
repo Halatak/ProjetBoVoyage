@@ -10,52 +10,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="assurances")
+@Table(name = "assurances")
 public class Assurance {
 
-	//attribut
+	// attribut
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_as")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_as")
 	private int id;
 	private String type;
+	private double prix;
 
-	//transformation de l'association uml en java
-	
-	//constructeur
-	
-	
-	public Assurance(int id, String type) {
+	// transformation de l'association uml en java
+
+	// constructeur
+
+	public Assurance(int id, String type, double prix) {
 		super();
 		this.id = id;
 		this.type = type;
+		this.prix = prix;
 	}
-	public Assurance(String type) {
+
+	public Assurance(String type, double prix) {
 		super();
 		this.type = type;
+		this.prix = prix;
 	}
+
 	public Assurance() {
 		super();
 	}
 
-	//getter et setter
-	
+	// getter et setter
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 	@Override
 	public String toString() {
-		return "Assurance [id=" + id + ", type=" + type + "]";
+		return "Assurance [id=" + id + ", type=" + type + ", prix=" + prix + "]";
 	}
-	
-	
+
 }

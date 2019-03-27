@@ -10,46 +10,50 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="vpyages")
+@Table(name = "vpyages")
 public class Voyage {
 
-	//attributs
+	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_v")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_v")
 	private int id;
-	@Column(name="datearr_v")
+	@Column(name = "datearr_v")
 	private Date dateArrivee;
-	@Column(name="datedep_v")
+	@Column(name = "datedep_v")
 	private Date dateDepart;
-	@Column(name="statut_v")
+	@Column(name = "statut_v")
 	private boolean statut;
-	@Column(name="nbplaces_v")
+	@Column(name = "nbplaces_v")
 	private int nbPlaces;
-	
-	//constructeurs
+	@Column(name = "prix_v")
+	private double prix;
+
+	// constructeurs
 	public Voyage() {
 		super();
 	}
 
-	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces) {
+	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
 		super();
 		this.dateArrivee = dateArrivee;
 		this.dateDepart = dateDepart;
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
+		this.prix = prix;
 	}
 
-	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces) {
+	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
 		super();
 		this.id = id;
 		this.dateArrivee = dateArrivee;
 		this.dateDepart = dateDepart;
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
+		this.prix = prix;
 	}
 
-	//getters setters
+	// getters setters
 	public int getId() {
 		return id;
 	}
@@ -90,11 +94,18 @@ public class Voyage {
 		this.nbPlaces = nbPlaces;
 	}
 
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 	@Override
 	public String toString() {
 		return "Voyage [id=" + id + ", dateArrivee=" + dateArrivee + ", dateDepart=" + dateDepart + ", statut=" + statut
-				+ ", nbPlaces=" + nbPlaces + "]";
+				+ ", nbPlaces=" + nbPlaces + ", prix=" + prix + "]";
 	}
-	
-	
+
 }

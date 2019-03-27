@@ -12,39 +12,41 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="hotels")
+@Table(name = "hotels")
 public class Hotel {
 
-	//attributs
+	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_ho")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_ho")
 	private int id;
 	private String nom;
 	private String description;
 	private int nbEtoiles;
-	
+	private double prix;
+
 	@Lob
 	private byte[] photo;
-	
+
 	@Transient
 	private String img;
 
-	//constructeurs
+	// constructeurs
 	public Hotel() {
 		super();
 	}
 
-	public Hotel(String nom, String description, int nbEtoiles, byte[] photo, String img) {
+	public Hotel(String nom, String description, int nbEtoiles, byte[] photo, String img, double prix) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.nbEtoiles = nbEtoiles;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
 
-	public Hotel(int id, String nom, String description, int nbEtoiles, byte[] photo, String img) {
+	public Hotel(int id, String nom, String description, int nbEtoiles, byte[] photo, String img, double prix) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -52,9 +54,10 @@ public class Hotel {
 		this.nbEtoiles = nbEtoiles;
 		this.photo = photo;
 		this.img = img;
+		this.prix = prix;
 	}
 
-	//getters et setters
+	// getters et setters
 	public int getId() {
 		return id;
 	}
@@ -103,12 +106,21 @@ public class Hotel {
 		this.img = img;
 	}
 
+	
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", nom=" + nom + ", description=" + description + ", nbEtoiles=" + nbEtoiles
-				+ ", photo=" + Arrays.toString(photo) + ", img=" + img + "]";
+				+ ", prix=" + prix + ", photo=" + Arrays.toString(photo) + ", img=" + img + "]";
 	}
+
 	
-	
-	
+
 }
