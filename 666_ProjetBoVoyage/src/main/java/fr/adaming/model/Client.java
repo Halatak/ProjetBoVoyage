@@ -25,6 +25,7 @@ public class Client extends Personne implements Serializable{
 	private int idCl;
 	private String mail;
 	private String mdp;
+	private boolean active;
 
 	
 	//Transformation de l'association UML en JAVA
@@ -55,17 +56,19 @@ public class Client extends Personne implements Serializable{
 		super();
 	}
 
-	public Client(String mail, String mdp) {
+	public Client(String mail, String mdp, boolean active) {
 		super();
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
 
-	public Client(int idCl, String mail, String mdp) {
+	public Client(int idCl, String mail, String mdp, boolean active) {
 		super();
 		this.idCl = idCl;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
 
 	//getter et setter
@@ -139,6 +142,14 @@ public class Client extends Personne implements Serializable{
 
 	public void setRole(Role role) {
 		Role = role;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

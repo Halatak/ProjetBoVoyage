@@ -23,6 +23,7 @@ public class ConseillerClientele extends Personne implements Serializable{
 	private int idCon;
 	private String mail;
 	private String mdp;
+	private boolean active;
 
 	//Transformation de l'association UML en JAVA
 	@OneToMany(mappedBy="conseillerClientele")
@@ -40,16 +41,18 @@ public class ConseillerClientele extends Personne implements Serializable{
 	public ConseillerClientele() {
 		super();
 	}
-	public ConseillerClientele(String mail, String mdp) {
+	public ConseillerClientele(String mail, String mdp, boolean active) {
 		super();
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
-	public ConseillerClientele(int idCon, String mail, String mdp) {
+	public ConseillerClientele(int idCon, String mail, String mdp, boolean active) {
 		super();
 		this.idCon = idCon;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
 
 	
@@ -91,6 +94,13 @@ public class ConseillerClientele extends Personne implements Serializable{
 	}
 	public void setListeRole(List<Role> listeRole) {
 		this.listeRole = listeRole;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	@Override
 	public String toString() {

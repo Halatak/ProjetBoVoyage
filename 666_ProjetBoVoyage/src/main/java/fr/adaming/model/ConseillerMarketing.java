@@ -24,6 +24,7 @@ public class ConseillerMarketing extends Personne implements Serializable {
 	private int idConm;
 	private String mail;
 	private String mdp;
+	private boolean active;
 
 	//transformation de l'association
 	@OneToMany(mappedBy="conseillerMarketing")
@@ -38,17 +39,19 @@ public class ConseillerMarketing extends Personne implements Serializable {
 		super();
 	}
 
-	public ConseillerMarketing(String mail, String mdp) {
+	public ConseillerMarketing(String mail, String mdp, boolean active) {
 		super();
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
 
-	public ConseillerMarketing(int idConm, String mail, String mdp) {
+	public ConseillerMarketing(int idConm, String mail, String mdp, boolean active) {
 		super();
 		this.idConm = idConm;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
 	}
 
 	// Getters Setters
@@ -90,6 +93,14 @@ public class ConseillerMarketing extends Personne implements Serializable {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	// To String
