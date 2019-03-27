@@ -1,10 +1,16 @@
 package fr.adaming.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
+
+@Entity
+@Table(name="dossiers")
 public class Dossier {
 
 	//attribut
@@ -15,7 +21,7 @@ public class Dossier {
 	private int numero;
 	private String etat;
 	
-	//trnasformation de l'association uml en java
+	//transformation de l'association uml en java
 	
 	
 	//constructeur
