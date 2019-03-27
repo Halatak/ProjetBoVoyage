@@ -5,7 +5,6 @@ import java.util.Date;
 public abstract class Personne {
 	
 	//attributs
-	private int id;
 	private String civilite;
 	private String nom;
 	private String prenom;
