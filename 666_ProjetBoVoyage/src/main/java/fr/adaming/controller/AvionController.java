@@ -53,7 +53,7 @@ public class AvionController {
 		// Appel de la méthode service
 		Avion aOut = avService.ajoutAvionService(aIn);
 		if (aOut.getIdAvion() != 0) {
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
 			return "redirect:avionAfficheAjout";
@@ -75,7 +75,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.modifierAvionService(aIn);
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "modif a échoué");
 			return "redirect:avionAfficheModifier";
@@ -98,7 +98,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.supprAvionService(aIn);
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "suppr a échoué");
 			return "redirect:avionAfficheSupprimer";
