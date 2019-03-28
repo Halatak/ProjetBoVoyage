@@ -5,24 +5,31 @@
 
 <!-- Ajouter la taglib de jstl core -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ajouter un voyage</title>
+<title>Modifier Voyage</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
-
 </head>
 <body>
+
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter un voyage</h1>
+		modifier un voyage</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="voyageSoumettreAjouter" commandName="voyAjout">
+		action="voyageSoumettreModifier" commandName="voyModif">
 
+		<div class="form-group">
+			<label for="idId" class="col-sm-2 control-label">Id</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idId"
+					path="id" placeholder="Id" />
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="idDateDepart" class="col-sm-2 control-label">Date
 				de départ</label>
@@ -36,7 +43,7 @@
 				d'arrivé</label>
 			<div class="col-sm-5">
 				<form:input type="date" cssClass="form-control" id="idDateArrive"
-					path="dateArrivee" placeholder="Date d'arrivé" />
+					path="dateArrive" placeholder="Date d'arrivé" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -44,7 +51,7 @@
 				de places</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idNombrePlaces"
-					path="nbPlaces" placeholder="Nombre de places" />
+					path="nombrePlaces" placeholder="Nombre de places" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -76,5 +83,6 @@
 			</div>
 		</div>
 	</form:form>
+
 </body>
 </html>

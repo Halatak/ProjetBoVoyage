@@ -54,7 +54,9 @@ public class VoyageController {
 	// ===================== fonctionnalité ajouter voyage
 	@RequestMapping(value = "/voyageAjouter", method = RequestMethod.GET)
 	public String addVoyage(Model modele) {
-		
+		Voyage voyIn=new Voyage();
+		voyIn.setDateDepart(new Date());
+		voyIn.setDateArrivee(new Date());
 		modele.addAttribute("voyAjout", new Voyage());
 		return "ajoutVoyage";
 	}
