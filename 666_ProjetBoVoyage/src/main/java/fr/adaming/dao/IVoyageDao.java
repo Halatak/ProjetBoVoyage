@@ -1,10 +1,8 @@
 package fr.adaming.dao;
 
-import java.util.List;
-
 import fr.adaming.model.Voyage;
 
-public interface IVoyageDao {
+public interface IVoyageDao extends IGeneriqueDao<Voyage>{
 
-	public List<Voyage> afficherListeVoyageDao();
+
 }

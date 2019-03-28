@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGeneriqueDao;
+import fr.adaming.dao.IVoyageDao;
 import fr.adaming.model.Voyage;
 
 @Service("voyageService")
@@ -14,11 +15,11 @@ import fr.adaming.model.Voyage;
 public class VoyageServiceImpl implements IVoyageService {
 
 	//transformation uml en java
-	private IGeneriqueDao< Voyage > voyageDao;
+	private IVoyageDao voyageDao;
 
 	//setters
 	@Autowired
-	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
+	public void setVoyageDao(IVoyageDao voyageDao) {
 		this.voyageDao = voyageDao;
 		voyageDao.setClazz(Voyage.class);
 	}

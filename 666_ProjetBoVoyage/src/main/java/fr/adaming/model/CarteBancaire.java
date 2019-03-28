@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,7 +16,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="cartebancaires")
-public class CarteBancaire {
+public class CarteBancaire implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	//attributs
 	@Id

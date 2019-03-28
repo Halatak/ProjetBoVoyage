@@ -1,9 +1,9 @@
 package fr.adaming.dao;
 
-import java.io.Serializable;
+
 import java.util.List;
 
-public interface IGeneriqueDao<T extends Serializable> {
+public interface IGeneriqueDao<T>{
 	
 	public void setClazz(Class<T> clazzToSet);
 	

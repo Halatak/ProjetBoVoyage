@@ -4,10 +4,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.adaming.model.Voyage;
+import fr.adaming.model.Accompagnant;
 
 @Repository
-public class VoyageDaoImpl extends AbstraitHibernateDao<Voyage> implements IVoyageDao  {
+public class AccompagnantDaoImpl extends AbstraitHibernateDao<Accompagnant> implements IAccompagnantDao  {
 	
 	@Autowired
 	private SessionFactory sf;
@@ -16,6 +16,5 @@ public class VoyageDaoImpl extends AbstraitHibernateDao<Voyage> implements IVoya
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
-
 
 }

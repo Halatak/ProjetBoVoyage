@@ -8,11 +8,11 @@ public interface IAccompagnantService {
 	
 public List<Accompagnant> afficherListeAccompagnantService();
 	
-	public Accompagnant ajoutAccompagnantService(Accompagnant v);
+	public Accompagnant ajoutAccompagnantService(Accompagnant a);
 	
-	public void modifierAccompagnantService(Accompagnant v);
+	public void modifierAccompagnantService(Accompagnant a);
 	
-	public void supprAccompagnantService(Accompagnant v);
+	public void supprAccompagnantService(Accompagnant a);
 	
 	public void supprAccompagnantByIdService (int id);
 	
