@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ajouter un avion</title>
+<title>Modifier un avion</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
@@ -17,10 +17,19 @@
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter un avion</h1>
+		modifier un avion</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="avionSoumettreAjouter" commandName="avAjout">
+		action="avionSoumettreModifier" commandName="avModif">
+
+
+		<div class="form-group">
+			<label for="idId" class="col-sm-2 control-label">Id</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idId"
+					path="idAvion" placeholder="Id" />
+			</div>
+		</div>
 
 		<div class="form-group">
 			<label for="idDescription" class="col-sm-2 control-label">Description</label>
@@ -43,7 +52,6 @@
 					avion</button>
 			</div>
 		</div>
-
 	</form:form>
 	<h1>${msg}</h1>
 
