@@ -33,6 +33,29 @@ public class VoyageServiceImpl implements IVoyageService {
 		voyageDao.ajout(v);
 	}
 
+	@Override
+	public void modifierVoyageService(Voyage v) {
+		voyageDao.modifier(v);
+		
+	}
+
+	@Override
+	public void supprVoyageService(Voyage v) {
+		voyageDao.suppr(v);
+		
+	}
+
+	@Override
+	public void supprVoyageByIdService(int id) {
+		voyageDao.supprById(id);
+		
+	}
+
+	@Override
+	public Voyage getVoyageByIdService(int id) {
+		return voyageDao.getById(id);
+	}
+
 	
 
 }
