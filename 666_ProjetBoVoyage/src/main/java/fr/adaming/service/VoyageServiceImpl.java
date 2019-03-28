@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.dao.IVoyageDao;
 import fr.adaming.model.Voyage;
 
@@ -15,17 +16,20 @@ public class VoyageServiceImpl implements IVoyageService {
 
 	//transformation uml en java
 	@Autowired
-	private IVoyageDao voyageDao;
+	private IGeneriqueDao< Voyage > voyageDao;
 	
 	//setters
-	public void setVoyageDao(IVoyageDao voyageDao) {
+	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
 		this.voyageDao = voyageDao;
+		voyageDao.setClazz( Voyage.class );
 	}
-
 
 	@Override
 	public List<Voyage> afficherListeVoyageService() {
-		return voyageDao.afficherListeVoyageDao();
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
 
 }

@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vpyages")
-public class Voyage {
+public class Voyage implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
