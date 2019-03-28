@@ -14,14 +14,20 @@ import fr.adaming.model.Voyage;
 public class VoyageServiceImpl implements IVoyageService {
 
 	//transformation uml en java
-	@Autowired
+	
 	private IGeneriqueDao< Voyage > voyageDao;
 	
 	//setters
+	@Autowired
 	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
 		this.voyageDao = voyageDao;
 		voyageDao.setClazz(Voyage.class);
 	}
+
+	public IGeneriqueDao<Voyage> getVoyageDao() {
+		return voyageDao;
+	}
+
 
 	@Override
 	public List<Voyage> afficherListeVoyageService() {
