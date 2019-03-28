@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter un hotel</title>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 	<%-- La directive include --%>
@@ -47,7 +48,7 @@
 				d'étoile</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idNombreEtoile"
-					path="nombreEtoile" placeholder="Nombre d'étoile" />
+					path="nbEtoiles" placeholder="Nombre d'étoile" />
 			</div>
 		</div>
 

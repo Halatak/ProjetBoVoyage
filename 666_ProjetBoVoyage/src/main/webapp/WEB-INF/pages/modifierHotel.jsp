@@ -17,20 +17,33 @@
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		modifier un avion</h1>
+		modifier un hotel</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="avionSoumettreModifier" commandName="avModif">
+		action="hotelSoumettreModifier" commandName="hoModif">
 
 
 		<div class="form-group">
 			<label for="idId" class="col-sm-2 control-label">Id</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idId"
-					path="idAvion" placeholder="Id" />
+				<form:input cssClass="form-control" id="idId" path="id"
+					placeholder="Id" />
 			</div>
 		</div>
-
+		<div class="form-group">
+			<label for="idNom" class="col-sm-2 control-label">Nom</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idNom"
+					path="nom" placeholder="Nom" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="idDescription" class="col-sm-2 control-label">Nombre d'étoile</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idNombreEtoile"
+					path="nbEtoiles" placeholder="Nombre d'étoile" />
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="idDescription" class="col-sm-2 control-label">Description</label>
 			<div class="col-sm-5">
@@ -48,8 +61,8 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Ajouter un
-					avion</button>
+				<button type="submit" class="btn btn-default">Modifer un
+					hotel</button>
 			</div>
 		</div>
 	</form:form>

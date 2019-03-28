@@ -66,7 +66,7 @@ public class HotelController {
 		// appel de la methode service
 		Hotel hOut = hService.ajoutHotelService(hIn);
 		if (hOut.getId() != 0) {
-			return "redirect:listeHotel";
+			return "redirect:hotelListe";
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout à échoué");
 			return "redirect:hotelAfficheAjout";
@@ -86,7 +86,7 @@ public class HotelController {
 		// appel de la méthode service
 		try {
 			hService.modifierHotelService(hIn);
-			return "redirect:listeHotel";
+			return "redirect:hotelListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La modification a échouée");
 			return "redirect:hotelAfficheModifier";
@@ -106,7 +106,7 @@ public class HotelController {
 		// appel de la methode service
 		try {
 			hService.supprHotelService(hIn);
-			return "redirect:listeHotel";
+			return "redirect:hotelListe";
 		} catch (Exception e) {
 			ra.addAttribute("msg", "La suppression a échouée");
 			return "redirect:hotelAfficheSupprimer";
@@ -141,7 +141,7 @@ public class HotelController {
 		return "redirect:hotelListe";
 	}
 
-	@RequestMapping(value = "/soumettre-modifLien", method = RequestMethod.GET)
+	@RequestMapping(value = "/hotelSoumettre-modifLien", method = RequestMethod.GET)
 	public String modifLien(Model modele, @RequestParam("pId") int id) {
 		Hotel hOut = hService.getHotelByIdService(id);
 		modele.addAttribute("hoModif", hOut);
