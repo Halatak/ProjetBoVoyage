@@ -35,7 +35,7 @@
 				<td>${v.nbPlaces}</td>
 				<td>${v.prix}</td>
 				<td>${v.statut}</td>
-				<td>${v.destination}</td>
+				<td>${v.destination.idDestination}</td>
 				<td>
 				<a class="btn btn-danger"
 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a>
