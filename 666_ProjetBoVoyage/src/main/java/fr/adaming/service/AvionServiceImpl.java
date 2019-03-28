@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IAvionDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Avion;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Avion;
 public class AvionServiceImpl implements IAvionService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Avion > avionDao;
+	private IAvionDao avionDao;
 
 	//setters
 	@Autowired
-	public void setAvionDao(IGeneriqueDao<Avion> avionDao) {
+	public void setAvionDao(IAvionDao avionDao) {
 		this.avionDao = avionDao;
 		avionDao.setClazz(Avion.class);
 	}

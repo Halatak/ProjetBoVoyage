@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IAssuranceDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Assurance;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Assurance;
 public class AssuranceServiceImpl implements IAssuranceService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Assurance > assuranceDao;
+	private IAssuranceDao assuranceDao;
 
 	//setters
 	@Autowired
-	public void setVoyageDao(IGeneriqueDao<Assurance> assuranceDao) {
+	public void setVoyageDao(IAssuranceDao assuranceDao) {
 		this.assuranceDao = assuranceDao;
 		assuranceDao.setClazz(Assurance.class);
 	}

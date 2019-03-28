@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IDestinationDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Destination;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Destination;
 public class DestinationServiceImpl implements IDestinationService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Destination > destinationDao;
+	private IDestinationDao destinationDao;
 
 	//setters
 	@Autowired
-	public void setDestinationDao(IGeneriqueDao<Destination> destinationDao) {
+	public void setDestinationDao(IDestinationDao destinationDao) {
 		this.destinationDao = destinationDao;
 		destinationDao.setClazz(Destination.class);
 	}
