@@ -19,7 +19,7 @@
 		ajouter un hotel</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="soumettreHotelADD" commandName="hAjout">
+		action="hotelSoumettreAjouter" commandName="hoAjout">
 
 		<div class="form-group">
 			<label for="idNom" class="col-sm-2 control-label">Nom</label>

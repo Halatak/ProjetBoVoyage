@@ -19,7 +19,7 @@
 		ajouter une voiture</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="soumettreVoitureADD" commandName="hAjout">
+		action="voitureSoumettreAjouter" commandName="voiAjout">
 
 		<div class="form-group">
 			<label for="idMarque" class="col-sm-2 control-label">Marque</label>

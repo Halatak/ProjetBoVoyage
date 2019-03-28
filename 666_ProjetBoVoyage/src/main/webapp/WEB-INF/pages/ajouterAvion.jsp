@@ -19,7 +19,7 @@
 		ajouter un avion</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="soumettreAvionADD" commandName="aAjout">
+		action="avionSoumettreAjouter" commandName="avAjout">
 
 		<div class="form-group">
 			<label for="idDescription" class="col-sm-2 control-label">Description</label>
