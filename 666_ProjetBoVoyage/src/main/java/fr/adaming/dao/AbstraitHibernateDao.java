@@ -23,7 +23,7 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 	}
 
 	//methode getById
-	public T getById( long id ){
+	public T getById( int id ){
 		return (T) getCurrentSession().get(clazz, id);
 	}
 
@@ -47,7 +47,7 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 		//creation de la requete
 		getCurrentSession().delete( entity );
 	}
-	public void supprById( long entityId ) {
+	public void supprById( int entityId ) {
 		T entity = getById( entityId );
 		suppr( entity );
 	}
