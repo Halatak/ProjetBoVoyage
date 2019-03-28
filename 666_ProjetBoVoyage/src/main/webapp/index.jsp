@@ -7,6 +7,6 @@
 <title>Redirection vers Accueil</title>
 </head>
 <body>
-<%response.sendRedirect("voyage/liste"); %>
+<%response.sendRedirect("voyage/voyageListe"); %>
 </body>
 </html>

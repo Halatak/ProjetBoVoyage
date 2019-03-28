@@ -24,9 +24,10 @@
 			<th>Prix</th>
 			<th>Statut</th>
 			<th>Destination</th>
+			<th>Operation</th>
 		</tr>
 
-		<c:forEach items="${liste}" var="v">
+		<c:forEach items="${voyageListe}" var="v">
 			<tr>
 				<td>${v.id}</td>
 				<td>${v.dateDepart}</td>
@@ -35,7 +36,12 @@
 				<td>${v.prix}</td>
 				<td>${v.statut}</td>
 				<td>${v.destination}</td>
-
+				<td>
+				<a class="btn btn-danger"
+					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a>
+				<a class="btn btn-success"
+					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a>
+				</td>
 
 			</tr>
 		</c:forEach>

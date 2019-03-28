@@ -98,7 +98,7 @@ public class VoyageController {
 		public String deleteVoyage(Model modele) {
 			// lier un etudiant au model mvc afin de l'utiliser dans le
 			modele.addAttribute("voySuppr", new Voyage());
-			return "supprVoyage";
+			return "SupprVoyage";
 		}
 
 		@RequestMapping(value = "/voyageSoumettreSupprimer", method = RequestMethod.POST)
@@ -132,9 +132,9 @@ public class VoyageController {
 			}
 		}
 		
-		@RequestMapping(value = "/voyageSoumettre-supprLien", method = RequestMethod.GET)
+		@RequestMapping(value = "/soumettre-supprLien", method = RequestMethod.GET)
 		public String suppLien(@RequestParam("pId") int id) {
-			voyageService.supprVoyageByIdService(id);;
+			voyageService.supprVoyageByIdService(id);
 			return "redirect:voyageListe";
 		}
 
