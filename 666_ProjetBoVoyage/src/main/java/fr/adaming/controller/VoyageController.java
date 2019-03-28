@@ -69,7 +69,7 @@ public class VoyageController {
 	public String soumettreAjout(@ModelAttribute("voyAjout") Voyage voyIn, RedirectAttributes ra) {
 		Voyage voyOut = null;
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
-		
+		System.out.println(voyage);
 		if (voyIn.getDestination().getIdDestination() != 0) {
 			Destination deIn = destinationService.getDestinationByIdService(voyIn.getDestination().getIdDestination());
 			voyIn.setDestination(deIn);
