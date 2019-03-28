@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGeneriqueDao;
-import fr.adaming.dao.IVoyageDao;
 import fr.adaming.model.Voyage;
 
 @Service("voyageService")
@@ -21,13 +20,12 @@ public class VoyageServiceImpl implements IVoyageService {
 	//setters
 	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
 		this.voyageDao = voyageDao;
-		voyageDao.setClazz( Voyage.class );
+		voyageDao.setClazz(Voyage.class);
 	}
 
 	@Override
 	public List<Voyage> afficherListeVoyageService() {
-		// TODO Auto-generated method stub
-		return null;
+		return voyageDao.getAll();
 	}
 
 	
