@@ -40,3 +40,6 @@ Pour la Vue:
 Toutes les méthodes de DAO doivent être testées avec JUnit.
 
 Toutes les lignes de codes doivent être correctement indentées.
+
+Extension d'URL dans les controlleurs : "classTypeMethode" exemple : "avionAfficheAjouter" ou "voyageSoumettreModifier"
+Pour les noms d'attributs : "2premières lettre de la classe + Méthodes conjugué à l'infirmatif du plus que subjonctif" Exemple :"avAjout" pour avion ajouter
