@@ -71,10 +71,8 @@ public class VoyageController {
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 		if (voyIn.getDestination().getIdDestination() != 0) {
 
-			System.out.println(voyIn.getDestination());
-			System.out.println(voyIn);
 			Destination deIn = destinationService.getDestinationByIdService(voyIn.getDestination().getIdDestination());
-			System.out.println(deIn);
+
 			if (deIn != null) {
 				voyIn.setDestination(deIn);
 			} else {
@@ -108,14 +106,30 @@ public class VoyageController {
 
 	@RequestMapping(value = "/voyageSoumettreModifier", method = RequestMethod.POST)
 	public String soumettreModif(@ModelAttribute("voyModif") Voyage voyIn, RedirectAttributes ra) {
+		Voyage voyOut = null;
+		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
+		if (voyIn.getDestination().getIdDestination() != 0) {
+
+			Destination deIn = destinationService.getDestinationByIdService(voyIn.getDestination().getIdDestination());
+
+			if (deIn != null) {
+				voyIn.setDestination(deIn);
+			} else {
+				ra.addFlashAttribute("msg",
+						"la destination est invalide, entrez une destination valide ou 0 pour dire qu'il n'y a pas de destination");
+				return "redirect:voyageModifier";
+			}
+
+		} else {
+			voyIn.setDestination(null);
+
+		}
 		try {
-
 			voyageService.modifierVoyageService(voyIn);
-
 			return "redirect:voyageListe";
 		} catch (Exception e) {
-			ra.addFlashAttribute("msg", "la modification a échoué");
-			return "redirect:voyageModifier";
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return "redirect:voyageAjouter";
 		}
 
 	}
@@ -132,7 +146,6 @@ public class VoyageController {
 	public String soumettreSuppr(@ModelAttribute("voySuppr") Voyage voyIn, RedirectAttributes ra) {
 		try {
 			voyageService.supprVoyageService(voyIn);
-			;
 			return "redirect:voyageListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "la suppression a échoué");
