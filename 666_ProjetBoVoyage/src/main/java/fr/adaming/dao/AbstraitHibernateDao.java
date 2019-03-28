@@ -32,9 +32,10 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 		return getCurrentSession().createQuery( "FROM " +clazz.getName()).list();
 	}
 
-	public void ajout( T entity ){
+	public T ajout( T entity ){
 		//creation de la requete
 		getCurrentSession().save(entity);
+		return entity;
 
 	}
 

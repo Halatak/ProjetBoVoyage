@@ -33,8 +33,8 @@ public class AvionServiceImpl implements IAvionService{
 	}
 
 	@Override
-	public void ajoutAvionService(Avion a) {
-		avionDao.ajout(a);		
+	public Avion ajoutAvionService(Avion a) {
+		return avionDao.ajout(a);		
 	}
 
 	@Override

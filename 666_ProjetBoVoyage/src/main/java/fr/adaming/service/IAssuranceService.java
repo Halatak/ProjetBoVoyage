@@ -8,7 +8,7 @@ public interface IAssuranceService {
 	
 	public List<Assurance> afficherListeAssuranceService();
 	
-	public void ajoutAssuranceService(Assurance a);
+	public Assurance ajoutAssuranceService(Assurance a);
 	
 	public void modifierAssuranceService(Assurance a);
 	

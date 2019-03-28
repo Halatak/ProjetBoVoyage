@@ -8,7 +8,7 @@ public interface IClientService {
 	
 	public List<Client> afficherListeClientService();
 	
-	public void ajoutClientService(Client c);
+	public Client ajoutClientService(Client c);
 	
 	public void modifierClientService(Client c);
 	

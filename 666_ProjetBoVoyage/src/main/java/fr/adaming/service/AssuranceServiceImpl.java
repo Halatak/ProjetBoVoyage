@@ -33,8 +33,8 @@ public class AssuranceServiceImpl implements IAssuranceService{
 	}
 
 	@Override
-	public void ajoutAssuranceService(Assurance a) {
-		assuranceDao.ajout(a);
+	public Assurance ajoutAssuranceService(Assurance a) {
+		return assuranceDao.ajout(a);
 
 	}
 

@@ -8,7 +8,7 @@ public interface IAvionService {
 	
 	public List<Avion> afficherListeAvionService();
 	
-	public void ajoutAvionService(Avion a);
+	public Avion ajoutAvionService(Avion a);
 	
 	public void modifierAvionService(Avion a);
 	
