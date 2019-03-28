@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstraitHibernateDao <T extends Serializable> implements IGeneriqueDao<T> {
+public abstract class AbstraitHibernateDao<T extends Serializable> implements IGeneriqueDao<T> {
 
 	private Class<T> clazz;
 
@@ -22,37 +22,35 @@ public abstract class AbstraitHibernateDao <T extends Serializable> implements I
 		return sessionFactory.getCurrentSession();
 	}
 
-	//methode getById
-	public T getById( int id ){
+	// methode getById
+	public T getById(int id) {
 		return (T) getCurrentSession().get(clazz, id);
 	}
 
-
-	public List< T > getAll(){
-		return getCurrentSession().createQuery( "FROM " +clazz.getName()).list();
+	public List<T> getAll() {
+		return getCurrentSession().createQuery("FROM " + clazz.getName()).list();
 	}
 
-	public T ajout( T entity ){
-		//creation de la requete
+	public T ajout(T entity) {
+		// creation de la requete
 		getCurrentSession().save(entity);
 		return entity;
 
 	}
 
-	public void modifier( T entity ){
-		//creation de la requete
-		getCurrentSession().merge(entity);
+	public void modifier(T entity) {
+		// creation de la requete
+		getCurrentSession().update(entity);
 	}
 
-	public void suppr( T entity ){
-		//creation de la requete
-		getCurrentSession().delete( entity );
-	}
-	public void supprById( int entityId ) {
-		T entity = getById( entityId );
-		suppr( entity );
+	public void suppr(T entity) {
+		// creation de la requete
+		getCurrentSession().delete(entity);
 	}
 
+	public void supprById(int entityId) {
+		T entity = getById(entityId);
+		suppr(entity);
+	}
 
 }
-
