@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstraitHibernateDao <T extends Serializable>{
+public abstract class AbstraitHibernateDao <T extends Serializable> implements IGeneriqueDao<T> {
 
 	private Class<T> clazz;
 
