@@ -20,7 +20,7 @@ import fr.adaming.model.Voyage;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
 
 public class VoyageDaoTest {
-	
+
 	// transformation uml en java
 	private IGeneriqueDao<Voyage> vDao;
 	private IVoyageDao voyDao;
@@ -37,10 +37,10 @@ public class VoyageDaoTest {
 	@Transactional(readOnly = true)
 	public void testAfficherListeVoyageDao() {
 
-		int tailleTheo = 3;
+		int tailleTheo = 1;
 
 		// récupérer la taille de la liste
-		int tailleReelle = voyDao.afficherListeVoyageDao().size();
+		int tailleReelle = vDao.getAll().size();
 
 		assertEquals(tailleTheo, tailleReelle);
 	}
@@ -53,10 +53,73 @@ public class VoyageDaoTest {
 
 		Voyage voyageTest = new Voyage(new Date(), new Date(), true, 10, 20);
 
-		int tailleReelle = 3;
+		int tailleReelle = 1;
+
+		vDao.ajout(voyageTest);
+
+		assertEquals(tailleReelle + 1, vDao.getAll().size());
+	}
+
+	// Vérifier l'ajout d'un voyage par taille de liste de BdD
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testAddVoyage2() {
+
+		Voyage voyageTest = new Voyage(new Date(), new Date(), true, 10, 20);
 
 		vDao.ajout(voyageTest);
 		
-		assertEquals(tailleReelle+1, voyDao.afficherListeVoyageDao().size());
+		Voyage vTest = vDao.getById(voyageTest.getId());
+
+		assertEquals(voyageTest.getNbPlaces(), vTest.getNbPlaces());
 	}
+	
+	//Vérifier la suppression d'un voyage par l'id
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testDeleteVoyageById() {
+		
+		int tailleTheo = 0;
+		
+		vDao.supprById(1);
+		
+		assertEquals(tailleTheo, 0);
+	}
+	
+	//Vérifier la suppression d'un voyage par l'objet
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testDeleteVoyageByVoyage() {
+		
+		int tailleTheo = 0;
+		
+		Voyage voyDelete = vDao.getById(1);
+		
+		vDao.suppr(voyDelete);
+		
+		assertEquals(tailleTheo, 0);
+	}
+
+	//Vérifier la modification d'un voyage
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testUpdateVoyage() {
+		
+		Voyage voyModif = vDao.getById(1);
+		
+		voyModif.setNbPlaces(20);
+		voyModif.setPrix(80);
+		
+		vDao.modifier(voyModif);
+		
+		Voyage voyModifie = vDao.getById(1);
+		
+		assertEquals(voyModifie.getNbPlaces(), 20);
+		
+	}
+	
 }
