@@ -56,7 +56,7 @@ public class AvionController {
 			return "redirect:listeAvion";
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:avionAfficheAdd";
+			return "redirect:avionAfficheAjout";
 		}
 	}
 
@@ -134,14 +134,14 @@ public class AvionController {
 	@RequestMapping(value = "/avionSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		avService.supprAvionByIdService(id);
-		return "redirect:liste";
+		return "redirect:avionListe";
 	}
 
-	@RequestMapping(value = "/soumettre-modifLien", method = RequestMethod.GET)
+	@RequestMapping(value = "/avionSoumettre-modifLien", method = RequestMethod.GET)
 	public String modifLien(Model modele, @RequestParam("pId") int id) {
 		Avion avOut = avService.getAvionByIdService(id);
-		modele.addAttribute("eModif", avOut);
-		return "modif";
+		modele.addAttribute("avModif", avOut);
+		return "modifierAvion";
 	}
 
 }

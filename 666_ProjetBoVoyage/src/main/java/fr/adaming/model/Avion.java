@@ -16,10 +16,6 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "avions")
 public class Avion implements Serializable{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	// declaration des attributs
