@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -15,8 +16,13 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="continents")
-public class Continent {
+public class Continent implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//declaration des attributs
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

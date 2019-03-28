@@ -14,16 +14,14 @@ import fr.adaming.model.Voyage;
 public class VoyageServiceImpl implements IVoyageService {
 
 	//transformation uml en java
-	
 	private IGeneriqueDao< Voyage > voyageDao;
-	
+
 	//setters
 	@Autowired
 	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
 		this.voyageDao = voyageDao;
 		voyageDao.setClazz(Voyage.class);
 	}
-
 	public IGeneriqueDao<Voyage> getVoyageDao() {
 		return voyageDao;
 	}
@@ -42,19 +40,19 @@ public class VoyageServiceImpl implements IVoyageService {
 	@Override
 	public void modifierVoyageService(Voyage v) {
 		voyageDao.modifier(v);
-		
+
 	}
 
 	@Override
 	public void supprVoyageService(Voyage v) {
 		voyageDao.suppr(v);
-		
+
 	}
 
 	@Override
 	public void supprVoyageByIdService(int id) {
 		voyageDao.supprById(id);
-		
+
 	}
 
 	@Override
@@ -62,6 +60,6 @@ public class VoyageServiceImpl implements IVoyageService {
 		return voyageDao.getById(id);
 	}
 
-	
+
 
 }
