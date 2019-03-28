@@ -32,8 +32,8 @@ public class ContinentServiceImpl implements IContinentService{
 	}
 
 	@Override
-	public void ajoutContinentService(Continent c) {
-		continentDao.ajout(c);
+	public Continent ajoutContinentService(Continent c) {
+		return continentDao.ajout(c);
 
 	}
 

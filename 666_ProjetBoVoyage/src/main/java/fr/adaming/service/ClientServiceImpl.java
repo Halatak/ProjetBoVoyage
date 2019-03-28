@@ -33,8 +33,8 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public void ajoutClientService(Client c) {
-		clientDao.ajout(c);
+	public Client ajoutClientService(Client c) {
+		return clientDao.ajout(c);
 
 	}
 

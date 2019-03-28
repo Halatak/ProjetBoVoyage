@@ -8,7 +8,7 @@ public interface IContinentService {
 	
 	public List<Continent> afficherListeContinentService();
 	
-	public void ajoutContinentService(Continent c);
+	public Continent ajoutContinentService(Continent c);
 	
 	public void modifierContinentService(Continent c);
 	

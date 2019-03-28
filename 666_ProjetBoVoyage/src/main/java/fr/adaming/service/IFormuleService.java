@@ -8,7 +8,7 @@ public interface IFormuleService {
 	
 	public List<Formule> afficherListeFormuleService();
 	
-	public void ajoutFormuleService(Formule f);
+	public Formule ajoutFormuleService(Formule f);
 	
 	public void modifierFormuleService(Formule f);
 	

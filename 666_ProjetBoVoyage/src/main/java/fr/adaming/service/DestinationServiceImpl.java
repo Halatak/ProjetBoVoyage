@@ -32,8 +32,8 @@ public class DestinationServiceImpl implements IDestinationService{
 	}
 
 	@Override
-	public void ajoutDestinationService(Destination d) {
-		destinationDao.ajout(d);
+	public Destination ajoutDestinationService(Destination d) {
+		return destinationDao.ajout(d);
 
 	}
 

@@ -8,7 +8,7 @@ public interface IDestinationService {
 	
 	public List<Destination> afficherListeDestinationService();
 	
-	public void ajoutDestinationService(Destination d);
+	public Destination ajoutDestinationService(Destination d);
 	
 	public void modifierDestinationService(Destination d);
 	

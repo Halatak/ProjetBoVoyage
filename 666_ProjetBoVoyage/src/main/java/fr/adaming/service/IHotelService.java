@@ -8,7 +8,7 @@ public interface IHotelService {
 	
 	public List<Hotel> afficherListeHotelService();
 	
-	public void ajoutHotelService(Hotel h);
+	public Hotel ajoutHotelService(Hotel h);
 	
 	public void modifierHotelService(Hotel h);
 	
