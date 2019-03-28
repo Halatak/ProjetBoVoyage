@@ -14,7 +14,7 @@ public interface IVoyageService {
 	
 	public void supprVoyageService(Voyage v);
 	
-	public void supprVoyageByIdService (Voyage v);
+	public void supprVoyageByIdService (int id);
 	
 	public Voyage getVoyageByIdService (int id);
 
