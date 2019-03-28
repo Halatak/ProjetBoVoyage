@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.ICarteBancaireDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.CarteBancaire;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.CarteBancaire;
 public class CarteBancaireServiceImpl implements ICarteBancaireService{
 
 	//transformation uml en java
-	private IGeneriqueDao< CarteBancaire > carteBancaireDao;
+	private ICarteBancaireDao carteBancaireDao;
 
 	//setters
 	@Autowired
-	public void setCarteBancaireDao(IGeneriqueDao<CarteBancaire> carteBancaireDao) {
+	public void setCarteBancaireDao(ICarteBancaireDao carteBancaireDao) {
 		this.carteBancaireDao = carteBancaireDao;
 		carteBancaireDao.setClazz(CarteBancaire.class);
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IClientDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Client;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Client;
 public class ClientServiceImpl implements IClientService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Client > clientDao;
+	private IClientDao clientDao;
 
 	//setters
 	@Autowired
-	public void setClientDao(IGeneriqueDao<Client> clientDao) {
+	public void setClientDao(IClientDao clientDao) {
 		this.clientDao = clientDao;
 		clientDao.setClazz(Client.class);
 	}

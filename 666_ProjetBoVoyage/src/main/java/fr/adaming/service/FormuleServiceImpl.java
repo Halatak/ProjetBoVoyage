@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IFormuleDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Formule;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Formule;
 public class FormuleServiceImpl implements IFormuleService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Formule > formuleDao;
+	private IFormuleDao formuleDao;
 
 	//setters
 	@Autowired
-	public void setFormuleDao(IGeneriqueDao<Formule> formuleDao) {
+	public void setFormuleDao(IFormuleDao formuleDao) {
 		this.formuleDao = formuleDao;
 		formuleDao.setClazz(Formule.class);
 	}

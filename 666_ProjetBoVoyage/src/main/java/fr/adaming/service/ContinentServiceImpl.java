@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IContinentDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Continent;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Continent;
 public class ContinentServiceImpl implements IContinentService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Continent > continentDao;
+	private IContinentDao continentDao;
 
 	//setters
 	@Autowired
-	public void setContinentDao(IGeneriqueDao<Continent> continentDao) {
+	public void setContinentDao(IContinentDao continentDao) {
 		this.continentDao = continentDao;
 		continentDao.setClazz(Continent.class);
 	}

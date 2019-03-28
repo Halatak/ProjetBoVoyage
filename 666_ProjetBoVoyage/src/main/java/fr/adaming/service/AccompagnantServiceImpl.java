@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IAccompagnantDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Accompagnant;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Accompagnant;
 public class AccompagnantServiceImpl implements IAccompagnantService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Accompagnant > accompagnantDao;
+	private IAccompagnantDao accompagnantDao;
 
 	//setters
 	@Autowired
-	public void setAccompagnantDao(IGeneriqueDao<Accompagnant> accompagnantDao) {
+	public void setAccompagnantDao(IAccompagnantDao accompagnantDao) {
 		this.accompagnantDao = accompagnantDao;
 		accompagnantDao.setClazz(Accompagnant.class);
 	}
