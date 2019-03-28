@@ -31,7 +31,7 @@ public class VoyageServiceImpl implements IVoyageService {
 	public List<Voyage> afficherListeVoyageService() {
 		return voyageDao.getAll();
 	}
-
+	
 	@Override
 	public Voyage ajoutVoyageService(Voyage v) {
 		return voyageDao.ajout(v);
