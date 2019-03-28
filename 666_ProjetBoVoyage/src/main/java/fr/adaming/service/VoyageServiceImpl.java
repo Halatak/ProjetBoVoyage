@@ -33,8 +33,8 @@ public class VoyageServiceImpl implements IVoyageService {
 	}
 
 	@Override
-	public void ajoutVoyageService(Voyage v) {
-		voyageDao.ajout(v);
+	public Voyage ajoutVoyageService(Voyage v) {
+		return voyageDao.ajout(v);
 	}
 
 	@Override
