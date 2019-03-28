@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -14,7 +15,12 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "avions")
-public class Avion {
+public class Avion implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// declaration des attributs
 	@Id
