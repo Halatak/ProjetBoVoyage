@@ -18,7 +18,7 @@
 	
 	<h1 style="color:red; text-align:center;">Formulaire pour ajouter un voyage</h1>
 
-<form:form cssClass="form-horizontal" method="post" action="soumettreAdd" commandName="vAjout">
+<form:form cssClass="form-horizontal" method="post" action="soumettreVoyageAdd" commandName="vAjout">
 
   <div class="form-group">
     <label for="idDateDepart" class="col-sm-2 control-label">Date de départ</label>
