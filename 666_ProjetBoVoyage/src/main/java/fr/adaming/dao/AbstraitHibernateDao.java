@@ -29,7 +29,7 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 
 
 	public List< T > getAll(){
-		return getCurrentSession().createQuery( "FROM " + clazz.getName()).list();
+		return getCurrentSession().createQuery( "FROM " +clazz.getName()).list();
 	}
 
 	public void ajout( T entity ){
