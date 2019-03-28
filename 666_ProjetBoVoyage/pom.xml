@@ -195,19 +195,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Libs pour bootstrap et jquery -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>3.3.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>jquery</artifactId>
-			<version>3.3.1</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

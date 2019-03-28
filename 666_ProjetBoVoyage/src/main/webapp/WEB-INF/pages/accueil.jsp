@@ -6,12 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Accueil</title>
+
+<script src="resources/js/jquery-3.3.1.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/monStyles.css" />
+
 </head>
 <body>
 
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<jsp:include page="/resources/templates/navBar.jsp" />
 
 	<table class="table table-bordered">
 		<tr>
