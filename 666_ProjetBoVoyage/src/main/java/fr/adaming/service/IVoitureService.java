@@ -8,7 +8,7 @@ public interface IVoitureService {
 	
 	public List<Voiture> afficherListeVoitureService();
 	
-	public void ajoutVoitureService(Voiture v);
+	public Voiture ajoutVoitureService(Voiture v);
 	
 	public void modifierVoitureService(Voiture v);
 	
