@@ -28,6 +28,11 @@ public class VoyageServiceImpl implements IVoyageService {
 		return voyageDao.getAll();
 	}
 
+	@Override
+	public void ajoutVoyageService(Voyage v) {
+		voyageDao.ajout(v);
+	}
+
 	
 
 }

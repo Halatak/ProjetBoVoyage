@@ -8,5 +8,14 @@ public interface IVoyageService {
 	
 	public List<Voyage> afficherListeVoyageService();
 	
+	public void ajoutVoyageService(Voyage v);
+	
+	public void modifierVoyageService(Voyage v);
+	
+	public void supprVoyageService(Voyage v);
+	
+	public void supprVoyageByIdService (Voyage v);
+	
+	public Voyage getVoyageByIdService (int id);
 
 }
