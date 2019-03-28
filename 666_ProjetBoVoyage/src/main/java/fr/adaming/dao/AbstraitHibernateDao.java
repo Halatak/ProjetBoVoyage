@@ -14,10 +14,10 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public final void setClazz (Class<T> clazzToSet) {
+	public final void setClazz(Class<T> clazzToSet) {
 		this.clazz = clazzToSet;
 	}
-	
+
 	protected final Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -52,6 +52,6 @@ public abstract class AbstraitHibernateDao <T extends Serializable>{
 		suppr( entity );
 	}
 
-	
+
 }
 
