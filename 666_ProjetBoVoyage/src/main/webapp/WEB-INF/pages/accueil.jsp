@@ -47,5 +47,6 @@
 		</c:forEach>
 
 	</table>
+	<h1>${msg}</h1>
 </body>
 </html>

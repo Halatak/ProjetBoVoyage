@@ -26,8 +26,8 @@
 		<div class="form-group">
 			<label for="idId" class="col-sm-2 control-label">Id</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idId"
-					path="id" placeholder="Id" />
+				<form:input cssClass="form-control" id="idId" path="id"
+					placeholder="Id" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -64,14 +64,14 @@
 		<div class="form-group">
 			<label for="idStatut" class="col-sm-2 control-label">Statut</label>
 			<div class="col-sm-5">
-				<form:checkbox  cssClass="form-control" id="idStatut" path="statut" />
+				<form:checkbox cssClass="form-control" id="idStatut" path="statut" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="idDestination" class="col-sm-2 control-label">Destination</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idDestination"
-					path="destination" placeholder="Destination" />
+					path="destination.idDestination" placeholder="Destination" />
 			</div>
 		</div>
 
@@ -82,6 +82,7 @@
 			</div>
 		</div>
 	</form:form>
+	<h1>${msg}</h1>
 
 </body>
 </html>

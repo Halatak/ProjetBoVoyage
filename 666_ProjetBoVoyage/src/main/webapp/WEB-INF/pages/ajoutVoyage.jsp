@@ -77,5 +77,6 @@
 			</div>
 		</div>
 	</form:form>
+	<h1>${msg}</h1>
 </body>
 </html>

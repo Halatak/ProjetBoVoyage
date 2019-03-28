@@ -69,10 +69,19 @@ public class VoyageController {
 	public String soumettreAjout(@ModelAttribute("voyAjout") Voyage voyIn, RedirectAttributes ra) {
 		Voyage voyOut = null;
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
-		System.out.println(voyage);
 		if (voyIn.getDestination().getIdDestination() != 0) {
+
+			System.out.println(voyIn.getDestination());
+			System.out.println(voyIn);
 			Destination deIn = destinationService.getDestinationByIdService(voyIn.getDestination().getIdDestination());
-			voyIn.setDestination(deIn);
+			System.out.println(deIn);
+			if (deIn != null) {
+				voyIn.setDestination(deIn);
+			} else {
+				ra.addFlashAttribute("msg",
+						"la destination est invalide, entrez une destination valide ou 0 pour dire qu'il n'y a pas de destination");
+				return "redirect:voyageAjouter";
+			}
 
 		} else {
 			voyIn.setDestination(null);
@@ -103,10 +112,10 @@ public class VoyageController {
 
 			voyageService.modifierVoyageService(voyIn);
 
-			return "redirect:listeVoyage";
+			return "redirect:voyageListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "la modification a échoué");
-			return "redirect:modifVoyage";
+			return "redirect:voyageModifier";
 		}
 
 	}
@@ -124,10 +133,10 @@ public class VoyageController {
 		try {
 			voyageService.supprVoyageService(voyIn);
 			;
-			return "redirect:listeVoyager";
+			return "redirect:voyageListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "la suppression a échoué");
-			return "redirect:supprVoyage";
+			return "redirect:voyageSupprimer";
 		}
 
 	}
