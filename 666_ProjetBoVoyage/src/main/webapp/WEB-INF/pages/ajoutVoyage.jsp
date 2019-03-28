@@ -56,18 +56,19 @@
 		</div>
 		<div class="form-group">
 			<label for="idStatut" class="col-sm-2 control-label">Statut</label>
-			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idStatut" path="statut"
-					placeholder="Statut" />
+			<div class="col-sm-1">
+				<form:checkbox cssClass="form-control" id="idStatut" path="statut" />
 			</div>
 		</div>
+
 		<div class="form-group">
 			<label for="idDestination" class="col-sm-2 control-label">Destination</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idDestination"
-					path="destination" placeholder="Destination" />
+					path="destination.idDestination" placeholder="Destination" />
 			</div>
 		</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">

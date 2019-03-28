@@ -43,7 +43,7 @@
 				d'arrivé</label>
 			<div class="col-sm-5">
 				<form:input type="date" cssClass="form-control" id="idDateArrive"
-					path="dateArrive" placeholder="Date d'arrivé" />
+					path="dateArrivee" placeholder="Date d'arrivé" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -51,7 +51,7 @@
 				de places</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idNombrePlaces"
-					path="nombrePlaces" placeholder="Nombre de places" />
+					path="nbPlaces" placeholder="Nombre de places" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -64,8 +64,7 @@
 		<div class="form-group">
 			<label for="idStatut" class="col-sm-2 control-label">Statut</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idStatut" path="statut"
-					placeholder="Statut" />
+				<form:checkbox  cssClass="form-control" id="idStatut" path="statut" />
 			</div>
 		</div>
 		<div class="form-group">

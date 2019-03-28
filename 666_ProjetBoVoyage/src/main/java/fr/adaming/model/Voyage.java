@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Voyage implements Serializable{
 	private int nbPlaces;
 	@Column(name = "prix_v")
 	private double prix;
-
+	
 	//association uml
 	@OneToOne
 	@JoinColumn(name="dest_id",referencedColumnName="id_dest")
