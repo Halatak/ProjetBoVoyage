@@ -53,10 +53,10 @@ public class AvionController {
 		// Appel de la méthode service
 		Avion aOut = avService.ajoutAvionService(aIn);
 		if (aOut.getIdAvion() != 0) {
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:avionAfficheAdd";
+			return "redirect:avionAfficheAjout";
 		}
 	}
 
@@ -75,7 +75,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.modifierAvionService(aIn);
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "modif a échoué");
 			return "redirect:avionAfficheModifier";
@@ -98,7 +98,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.supprAvionService(aIn);
-			return "redirect:listeAvion";
+			return "redirect:avionListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "suppr a échoué");
 			return "redirect:avionAfficheSupprimer";
@@ -134,14 +134,14 @@ public class AvionController {
 	@RequestMapping(value = "/avionSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		avService.supprAvionByIdService(id);
-		return "redirect:liste";
+		return "redirect:avionListe";
 	}
 
-	@RequestMapping(value = "/soumettre-modifLien", method = RequestMethod.GET)
+	@RequestMapping(value = "/avionSoumettre-modifLien", method = RequestMethod.GET)
 	public String modifLien(Model modele, @RequestParam("pId") int id) {
 		Avion avOut = avService.getAvionByIdService(id);
-		modele.addAttribute("eModif", avOut);
-		return "modif";
+		modele.addAttribute("avModif", avOut);
+		return "modifierAvion";
 	}
 
 }
