@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.adaming.service.IVoyageService;
+
 @Controller
 @RequestMapping("/voyage")
 public class VoyageController {
+	
+	// transformation assoc uml en java
+	@Autowired
+	private IVoyageService voyageService;
 
 	//Methode pour convertir et afficher correctement les dates
 	@InitBinder
@@ -36,7 +43,7 @@ public class VoyageController {
 	//page d'accueil qui affiche la liste des voyages
 	@RequestMapping(value="/liste", method=RequestMethod.GET)
 	public ModelAndView afficheListe() {
-		return new ModelAndView("accueil", "liste", new ArrayList<>());
+		return new ModelAndView("accueil", "liste", voyageService.afficherListeVoyageService());
 	}
 
 }
