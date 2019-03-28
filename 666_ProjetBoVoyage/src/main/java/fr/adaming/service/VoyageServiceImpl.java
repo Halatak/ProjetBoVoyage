@@ -21,6 +21,7 @@ public class VoyageServiceImpl implements IVoyageService {
 	//setters
 	public void setVoyageDao(IGeneriqueDao<Voyage> voyageDao) {
 		this.voyageDao = voyageDao;
+		voyageDao.setClazz( Voyage.class );
 	}
 
 	@Override
