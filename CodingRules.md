@@ -39,3 +39,4 @@ Pour la Vue:
   
 Toutes les méthodes de DAO doivent être testées avec JUnit.
 
+Toutes les lignes de codes doivent être correctement indentées.
