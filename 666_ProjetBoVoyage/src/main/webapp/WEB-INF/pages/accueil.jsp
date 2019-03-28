@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Accueil</title>
 
-<%@ include file='/resources/templates/TagLib.jsp'%>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
 <body>

@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter un avion</title>
-<%@ include file='/resources/templates/TagLib.jsp'%>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 	<%-- La directive include --%>
