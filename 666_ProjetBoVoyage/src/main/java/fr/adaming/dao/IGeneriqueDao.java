@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface IGeneriqueDao<T extends Serializable> {
 	
-	T getById(final long id);
+	void setClazz(Class<T> clazzToSet);
+	
+	T getById(final int id);
 
 	List<T> getAll();
 
