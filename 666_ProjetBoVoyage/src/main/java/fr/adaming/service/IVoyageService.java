@@ -7,5 +7,6 @@ import fr.adaming.model.Voyage;
 public interface IVoyageService {
 	
 	public List<Voyage> afficherListeVoyageService();
+	
 
 }
