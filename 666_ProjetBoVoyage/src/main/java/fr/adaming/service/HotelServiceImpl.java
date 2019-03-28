@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGeneriqueDao;
+import fr.adaming.dao.IHotelDao;
 import fr.adaming.model.Hotel;
 
 
@@ -15,11 +16,11 @@ import fr.adaming.model.Hotel;
 public class HotelServiceImpl implements IHotelService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Hotel > hotelDao;
+	private IHotelDao hotelDao;
 
 	//setters
 	@Autowired
-	public void setHotelDao(IGeneriqueDao<Hotel> hotelDao) {
+	public void setHotelDao(IHotelDao hotelDao) {
 		this.hotelDao = hotelDao;
 		hotelDao.setClazz(Hotel.class);
 	}

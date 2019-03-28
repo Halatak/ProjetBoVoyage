@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGeneriqueDao;
+import fr.adaming.dao.IHebergementDao;
 import fr.adaming.model.Hebergement;
 
 @Service("hebergementService")
@@ -14,11 +15,11 @@ import fr.adaming.model.Hebergement;
 public class HebergementServiceImpl implements IHebergementService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Hebergement > hebergementDao;
+	private IHebergementDao hebergementDao;
 
 	//setters
 	@Autowired
-	public void setHebergementDao(IGeneriqueDao<Hebergement> hebergementDao) {
+	public void setHebergementDao(IHebergementDao hebergementDao) {
 		this.hebergementDao = hebergementDao;
 		hebergementDao.setClazz(Hebergement.class);
 	}

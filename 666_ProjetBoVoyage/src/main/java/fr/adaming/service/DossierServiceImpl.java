@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IDossierDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.Dossier;
 
@@ -14,11 +15,11 @@ import fr.adaming.model.Dossier;
 public class DossierServiceImpl implements IDossierService{
 
 	//transformation uml en java
-	private IGeneriqueDao< Dossier > dossierDao;
+	private IDossierDao dossierDao;
 
 	//setters
 	@Autowired
-	public void setDossierDao(IGeneriqueDao<Dossier> dossierDao) {
+	public void setDossierDao(IDossierDao dossierDao) {
 		this.dossierDao = dossierDao;
 		dossierDao.setClazz(Dossier.class);
 	}
