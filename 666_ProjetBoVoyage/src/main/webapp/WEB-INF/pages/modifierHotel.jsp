@@ -5,29 +5,32 @@
 
 <!-- Ajouter la taglib de jstl core -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ajouter un hotel</title>
+<title>Modifier un avion</title>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter un hotel</h1>
+		modifier un avion</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="hotelSoumettreAjouter" commandName="hoAjout">
+		action="avionSoumettreModifier" commandName="avModif">
+
 
 		<div class="form-group">
-			<label for="idNom" class="col-sm-2 control-label">Nom</label>
+			<label for="idId" class="col-sm-2 control-label">Id</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idNom" path="nom"
-					placeholder="Nom" />
+				<form:input cssClass="form-control" id="idId"
+					path="idAvion" placeholder="Id" />
 			</div>
 		</div>
+
 		<div class="form-group">
 			<label for="idDescription" class="col-sm-2 control-label">Description</label>
 			<div class="col-sm-5">
@@ -42,23 +45,15 @@
 					placeholder="Prix" />
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="idNombreEtoile" class="col-sm-2 control-label">Nombre
-				d'étoile</label>
-			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idNombreEtoile"
-					path="nombreEtoile" placeholder="Nombre d'étoile" />
-			</div>
-		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Ajouter un
-					hotel</button>
+					avion</button>
 			</div>
 		</div>
-
 	</form:form>
 	<h1>${msg}</h1>
+
 </body>
 </html>
