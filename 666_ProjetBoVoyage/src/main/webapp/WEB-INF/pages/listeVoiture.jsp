@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Liste des voitures</title>
+
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
+
+</head>
+<body>
+
+	<%-- La directive include --%>
+	<jsp:include page="/resources/templates/navBar.jsp" />
+
+	<table class="table table-bordered">
+		<tr>
+			<th>ID</th>
+			<th>Marque</th>
+			<th>Prix</th>
+			<th>Description</th>
+			<th>Photo</th>
+			<th>Opération</th>
+		</tr>
+
+		<c:forEach items="${voitureListe}" var="voi">
+			<tr>
+				<td>${voi.idVoiture}</td>
+				<td>${voi.marque}</td>
+				<td>${voi.prix}</td>
+				<td>${voi.description}</td>
+				<td></td>
+				<td><a class="btn btn-danger"
+					href="
+									${pageContext.request.contextPath}/voiture/voitureSoumettre-supprLien?pId=${voi.idVoiture}">Supprimer</a>|<a
+					class="btn btn-success"
+					href="
+									${pageContext.request.contextPath}/voiture/voitureSoumettre-modifLien?pId=${voi.idVoiture}">Modifier</a></td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	<h1>${msg}</h1>
+</body>
+</html>
