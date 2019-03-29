@@ -143,10 +143,10 @@
 						<li><a
 							href="${pageContext.request.contextPath}/Client">Client</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/conseillerClient">Conseiller
+							href="${pageContext.request.contextPath}/conseillerClient/espace">Conseiller
 								Client</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/conseillerMarketing">Conseiller
+							href="${pageContext.request.contextPath}/conseillerMarketing/espace">Conseiller
 								Marketing</a></li>
 					</ul></li>
 
