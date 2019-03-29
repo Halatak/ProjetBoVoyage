@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Conseiller Client</title>
+<title>Login conseiller marketing</title>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
 	</form>
 
 	<c:if test="${not empty erreur}">
-		<h1 style="color: red; text-align: center">la connexion a echoué</h1>
+		<h1 style="color: red; text-align: center">La connexion a echoué.</h1>
 	</c:if>
 
 </body>
