@@ -39,35 +39,35 @@
 				<div class="form-group">
 			<label for="idPrix" class="col-sm-2 control-label">Civilité</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idCivilite" path="personne.civilite"
+				<form:input cssClass="form-control" id="idCivilite" path="civilite"
 					placeholder="Civilite" />
 			</div>
 		</div>
 				<div class="form-group">
 			<label for="idPrix" class="col-sm-2 control-label">Nom</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idNom" path="personne.nom"
+				<form:input cssClass="form-control" id="idNom" path="nom"
 					placeholder="Nom" />
 			</div>
 		</div>
 				<div class="form-group">
 			<label for="idPrix" class="col-sm-2 control-label">Prénom</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idPrenom" path="personne.prenom"
+				<form:input cssClass="form-control" id="idPrenom" path="prenom"
 					placeholder="Prénom" />
 			</div>
 		</div>
 				<div class="form-group">
 			<label for="idPrix" class="col-sm-2 control-label">Téléphone</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idTelephone" path="personne.telephone"
+				<form:input cssClass="form-control" id="idTelephone" path="telephone"
 					placeholder="Téléphone" />
 			</div>
 		</div>
 				<div class="form-group">
 			<label for="idPrix" class="col-sm-2 control-label">Date de naissance</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idDn" path="personne.dateNaissance"
+				<form:input type="date" cssClass="form-control" id="idDn" path="dateNaissance"
 					placeholder="Date de naissance" />
 			</div>
 		</div>

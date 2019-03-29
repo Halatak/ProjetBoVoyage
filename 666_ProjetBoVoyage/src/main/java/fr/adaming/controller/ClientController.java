@@ -1,5 +1,6 @@
 package fr.adaming.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,14 @@ import fr.adaming.service.IClientService;
 @Scope("session")
 public class ClientController {
 
+	Client client = new Client();
+	
+	@Autowired
 	private IClientService cService;
+	@Autowired
 	private ICarteBancaireService cbService;
 	
-	// Liste Avion
+	// Liste Client
 	@RequestMapping(value = "/clientListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
 		return new ModelAndView("listeClient", "clientListe", cService.afficherListeClientService());
@@ -41,14 +46,17 @@ public class ClientController {
 	
 	//commentaire
 	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
-	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
+	public String soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		Client cOut = cService.ajoutClientService(cIn);
 		if (cOut.getIdCl() != 0) {
-			return new ModelAndView("ajouterCarteBancaire", "cOut",cService.afficherListeClientService());
+			client=cOut;
+//			return new ModelAndView("ajouterCarteBancaire", "cOut", cService.afficherListeClientService());
+			return "ajouterCarteBancaire";
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout a échoué");
-			return new ModelAndView("ajouterClient");
+//			return new ModelAndView("ajouterClient");
+			return "ajouterClient";
 		}
 	}
 	
@@ -66,6 +74,7 @@ public class ClientController {
 		// Appel de la méthode service
 		CarteBancaire cbOut = cbService.ajoutCarteBancaireService(cbIn);
 		if (cbOut.getIdCarte() != 0) {
+			client.setCarteBancaire(cbOut);
 			return "accueil";
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout a échoué");
