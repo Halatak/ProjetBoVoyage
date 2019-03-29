@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.CarteBancaire;
 import fr.adaming.model.Client;
+import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 
 @Controller
@@ -20,7 +22,8 @@ import fr.adaming.service.IClientService;
 public class ClientController {
 
 	private IClientService cService;
-
+	private ICarteBancaireService cbService;
+	
 	// Liste Avion
 	@RequestMapping(value = "/clientListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
@@ -45,28 +48,28 @@ public class ClientController {
 			return new ModelAndView("ajouterCarteBancaire", "cOut",cService.afficherListeClientService());
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout a échoué");
-			return new ModelAndView("accueil");
+			return new ModelAndView("ajouterClient");
 		}
 	}
 	
 	// Fonctionnalité ajouter carte bancaire
-	@RequestMapping(value = "/clientAfficheAjouter", method = RequestMethod.GET)
+	@RequestMapping(value = "/cbAfficheAjouter", method = RequestMethod.GET)
 	public String afficheAjoutCB(Model modele) {
 
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("cbAjout", new Client());
-		return "ajouterClient";
+		modele.addAttribute("cbAjout", new CarteBancaire());
+		return "ajouterCarteBancaire";
 	}
 
-	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
+	@RequestMapping(value = "/cbSoumettreAjouter", method = RequestMethod.POST)
+	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("cbAjout") CarteBancaire cbIn, RedirectAttributes ra) {
 		// Appel de la méthode service
-		Client cOut = cService.ajoutClientService(cIn);
-		if (cOut.getIdCl() != 0) {
-			return "redirect:clientListe";
+		CarteBancaire cbOut = cbService.ajoutCarteBancaireService(cbIn);
+		if (cbOut.getIdCarte() != 0) {
+			return "accueil";
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout a échoué");
-			return "redirect:clientAfficheAjout";
+			return "ajouterCarteBancaire";
 		}
 	}
 
