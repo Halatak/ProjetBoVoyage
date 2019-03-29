@@ -164,7 +164,7 @@ public class HotelController {
 		modele.addAttribute("hoModif", hOut);
 		return "modifierHotel";
 	}
-	Ho
+
 	@RequestMapping(value="/photoHo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getPhoto(int idHo) throws IOException{
