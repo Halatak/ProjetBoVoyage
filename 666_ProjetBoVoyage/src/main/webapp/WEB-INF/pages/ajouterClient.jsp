@@ -36,6 +36,41 @@
 					placeholder="Mot de passe" />
 			</div>
 		</div>
+				<div class="form-group">
+			<label for="idPrix" class="col-sm-2 control-label">Civilité</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idCivilite" path="personne.civilite"
+					placeholder="Civilite" />
+			</div>
+		</div>
+				<div class="form-group">
+			<label for="idPrix" class="col-sm-2 control-label">Nom</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idNom" path="personne.nom"
+					placeholder="Nom" />
+			</div>
+		</div>
+				<div class="form-group">
+			<label for="idPrix" class="col-sm-2 control-label">Prénom</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idPrenom" path="personne.prenom"
+					placeholder="Prénom" />
+			</div>
+		</div>
+				<div class="form-group">
+			<label for="idPrix" class="col-sm-2 control-label">Téléphone</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idTelephone" path="personne.telephone"
+					placeholder="Téléphone" />
+			</div>
+		</div>
+				<div class="form-group">
+			<label for="idPrix" class="col-sm-2 control-label">Date de naissance</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idDn" path="personne.dateNaissance"
+					placeholder="Date de naissance" />
+			</div>
+		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
