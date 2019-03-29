@@ -22,7 +22,8 @@
         <div class="container">
             <div class="row">
 
-				
+			
+			
                 <!-- item -->
                 <div class="col-md-4 text-center">
                     <div class="panel panel-danger panel-pricing">
