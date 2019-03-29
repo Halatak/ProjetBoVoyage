@@ -58,6 +58,13 @@
 					placeholder="Prix" />
 			</div>
 		</div>
+		
+		<div class="form-group">
+			<label for="idPhoto" class="col-sm-2 control-label">Photo</label>
+			<div class="col-sm-5">
+				<input type="file" name="file" />
+			</div>
+		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
