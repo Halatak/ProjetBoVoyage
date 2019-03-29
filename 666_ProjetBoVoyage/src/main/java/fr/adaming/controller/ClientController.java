@@ -35,7 +35,8 @@ public class ClientController {
 		modele.addAttribute("clAjout", new Client());
 		return "ajouterClient";
 	}
-
+	
+	//commentaire
 	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
 	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
