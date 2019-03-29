@@ -16,6 +16,7 @@
 	<tr>
 		<th>ID</th>
 		<th>Pays</th>
+		<th>Description</th>
 		<th>photo</th>
 		<th>Opération</th>
 	</tr>
@@ -25,13 +26,13 @@
 			<td>${des.idDestination}</td>
 			<td>${des.pays}</td>
 			<td>${des.description}</td>
-			<td><img src="photo?idDestination=${destination.idDestination}"></td>
+			<td><img src="photoDes?idDest=${des.idDestination}"></td>
 			<td><a class="btn btn-danger"
 				href="
-									${pageContext.request.contextPath}/avion/avionSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
+									${pageContext.request.contextPath}/destination/destinationSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
 				class="btn btn-success"
 				href="
-									${pageContext.request.contextPath}/avion/avionSoumettre-modifLien?pId=${av.idAvion}">Modifier</a></td>
+									${pageContext.request.contextPath}/destination/destinationSoumettre-modifLien?pId=${av.idAvion}">Modifier</a></td>
 		</tr>
 	</c:forEach>
 

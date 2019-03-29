@@ -18,7 +18,7 @@
 		ajouter une destination</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="destinationSoumettreAjouter" commandName="desAjout">
+		action="destinationSoumettreAjouter" commandName="desAjout" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="idPays" class="col-sm-2 control-label">Pays</label>
@@ -38,7 +38,7 @@
 		<div class="form-group">
 			<label for="idPhoto" class="col-sm-2 control-label">Photo</label>
 			<div class="col-sm-5">
-				<form:input type="file" name="file" />
+				<input type="file" name="file" />
 			</div>
 		</div>
 
