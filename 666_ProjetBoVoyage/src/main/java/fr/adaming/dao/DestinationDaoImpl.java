@@ -22,9 +22,10 @@ public class DestinationDaoImpl extends AbstraitHibernateDao<Destination> implem
 
 	@Override
 	public List<Destination> getAllPhoto() {
+		
 		// recuperer la liste
 		List<Destination> liste = getAll();
-		
+		//met l'image dans chaque element de la liste
 		for(Destination c:liste){
 			c.setImg("data:image/png;base64,"+Base64.encodeBase64String(c.getPhoto()));
 		}
@@ -34,8 +35,10 @@ public class DestinationDaoImpl extends AbstraitHibernateDao<Destination> implem
 
 	@Override
 	public Destination getByIdPhoto(int id) {
-
+		
+		//recupere l'objet
 		Destination dest = getById(id);
+		//met l'image dans chaque element de la liste
 		dest.setImg("data:image/png;base64,"+Base64.encodeBase64String(dest.getPhoto()));
 		
 		return dest;
