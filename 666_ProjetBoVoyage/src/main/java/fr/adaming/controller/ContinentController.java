@@ -46,7 +46,7 @@ public class ContinentController {
 		}
 
 		@RequestMapping(value = "/continentSoumettreAjouter", method = RequestMethod.POST)
-		public String soumettreAjout(Model modele, @ModelAttribute("contAjout") Continent contIn, RedirectAttributes ra,
+		public ModelAndView soumettreAjout(Model modele, @ModelAttribute("contAjout") Continent contIn, RedirectAttributes ra,
 				MultipartFile file) throws Exception {
 			// Appel de la méthode service
 			if(!file.isEmpty()){
@@ -59,10 +59,10 @@ public class ContinentController {
 			}
 			Continent contOut = contService.ajoutContinentService(contIn);
 			if (contOut.getIdContinent() != 0) {
-				return "redirect:continentListe";
+				return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 			} else {
 				ra.addFlashAttribute("msg", "l'ajout a échoué");
-				return "redirect:continentAfficheAjout";
+				return new ModelAndView("redirect:continentAfficheAjout");
 			}
 		}
 		

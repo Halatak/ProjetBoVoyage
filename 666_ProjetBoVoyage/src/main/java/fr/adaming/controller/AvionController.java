@@ -49,14 +49,14 @@ public class AvionController {
 	}
 
 	@RequestMapping(value = "/avionSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(ModelMap modele, @ModelAttribute("avAjout") Avion aIn, RedirectAttributes ra) {
+	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("avAjout") Avion aIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		Avion aOut = avService.ajoutAvionService(aIn);
 		if (aOut.getIdAvion() != 0) {
-			return "redirect:avionListe";
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:avionAfficheAjout";
+			return new ModelAndView("redirect:avionAfficheAjout");
 		}
 	}
 

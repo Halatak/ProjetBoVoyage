@@ -70,7 +70,7 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/hotelSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(Model modele, @ModelAttribute("hoAjout") Hotel hIn, RedirectAttributes ra, MultipartFile file) throws Exception {
+	public ModelAndView soumettreAjout(Model modele, @ModelAttribute("hoAjout") Hotel hIn, RedirectAttributes ra, MultipartFile file) throws Exception {
 
 		if(!file.isEmpty()){
 			hIn.setPhoto(file.getBytes());
@@ -83,10 +83,10 @@ public class HotelController {
 		// appel de la methode service
 		Hotel hOut = hService.ajoutHotelService(hIn);
 		if (hOut.getId() != 0) {
-			return "redirect:hotelListe";
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout à échoué");
-			return "redirect:hotelAfficheAjout";
+			return new ModelAndView("redirect:hotelAfficheAjout");
 		}
 	}
 
