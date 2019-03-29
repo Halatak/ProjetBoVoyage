@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Destination;
+
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IVoyageService;
@@ -68,6 +69,9 @@ public class VoyageController {
 	@RequestMapping(value = "/voyageSoumettreAjouter", method = RequestMethod.POST)
 	public String soumettreAjout(@ModelAttribute("voyAjout") Voyage voyIn, RedirectAttributes ra) {
 		Voyage voyOut = null;
+
+		voyIn.getDateArrivee().setHours(voyIn.getHeure());
+		voyIn.getDateArrivee().setMinutes(voyIn.getMinute());
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 		if (voyIn.getDestination().getIdDestination() != 0) {
 
@@ -85,7 +89,7 @@ public class VoyageController {
 			voyIn.setDestination(null);
 
 		}
-		
+
 		voyOut = voyageService.ajoutVoyageService(voyIn);
 		if (voyOut.getId() != 0) {
 			return "redirect:voyageListe";
