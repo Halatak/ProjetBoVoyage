@@ -130,6 +130,28 @@
 					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Continent <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/continent/continentListe">Afficher
+								Continent</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/continent/continentAfficheAjouter">Ajouter
+								Continent</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/continent/continentAfficheModifier">Modifier
+								Continent</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/continent/voitureAfficheSupprimer">Supprimer
+								Continent</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Client <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a

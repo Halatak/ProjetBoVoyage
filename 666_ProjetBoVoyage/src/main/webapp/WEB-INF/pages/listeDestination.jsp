@@ -9,6 +9,8 @@
 
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
+</head>
+<body>
 <%-- La directive include --%>
 <jsp:include page="/resources/templates/navBar.jsp" />
 
@@ -39,8 +41,7 @@
 </table>
 <h1>${msg}</h1>
 
-</head>
-<body>
+
 
 </body>
 </html>
