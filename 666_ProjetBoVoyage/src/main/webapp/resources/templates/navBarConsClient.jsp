@@ -108,48 +108,20 @@
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Voiture <span class="caret"></span></a>
+					aria-expanded="false">Hotel <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/voiture/voitureListe">Afficher
-								Voiture</a></li>
+							href="${pageContext.request.contextPath}/hotel/hotelListe">Afficher
+								Hotel</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/voiture/voitureAfficheAjouter">Ajouter
-								Voiture</a></li>
+							href="${pageContext.request.contextPath}/hotel/hotelAfficheAjouter">Ajouter
+								Hotel</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/voiture/voitureAfficheModifier">Modifier
-								Voiture</a></li>
+							href="${pageContext.request.contextPath}/hotel/hotelAfficheModifier">Modifier
+								Hotel</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/voiture/voitureAfficheSupprimer">Supprimer
-								Voiture</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Client <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a
-							href="${pageContext.request.contextPath}/client/clientListe">Afficher
-								client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/client/clientAfficheAjouter">Ajouter
-								client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/client/clientAfficheModifier">Modifier
-								client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/client/clientAfficheSupprimer">Supprimer
-								Destination</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/client/cbAfficheAjouter">Ajouter
-								carte bancaire</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/client/cbAfficheModifier">Modifier
-								carte bancaire</a></li>
+							href="${pageContext.request.contextPath}/hotel/hotelAfficheSupprimer">Supprimer
+								Hotel</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li role="separator" class="divider"></li>
@@ -164,19 +136,7 @@
 				<button type="submit" class="btn btn-default">Chercher</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Connexion<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/conseillerClient/espace">Conseiller
-								Client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/conseillerMarketing/espace">Conseiller
-								Marketing</a></li>
-					</ul></li>
-
+				<li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
