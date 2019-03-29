@@ -92,10 +92,19 @@
 				<button type="submit" class="btn btn-default">Chercher</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#">Bienvenue <span
-						class="sr-only">(current)</span></a></li>
-				<li class="active"><a href="#">Deconnexion <span
-						class="sr-only">(current)</span></a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Connexion<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/client/espace">Client</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/conseillerCl/espace">Conseiller
+								Client</a></li>
+						<li><a
+							href="accueilConseillerMarketing.jsp">Conseiller
+								Marketing</a></li>
+					</ul></li>
 
 			</ul>
 		</div>
