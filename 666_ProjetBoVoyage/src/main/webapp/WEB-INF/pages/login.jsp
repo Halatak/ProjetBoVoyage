@@ -10,12 +10,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login conseiller marketing</title>
 </head>
-<body>
+<body
+	style="background: url('${pageContext.request.contextPath}/resources/images/map-307442_960_720.png');
+	background-attachment: fixed; background-size:cover;">
 
-	<form action="connexion" method="post">
-		Identifiant: <input type="text" name="j_username" /> <br /> Mot de
-		passe: <input type="password" name="j_password" /> <br /> <input
-			type="submit" value="Se connecter" />
+	<h1 style="color: red; text-align: center">Bienvenue Conseiller !</h1>
+	<br />
+	<h2 style="color: red; text-align: center">Connectez-vous pour
+		accéder à votre espace.</h2>
+	<br />
+
+	<form class="form-horizontal" action="connexion" method="post"
+		style="text-align: center">
+		<div class="form-group">
+			Identifiant:
+			<div class="col-sm-2">
+				<input type="text" name="j_username" />
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			Mot de passe:
+			<div class="col-sm-2">
+				<input type="password" name="j_password" />
+			</div>
+		</div>
+		<br /> <input type="submit" value="Se connecter" />
 
 	</form>
 
