@@ -7,12 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Supprimer Voyage</title>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 
+	<%-- La directive include --%>
+	<%@ include file='/resources/templates/navBar.jsp'%>
+
 	<h1 style="color: red" align="center">Formulaire de suppression</h1>
 	<form:form cssClass="form-horizontal" method="post"
-		action="soumettredelete" commandName="eSuppr">
+		action="voyageSoumettreSupprimer" commandName="voySuppr">
 
 		<div class="form-group">
 			<label for="idEtu" class="col-sm-2 control-label">Id Voyage:

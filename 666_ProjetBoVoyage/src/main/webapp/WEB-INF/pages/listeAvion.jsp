@@ -21,6 +21,7 @@
 			<th>Prix</th>
 			<th>Description</th>
 			<th>Photo</th>
+			<th>Opération</th>
 		</tr>
 
 		<c:forEach items="${avionListe}" var="av">
@@ -29,6 +30,12 @@
 				<td>${av.prix}</td>
 				<td>${av.description}</td>
 				<td></td>
+				<td><a class="btn btn-danger"
+					href="
+									${pageContext.request.contextPath}/avion/avionSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
+					class="btn btn-success"
+					href="
+									${pageContext.request.contextPath}/avion/avionSoumettre-modifLien?pId=${av.idAvion}">Modifier</a></td>
 			</tr>
 		</c:forEach>
 
