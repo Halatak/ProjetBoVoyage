@@ -30,7 +30,7 @@ public class HotelServiceImpl implements IHotelService{
 
 	@Override
 	public List<Hotel> afficherListeHotelService() {
-		return hotelDao.getAllPhoto();
+		return hotelDao.getAll();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class HotelServiceImpl implements IHotelService{
 
 	@Override
 	public Hotel getHotelByIdService(int id) {
-		return hotelDao.getByIdPhoto(id);
+		return hotelDao.getById(id);
 	}
 
 }
