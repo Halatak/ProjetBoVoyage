@@ -83,8 +83,8 @@
 						<li role="separator" class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Destination <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -105,7 +105,7 @@
 						<li role="separator" class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
-					
+
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Hotel <span class="caret"></span></a>
@@ -140,8 +140,7 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Connexion<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a
-							href="#">Client</a></li>
+						<li><a href="#">Client</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/conseillerClient/espace">Conseiller
 								Client</a></li>
