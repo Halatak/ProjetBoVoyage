@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,9 +35,13 @@ public class Voyage implements Serializable {
 	@Column(name = "prix_v")
 	private double prix;
 	@Transient
-	private int minute;
+	private int minuteDepart;
 	@Transient
-	private int heure;
+	private String heureDepart;
+	@Transient
+	private int minuteArrive;
+	@Transient
+	private String heureArrive;
 
 	// association uml
 	@OneToOne
@@ -68,19 +71,22 @@ public class Voyage implements Serializable {
 		super();
 	}
 
-	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, int heure, int minute) {
+	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, String heureDepart,
+			int minuteDepart, String heureArrive, int minuteArrive) {
 		super();
 		this.dateArrivee = dateArrivee;
 		this.dateDepart = dateDepart;
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
 		this.prix = prix;
-		this.heure = heure;
-		this.minute = minute;
+		this.heureDepart = heureDepart;
+		this.minuteDepart = minuteDepart;
+		this.heureArrive = heureArrive;
+		this.minuteArrive = minuteArrive;
 	}
 
-	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, int heure,
-			int minute) {
+	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, String heureDepart,
+			int minuteDepart, String heureArrive, int minuteArrive) {
 		super();
 		this.id = id;
 		this.dateArrivee = dateArrivee;
@@ -88,8 +94,10 @@ public class Voyage implements Serializable {
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
 		this.prix = prix;
-		this.heure = heure;
-		this.minute = minute;
+		this.heureDepart = heureDepart;
+		this.minuteDepart = minuteDepart;
+		this.heureArrive = heureArrive;
+		this.minuteArrive = minuteArrive;
 	}
 
 	// getters setters
@@ -97,20 +105,36 @@ public class Voyage implements Serializable {
 		return id;
 	}
 
-	public int getMinute() {
-		return minute;
+	public int getMinuteDepart() {
+		return minuteDepart;
 	}
 
-	public void setMinute(int minute) {
-		this.minute = minute;
+	public void setMinuteDepart(int minuteDepart) {
+		this.minuteDepart = minuteDepart;
 	}
 
-	public int getHeure() {
-		return heure;
+	public String getHeureDepart() {
+		return heureDepart;
 	}
 
-	public void setHeure(int heure) {
-		this.heure = heure;
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+
+	public int getMinuteArrive() {
+		return minuteArrive;
+	}
+
+	public void setMinuteArrive(int minuteArrive) {
+		this.minuteArrive = minuteArrive;
+	}
+
+	public String getHeureArrive() {
+		return heureArrive;
+	}
+
+	public void setHeureArrive(String heureArrive) {
+		this.heureArrive = heureArrive;
 	}
 
 	public void setId(int id) {

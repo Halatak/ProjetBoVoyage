@@ -41,7 +41,6 @@ public class VoyageController {
 		// l'objet WebDataBinder sert à faire le lien entre les params de la
 		// requete et les objets java
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
 		df.setLenient(false);
 
 		// la methode registerCustomEditor: à configurer la conversion du param
@@ -68,10 +67,19 @@ public class VoyageController {
 
 	@RequestMapping(value = "/voyageSoumettreAjouter", method = RequestMethod.POST)
 	public String soumettreAjout(@ModelAttribute("voyAjout") Voyage voyIn, RedirectAttributes ra) {
+
 		Voyage voyOut = null;
 
-		voyIn.getDateArrivee().setHours(voyIn.getHeure());
-		voyIn.getDateArrivee().setMinutes(voyIn.getMinute());
+		String voyInDepartHeure = voyIn.getHeureDepart().substring(0, 2);
+		String voyInDepartMinute = voyIn.getHeureDepart().substring(3, 5);
+		String voyInArriveHeure = voyIn.getHeureArrive().substring(0, 2);
+		String voyInArriveMinute = voyIn.getHeureArrive().substring(3, 5);
+
+		voyIn.getDateDepart().setHours(Integer.parseInt(voyInDepartHeure));
+		voyIn.getDateDepart().setMinutes(Integer.parseInt(voyInDepartMinute));
+		voyIn.getDateArrivee().setHours(Integer.parseInt(voyInArriveHeure));
+		voyIn.getDateArrivee().setMinutes(Integer.parseInt(voyInArriveMinute));
+
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 		if (voyIn.getDestination().getIdDestination() != 0) {
 
