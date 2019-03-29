@@ -1,12 +1,16 @@
 package fr.adaming.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,14 +20,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
 import fr.adaming.service.IHotelService;
 
 @Controller
 @RequestMapping("/hotel")
+@SessionAttributes("hoModif")
 @Scope("session")
 public class HotelController {
 
@@ -61,8 +70,16 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/hotelSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(ModelMap modele, @ModelAttribute("hoAjout") Hotel hIn, RedirectAttributes ra) {
+	public String soumettreAjout(Model modele, @ModelAttribute("hoAjout") Hotel hIn, RedirectAttributes ra, MultipartFile file) throws Exception {
 
+		if(!file.isEmpty()){
+			hIn.setPhoto(file.getBytes());
+		}else{
+			if(hIn.getId()!=0){
+				Hotel des=(Hotel) modele.asMap().get("hoModif");
+				hIn.setPhoto(des.getPhoto());
+			}
+		}
 		// appel de la methode service
 		Hotel hOut = hService.ajoutHotelService(hIn);
 		if (hOut.getId() != 0) {
@@ -146,6 +163,17 @@ public class HotelController {
 		Hotel hOut = hService.getHotelByIdService(id);
 		modele.addAttribute("hoModif", hOut);
 		return "modifierHotel";
+	}
+	
+	@RequestMapping(value="/photoHo",produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idHo) throws IOException{
+		Hotel ho=hService.getHotelByIdService(idHo);
+		if(ho.getPhoto()==null){
+			return new byte[0];
+		}else{
+			return IOUtils.toByteArray(new ByteArrayInputStream(ho.getPhoto()));
+		}
 	}
 
 }
