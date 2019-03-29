@@ -1,9 +1,12 @@
 package fr.adaming.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,15 +14,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import fr.adaming.model.Destination;
 import fr.adaming.service.IDestinationService;
 
 @Controller
 @RequestMapping("/destination")
+@SessionAttributes("desModif")
 @Scope("session")
 public class DestinationController {
 
@@ -43,13 +51,13 @@ public class DestinationController {
 
 	@RequestMapping(value = "/destinationSoumettreAjouter", method = RequestMethod.POST)
 	public String soumettreAjout(Model modele, @ModelAttribute("desAjout") Destination desIn, RedirectAttributes ra,
-			MultipartFile file) throws IOException {
+			MultipartFile file) throws Exception {
 		// Appel de la méthode service
 		if(!file.isEmpty()){
 			desIn.setPhoto(file.getBytes());
 		}else{
 			if(desIn.getIdDestination()!=0){
-				Destination des=(Destination) modele.asMap().get("editDestination");
+				Destination des=(Destination) modele.asMap().get("desModif");
 				desIn.setPhoto(des.getPhoto());
 			}
 		}
@@ -147,5 +155,15 @@ public class DestinationController {
 		Destination desOut = destService.getDestinationByIdService(id);
 		modele.addAttribute("desModif", desOut);
 		return "modifierDestination";
+	}
+	@RequestMapping(value="/photoDes",produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idDest) throws IOException{
+		Destination des=destService.getDestinationByIdService(idDest);
+		if(des.getPhoto()==null){
+			return new byte[0];
+		}else{
+			return IOUtils.toByteArray(new ByteArrayInputStream(des.getPhoto()));
+		}
 	}
 }

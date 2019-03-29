@@ -22,5 +22,11 @@
 		<property name="prefix" value="/WEB-INF/pages/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	<!-- declaration du bean multipartResolver pour les images -->
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+	</bean>
 
 </beans>
