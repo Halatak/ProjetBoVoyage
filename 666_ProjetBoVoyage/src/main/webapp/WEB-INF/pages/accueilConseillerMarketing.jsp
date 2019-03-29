@@ -15,7 +15,7 @@
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-coucou conseiller marketing
+	coucou conseiller marketing
 
 	<table class="table table-bordered">
 		<tr>
@@ -29,7 +29,7 @@ coucou conseiller marketing
 			<th>Operation</th>
 		</tr>
 
-		<c:forEach items="${voyageListe}" var="v">
+		<c:forEach items="${voyageCMListe}" var="v">
 			<tr>
 				<td>${v.id}</td>
 				<td>${v.dateDepart}</td>
@@ -38,10 +38,9 @@ coucou conseiller marketing
 				<td>${v.prix}</td>
 				<td>${v.statut}</td>
 				<td>${v.destination.idDestination}</td>
-				<td>
-				<a class="btn btn-danger"
+				<td><a class="btn btn-danger"
 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a>
-				<a class="btn btn-success"
+					<a class="btn btn-success"
 					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a>
 				</td>
 
@@ -50,6 +49,6 @@ coucou conseiller marketing
 
 	</table>
 	<h1>${msg}</h1>
-	
+
 </body>
 </html>
