@@ -50,23 +50,23 @@ public class DestinationController {
 	}
 
 	@RequestMapping(value = "/destinationSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(Model modele, @ModelAttribute("desAjout") Destination desIn, RedirectAttributes ra,
-			MultipartFile file) throws Exception {
+	public ModelAndView soumettreAjout(Model modele, @ModelAttribute("desAjout") Destination desIn,
+			RedirectAttributes ra, MultipartFile file) throws Exception {
 		// Appel de la méthode service
-		if(!file.isEmpty()){
+		if (!file.isEmpty()) {
 			desIn.setPhoto(file.getBytes());
-		}else{
-			if(desIn.getIdDestination()!=0){
-				Destination des=(Destination) modele.asMap().get("desModif");
+		} else {
+			if (desIn.getIdDestination() != 0) {
+				Destination des = (Destination) modele.asMap().get("desModif");
 				desIn.setPhoto(des.getPhoto());
 			}
 		}
 		Destination desOut = destService.ajoutDestinationService(desIn);
 		if (desOut.getIdDestination() != 0) {
-			return "redirect:destinationListe";
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:destinationAfficheAjout";
+			return new ModelAndView("redirect:destinationAfficheAjout");
 		}
 	}
 
@@ -156,13 +156,14 @@ public class DestinationController {
 		modele.addAttribute("desModif", desOut);
 		return "modifierDestination";
 	}
-	@RequestMapping(value="/photoDes",produces=MediaType.IMAGE_JPEG_VALUE)
+
+	@RequestMapping(value = "/photoDes", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] getPhoto(int idDest) throws IOException{
-		Destination des=destService.getDestinationByIdService(idDest);
-		if(des.getPhoto()==null){
+	public byte[] getPhoto(int idDest) throws IOException {
+		Destination des = destService.getDestinationByIdService(idDest);
+		if (des.getPhoto() == null) {
 			return new byte[0];
-		}else{
+		} else {
 			return IOUtils.toByteArray(new ByteArrayInputStream(des.getPhoto()));
 		}
 	}

@@ -85,6 +85,7 @@ public class VoyageController {
 			voyIn.setDestination(null);
 
 		}
+		
 		voyOut = voyageService.ajoutVoyageService(voyIn);
 		if (voyOut.getId() != 0) {
 			return "redirect:voyageListe";
