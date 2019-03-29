@@ -97,12 +97,12 @@
 					aria-expanded="false">Connexion<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/client/espace">Client</a></li>
+							href="${pageContext.request.contextPath}/Client">Client</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/conseillerCl/espace">Conseiller
+							href="${pageContext.request.contextPath}/ConseillerClient">Conseiller
 								Client</a></li>
 						<li><a
-							href="accueilConseillerMarketing.jsp">Conseiller
+							href="${pageContext.request.contextPath}/ConseillerMarketing">Conseiller
 								Marketing</a></li>
 					</ul></li>
 
