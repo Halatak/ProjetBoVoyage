@@ -29,7 +29,7 @@ public class VoitureServiceImpl implements IVoitureService{
 
 	@Override
 	public List<Voiture> afficherListeVoitureService() {
-		return voitureDao.getAllPhoto();
+		return voitureDao.getAll();
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class VoitureServiceImpl implements IVoitureService{
 
 	@Override
 	public Voiture getVoitureByIdService(int id) {
-		return voitureDao.getByIdPhoto(id);
+		return voitureDao.getById(id);
 	}
 
 }
