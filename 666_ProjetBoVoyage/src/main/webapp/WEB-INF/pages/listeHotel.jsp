@@ -33,7 +33,7 @@
 				<td>${ho.prix}</td>
 				<td>${ho.description}</td>
 				<td>${ho.nbEtoiles}</td>
-				<td></td>
+				<td><img src="photoHo?idHo=${ho.id}"></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/hotel/hotelSoumettre-supprLien?pId=${ho.id}">Supprimer</a>|<a

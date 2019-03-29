@@ -20,7 +20,7 @@
 		ajouter un hotel</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="hotelSoumettreAjouter" commandName="hoAjout">
+		action="hotelSoumettreAjouter" commandName="hoAjout" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="idNom" class="col-sm-2 control-label">Nom</label>
@@ -49,6 +49,13 @@
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idNombreEtoile"
 					path="nbEtoiles" placeholder="Nombre d'étoile" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="idPhoto" class="col-sm-2 control-label">Photo</label>
+			<div class="col-sm-5">
+				<input type="file" name="file" />
 			</div>
 		</div>
 

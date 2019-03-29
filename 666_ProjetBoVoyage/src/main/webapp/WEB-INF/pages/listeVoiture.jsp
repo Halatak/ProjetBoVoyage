@@ -31,7 +31,7 @@
 				<td>${voi.marque}</td>
 				<td>${voi.prix}</td>
 				<td>${voi.description}</td>
-				<td></td>
+				<td><img src="photoVoi?idVoi=${voi.idVoiture}"></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/voiture/voitureSoumettre-supprLien?pId=${voi.idVoiture}">Supprimer</a>|<a

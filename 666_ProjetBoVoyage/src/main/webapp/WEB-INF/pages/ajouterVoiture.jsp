@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter une voiture</title>
+<%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 	<%-- La directive include --%>
@@ -19,7 +20,7 @@
 		ajouter une voiture</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="voitureSoumettreAjouter" commandName="voiAjout">
+		action="voitureSoumettreAjouter" commandName="voiAjout" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="idMarque" class="col-sm-2 control-label">Marque</label>
@@ -40,6 +41,13 @@
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idPrix" path="prix"
 					placeholder="Prix" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="idPhoto" class="col-sm-2 control-label">Photo</label>
+			<div class="col-sm-5">
+				<input type="file" name="file" />
 			</div>
 		</div>
 

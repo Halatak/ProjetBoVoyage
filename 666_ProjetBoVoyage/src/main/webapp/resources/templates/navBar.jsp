@@ -108,20 +108,48 @@
 					
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Hotel <span class="caret"></span></a>
+					aria-expanded="false">Voiture <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelListe">Afficher
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureListe">Afficher
+								Voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheAjouter">Ajouter
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheAjouter">Ajouter
+								Voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheModifier">Modifier
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheModifier">Modifier
+								Voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheSupprimer">Supprimer
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheSupprimer">Supprimer
+								Voiture</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Client <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/client/clientListe">Afficher
+								client</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/client/clientAfficheAjouter">Ajouter
+								client</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/client/clientAfficheModifier">Modifier
+								client</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/client/clientAfficheSupprimer">Supprimer
+								Destination</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/client/cbAfficheAjouter">Ajouter
+								carte bancaire</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/client/cbAfficheModifier">Modifier
+								carte bancaire</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li role="separator" class="divider"></li>
