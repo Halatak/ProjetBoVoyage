@@ -29,7 +29,7 @@ public class ContinentServiceImpl implements IContinentService{
 
 	@Override
 	public List<Continent> afficherListeContinentService() {
-		return continentDao.getAll();
+		return continentDao.getAllPhoto();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class ContinentServiceImpl implements IContinentService{
 
 	@Override
 	public Continent getContinentByIdService(int id) {
-		return continentDao.getById(id);
+		return continentDao.getByIdPhoto(id);
 	}
 
 }

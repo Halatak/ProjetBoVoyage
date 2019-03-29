@@ -29,7 +29,7 @@ public class DestinationServiceImpl implements IDestinationService{
 
 	@Override
 	public List<Destination> afficherListeDestinationService() {
-		return destinationDao.getAll();
+		return destinationDao.getAllPhoto();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class DestinationServiceImpl implements IDestinationService{
 
 	@Override
 	public Destination getDestinationByIdService(int id) {
-		return destinationDao.getById(id);
+		return destinationDao.getByIdPhoto(id);
 	}
 
 }
