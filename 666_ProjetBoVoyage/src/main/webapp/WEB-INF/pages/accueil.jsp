@@ -36,12 +36,13 @@
 				<td>${v.prix}</td>
 				<td>${v.statut}</td>
 				<td>${v.destination.idDestination}</td>
-				<td>
-				<a class="btn btn-danger"
+				<td><a class="btn btn-danger"
 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a>
-				<a class="btn btn-success"
+					<a class="btn btn-success"
 					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a>
-				</td>
+					<a class="btn btn-success"
+					href="${pageContext.request.contextPath}/panier/panierSoumettreAjouter?pId=${v.id}">Select
+						Voyage</a></td>
 
 			</tr>
 		</c:forEach>
