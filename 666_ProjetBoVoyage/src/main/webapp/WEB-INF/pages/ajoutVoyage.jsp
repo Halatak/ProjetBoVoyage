@@ -54,6 +54,26 @@
 					placeholder="Prix" />
 			</div>
 		</div>
+
+		<div class="form-group">
+			<label for="idHeureDepart" class="col-sm-2 control-label">Horaire départ
+				Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureDepart"
+					path="heureDepart" placeholder="Heure Depart" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="idHeureArrive" class="col-sm-2 control-label">Horaire arrivée
+				Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureArrive"
+					path="heureArrive" placeholder="Heure Arrivee" />
+			</div>
+		</div>
+
+
 		<div class="form-group">
 			<label for="idStatut" class="col-sm-2 control-label">Statut</label>
 			<div class="col-sm-1">

@@ -15,39 +15,57 @@
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBar.jsp" />
 
-	<table class="table table-bordered">
-		<tr>
-			<th>ID</th>
-			<th>Date de départ</th>
-			<th>Date d'arrivée</th>
-			<th>Nombre de place</th>
-			<th>Prix</th>
-			<th>Statut</th>
-			<th>Destination</th>
-			<th>Operation</th>
-		</tr>
+	<br />
+	<br />
+	<br />
 
-		<c:forEach items="${voyageListe}" var="v">
-			<tr>
-				<td>${v.id}</td>
-				<td>${v.dateDepart}</td>
-				<td>${v.dateArrivee}</td>
-				<td>${v.nbPlaces}</td>
-				<td>${v.prix}</td>
-				<td>${v.statut}</td>
-				<td>${v.destination.idDestination}</td>
-				<td><a class="btn btn-danger"
-					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a>
-					<a class="btn btn-success"
-					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a>
-					<a class="btn btn-success"
-					href="${pageContext.request.contextPath}/panier/panierSoumettreAjouter?pId=${v.id}">Select
-						Voyage</a></td>
+	<!-- Plans -->
+	<section id="plans">
+		<div class="container">
+			<div class="row">
 
-			</tr>
-		</c:forEach>
 
-	</table>
+				<c:forEach items="${voyageListe}" var="v">
+				<!-- item -->
+				<div class="col-md-4 text-center">
+					<div class="panel panel-danger panel-pricing">
+						<div class="panel-heading">
+							<i class="fa fa-desktop"></i>
+							<h3>${v.destination.pays}</h3>
+						</div>
+						<div class="panel-body text-center">
+							<p>
+								<strong>Prix: ${v.prix}  &#8364;</strong>
+							</p>
+						</div>
+						<div class="panel-body text-center">
+							<p>
+								Description: ${v.destination.description}
+							</p>
+						</div>
+						<ul class="list-group text-center">
+							<li class="list-group-item"><i class="fa fa-check"></i>
+								Départ: ${v.dateDepart}</li>
+							<li class="list-group-item"><i class="fa fa-check"></i>
+								Arrivée: ${v.dateArrivee}</li>
+							<li class="list-group-item"><i class="fa fa-check"></i>
+								Nombre de places: ${v.nbPlaces}</li>
+							<li class="list-group-item"><i class="fa fa-check"></i> 
+								Statut: ${v.statut}</li>
+						</ul>
+						<div class="panel-footer">
+							<a class="btn btn-lg btn-block btn-danger" href="#">Réserver</a>
+						</div>
+					</div>
+				</div>
+				<!-- /item -->
+				</c:forEach>
+
+			</div>
+		</div>
+	</section>
+	<!-- /Plans -->
+
 	<h1>${msg}</h1>
 </body>
 </html>
