@@ -26,6 +26,8 @@ public class ConseillerMarketingController {
 	@Autowired
 	private IConseillerMarketingService conMarkService;
 	private ConseillerMarketing conseillerMarketing;
+	
+	
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
