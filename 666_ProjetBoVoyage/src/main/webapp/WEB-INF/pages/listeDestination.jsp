@@ -28,7 +28,7 @@
 			<td>${des.idDestination}</td>
 			<td>${des.pays}</td>
 			<td>${des.description}</td>
-			<td><img src="photoHo?idHo=${des.idDestination}"></td>
+			<td><img src="photoDes?idDest=${des.idDestination}"></td>
 			<td><a class="btn btn-danger"
 				href="
 									${pageContext.request.contextPath}/destination/destinationSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
