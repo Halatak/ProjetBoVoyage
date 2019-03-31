@@ -4,6 +4,30 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	
+	
+	<!-- Config PayPal -->
+	
+	<context-param>
+		<param-name>authtoken</param-name>
+		<param-value>dr5oNOAldAgoMY1Sfq6jFlioEc4ed9nYvA_TpyEBLn5wIgnfTOOWu5FLVI8</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>posturl</param-name>
+		<param-value>https://www.sandbox.paypal.com/cgi-bin/webscr</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>business</param-name>
+		<param-value>phannhuutri2003-facilitator@yahoo.com</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>returnurl</param-name>
+		<param-value>http://localhost:8080/666_ProjetBoVoyage/paypal/sucess.html</param-value>
+	</context-param>
+	
+	
 	<!-- Declaration du Listener afin que le conteneur web puisse charger le 
 		context spring ioc -->
 	<listener>

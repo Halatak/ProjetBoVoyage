@@ -55,7 +55,7 @@
 								Statut: ${v.statut}</li>
 						</ul>
 						<div class="panel-footer">
-							<a class="btn btn-lg btn-block btn-success" href="#">Réserver</a>
+							<a class="btn btn-lg btn-block btn-success" href="../paypal">Réserver</a>
 						</div>
 					</div>
 				</div>
