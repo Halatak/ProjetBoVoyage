@@ -41,7 +41,7 @@
 						</div>
 						<div class="panel-body text-center">
 							<p>
-								<img src="../destination/photoDes?idDest=${v.destination.idDestination}">
+								<img src="../destination/photoDes?idDest=${v.destination.idDestination}" style="max-width:100px;">
 							</p>
 						</div>
 						<ul class="list-group text-center">
