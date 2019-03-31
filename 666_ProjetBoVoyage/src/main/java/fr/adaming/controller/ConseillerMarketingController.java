@@ -26,8 +26,6 @@ public class ConseillerMarketingController {
 	@Autowired
 	private IConseillerMarketingService conMarkService;
 	private ConseillerMarketing conseillerMarketing;
-	
-	
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
@@ -45,7 +43,7 @@ public class ConseillerMarketingController {
 	@RequestMapping(value = "/espace", method = RequestMethod.GET)
 	public String afficheConseillerMarketing() {
 
-		return "voyageCMListe";
+		return "redirect: voyageCMListe";
 	}
 
 	@RequestMapping(value = "/voyageCMListe", method = RequestMethod.GET)

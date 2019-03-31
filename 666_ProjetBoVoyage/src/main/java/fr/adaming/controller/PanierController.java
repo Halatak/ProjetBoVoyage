@@ -105,7 +105,7 @@ public class PanierController {
 		Dossier doOut = dossierService.ajoutDossierService(panier.getDossier());
 
 		// if (doOut.getId() != 0) {
-		return new ModelAndView("redirect:/voyage/voyageListe");
+		return new ModelAndView("redirect:/paypal");
 		// } else {
 		// ra.addFlashAttribute("msg", "l'ajout a échoué");
 		// return "redirect:dossierAjouter";
