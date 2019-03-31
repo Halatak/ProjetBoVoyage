@@ -21,6 +21,7 @@ public class GeoIP {
     private String latitude;
     private String longitude;
     
+    
     //contructeur
 	public GeoIP() {
 		super();
