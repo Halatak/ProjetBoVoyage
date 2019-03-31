@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	<form method="post" action="${initparam['posturl']}">
+	<form method="post" action="${initParam['posturl']}">
 		<input type="hidden" name="upload" value="1"/>
-		<input type="hidden" name="return" value="${initparam['returnurl']}"/>
+		<input type="hidden" name="return" value="${initParam['returnurl']}"/>
 		<input type="hidden" name="cmd" value="_cart"/>
-		<input type="hidden" name="business" value="${initparam['business']}"/>
+		<input type="hidden" name="business" value="${initParam['business']}"/>
 
 <!-- Produit 1 -->
 		<input type="hidden" name="item_name_1" value="Product 1"/>
