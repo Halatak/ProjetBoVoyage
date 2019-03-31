@@ -38,3 +38,9 @@
   margin: 0px;
 }
 
+body {
+	background: url("/resources/images/Tropical-Rainforest-Landscape.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+}
+

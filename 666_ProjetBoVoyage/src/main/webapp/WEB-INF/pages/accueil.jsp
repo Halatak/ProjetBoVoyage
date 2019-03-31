@@ -10,7 +10,8 @@
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
-<body>
+<body style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
+	background-attachment: fixed; background-size:cover;">
 
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBar.jsp" />
@@ -40,7 +41,7 @@
 						</div>
 						<div class="panel-body text-center">
 							<p>
-								Description: ${v.destination.description}
+								<img src="photoDes?idDest=${v.destination.idDestination}">
 							</p>
 						</div>
 						<ul class="list-group text-center">
@@ -54,7 +55,7 @@
 								Statut: ${v.statut}</li>
 						</ul>
 						<div class="panel-footer">
-							<a class="btn btn-lg btn-block btn-danger" href="#">Réserver</a>
+							<a class="btn btn-lg btn-block btn-success" href="#">Réserver</a>
 						</div>
 					</div>
 				</div>
