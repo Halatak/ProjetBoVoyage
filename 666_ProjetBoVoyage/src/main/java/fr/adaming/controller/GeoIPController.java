@@ -11,21 +11,21 @@ import fr.adaming.service.RawDBGeoIPLocationService;
 
 @RestController
 public class GeoIPController {
-	
-	 private RawDBGeoIPLocationService locationService;
-     
-	    public GeoIPController() throws IOException {
-	        locationService = new RawDBGeoIPLocationService();
-	    }
-	     
-	    @RequestMapping("/GeoIPTest")
-	    public GeoIP getLocation(
-	      @RequestParam(value="ipAddress", required=true) String ipAddress
-	    ) throws Exception {
-	       
-	        GeoIPLocationService<String, GeoIP> locationService 
-	          = new RawDBGeoIPLocationService();
-	        return locationService.getLocation(ipAddress);
-	    }
+//	
+//	 private RawDBGeoIPLocationService locationService;
+//     
+//	    public GeoIPController() throws IOException {
+//	        locationService = new RawDBGeoIPLocationService();
+//	    }
+//	     
+//	    @RequestMapping("/GeoIPTest")
+//	    public GeoIP getLocation(
+//	      @RequestParam(value="ipAddress", required=true) String ipAddress
+//	    ) throws Exception {
+//	       
+//	        GeoIPLocationService<String, GeoIP> locationService 
+//	          = new RawDBGeoIPLocationService();
+//	        return locationService.getLocation(ipAddress);
+//	    }
 
 }
