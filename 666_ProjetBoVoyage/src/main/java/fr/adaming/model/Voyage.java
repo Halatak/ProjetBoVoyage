@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,14 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "vpyages")
-public class Voyage implements Serializable{
-
-	/**
-	 * 
-	 */
+public class Voyage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// attributs
 	@Id
@@ -38,45 +34,59 @@ public class Voyage implements Serializable{
 	private int nbPlaces;
 	@Column(name = "prix_v")
 	private double prix;
-	
-	//association uml
+	@Transient
+	private int minuteDepart;
+	@Transient
+	private String heureDepart;
+	@Transient
+	private int minuteArrive;
+	@Transient
+	private String heureArrive;
+
+	// association uml
 	@OneToOne
-	@JoinColumn(name="dest_id",referencedColumnName="id_dest")
+	@JoinColumn(name = "dest_id", referencedColumnName = "id_dest")
 	private Destination destination;
-	
-	//voyage
+
+	// voyage
 	@OneToOne
-	@JoinColumn(name="h_id",referencedColumnName="id_h")
+	@JoinColumn(name = "h_id", referencedColumnName = "id_h")
 	private Hebergement hebergement;
-	
-	//formule
+
+	// formule
 	@OneToOne
-	@JoinColumn(name="f_id",referencedColumnName="id_f")
+	@JoinColumn(name = "f_id", referencedColumnName = "id_f")
 	private Formule formule;
-	
-	//dossierOffreVoyage
-	@OneToOne(mappedBy="voyage")
+
+	// dossierOffreVoyage
+	@OneToOne(mappedBy = "voyage")
 	private DossierOffreVoyage dossierOffreVoyage;
-	
-	//dossier
-	@OneToMany(mappedBy="voyage")
+
+	// dossier
+	@OneToMany(mappedBy = "voyage")
 	private List<Dossier> listeDossier;
-	
+
 	// constructeurs
 	public Voyage() {
 		super();
 	}
 
-	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
+	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, String heureDepart,
+			int minuteDepart, String heureArrive, int minuteArrive) {
 		super();
 		this.dateArrivee = dateArrivee;
 		this.dateDepart = dateDepart;
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
 		this.prix = prix;
+		this.heureDepart = heureDepart;
+		this.minuteDepart = minuteDepart;
+		this.heureArrive = heureArrive;
+		this.minuteArrive = minuteArrive;
 	}
 
-	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
+	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, String heureDepart,
+			int minuteDepart, String heureArrive, int minuteArrive) {
 		super();
 		this.id = id;
 		this.dateArrivee = dateArrivee;
@@ -84,11 +94,47 @@ public class Voyage implements Serializable{
 		this.statut = statut;
 		this.nbPlaces = nbPlaces;
 		this.prix = prix;
+		this.heureDepart = heureDepart;
+		this.minuteDepart = minuteDepart;
+		this.heureArrive = heureArrive;
+		this.minuteArrive = minuteArrive;
 	}
 
 	// getters setters
 	public int getId() {
 		return id;
+	}
+
+	public int getMinuteDepart() {
+		return minuteDepart;
+	}
+
+	public void setMinuteDepart(int minuteDepart) {
+		this.minuteDepart = minuteDepart;
+	}
+
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+
+	public int getMinuteArrive() {
+		return minuteArrive;
+	}
+
+	public void setMinuteArrive(int minuteArrive) {
+		this.minuteArrive = minuteArrive;
+	}
+
+	public String getHeureArrive() {
+		return heureArrive;
+	}
+
+	public void setHeureArrive(String heureArrive) {
+		this.heureArrive = heureArrive;
 	}
 
 	public void setId(int id) {

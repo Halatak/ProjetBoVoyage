@@ -71,7 +71,7 @@ public class VoitureController {
 	}
 
 	@RequestMapping(value = "/voitureSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(Model modele, @ModelAttribute("voiAjout") Voiture vIn, RedirectAttributes ra, MultipartFile file) throws IOException {
+	public ModelAndView soumettreAjout(Model modele, @ModelAttribute("voiAjout") Voiture vIn, RedirectAttributes ra, MultipartFile file) throws IOException {
 		if(!file.isEmpty()){
 			vIn.setPhoto(file.getBytes());
 		}else{
@@ -84,10 +84,10 @@ public class VoitureController {
 		// appel de la methode service
 		Voiture vOut = vService.ajoutVoitureService(vIn);
 		if (vOut.getIdVoiture() != 0) {
-			return "redirect:voitureListe";
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout à échoué");
-			return "redirect:voitureAfficheAjout";
+			return new ModelAndView("redirect:voitureAfficheAjout");
 		}
 	}
 

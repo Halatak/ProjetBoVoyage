@@ -14,9 +14,17 @@
 	style="background: url('${pageContext.request.contextPath}/resources/images/map-307442_960_720.png');
 	background-attachment: fixed; background-size:cover;">
 
-	<h1 style="color: red; text-align: center">Bienvenue Conseiller !</h1>
+	<h1
+		style="text-align: center; font-weight: bold; color: black; -webkit-text-fill-color: white; -webkit-text-stroke-width: 1.5px; -webkit-text-stroke-color: rgb(78, 105, 193); font-size: 3vw;">Bienvenue
+		Conseiller !</h1>
 	<br />
-	<h2 style="color: red; text-align: center">Connectez-vous pour
+	<h2 style="text-align: center;
+	font-weight: bold;
+	color: white;
+	-webkit-text-fill-color: white;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: rgb(78, 105, 193);
+	font-size: 2vw;">Connectez-vous pour
 		accéder à votre espace.</h2>
 	<br />
 

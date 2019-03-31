@@ -46,17 +46,17 @@ public class ClientController {
 	
 	//commentaire
 	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
+	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		Client cOut = cService.ajoutClientService(cIn);
 		if (cOut.getIdCl() != 0) {
 			client=cOut;
 //			return new ModelAndView("ajouterCarteBancaire", "cOut", cService.afficherListeClientService());
-			return "ajouterCarteBancaire";
+			return new ModelAndView("ajouterCarteBancaire");
 		} else {
 			ra.addFlashAttribute("msg", "L'ajout a échoué");
 //			return new ModelAndView("ajouterClient");
-			return "ajouterClient";
+			return new ModelAndView("ajouterClient");
 		}
 	}
 	
