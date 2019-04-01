@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Destination;
-
 import fr.adaming.model.Voyage;
+import fr.adaming.service.IClientService;
+import fr.adaming.service.IConseillerClientService;
+import fr.adaming.service.IConseillerMarketingService;
 import fr.adaming.service.IDestinationService;
 import fr.adaming.service.IVoyageService;
 
@@ -34,6 +36,12 @@ public class VoyageController {
 	private IVoyageService voyageService;
 	@Autowired
 	private IDestinationService destinationService;
+	@Autowired
+	private IClientService clientService;
+	@Autowired
+	private IConseillerClientService conClientService;
+	@Autowired
+	private IConseillerMarketingService conMarketService;
 
 	// Methode pour convertir et afficher correctement les dates
 	@InitBinder
@@ -54,7 +62,9 @@ public class VoyageController {
 
 	// page d'accueil qui affiche la liste des voyages
 	@RequestMapping(value = "/voyageListe", method = RequestMethod.GET)
-	public ModelAndView afficheListe() {
+	public ModelAndView afficheListe(Model modele) {
+		modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
+		modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
 		return new ModelAndView("accueil", "voyageListe", voyageService.afficherListeVoyageService());
 	}
 

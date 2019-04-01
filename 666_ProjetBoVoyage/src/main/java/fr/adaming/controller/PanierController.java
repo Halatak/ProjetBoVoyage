@@ -99,7 +99,7 @@ public class PanierController {
 	public ModelAndView soumettreAjoutDossierPanier(RedirectAttributes ra) {
 
 		panier.getDossier().setEtat("enAttente");
-		panier.getDossier().setNumero(10);
+		panier.getDossier().setNumero(111 * (panier.getDossier().getId() + 1));
 
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 		Dossier doOut = dossierService.ajoutDossierService(panier.getDossier());

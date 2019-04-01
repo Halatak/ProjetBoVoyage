@@ -1,4 +1,4 @@
-
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -40,8 +40,8 @@
 						<li role="separator" class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Voyage <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -62,7 +62,7 @@
 						<li role="separator" class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Hotel <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -83,7 +83,7 @@
 						<li role="separator" class="divider"></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
-					
+
 			</ul>
 			<form class="navbar-form navbar-left">
 				<div class="form-group">
@@ -96,15 +96,33 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Connexion<span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href="#">Client</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/client/espace">Client</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/conseillerCl/espace">Conseiller
+							href="${pageContext.request.contextPath}/conseillerClient/espace">Conseiller
 								Client</a></li>
 						<li><a
-							href="accueilConseillerMarketing.jsp">Conseiller
+							href="${pageContext.request.contextPath}/conseillerMarketing/espace">Conseiller
 								Marketing</a></li>
 					</ul></li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Connexion Test one thing<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><form
+								action="${pageContext.request.contextPath}/connexion"
+								method="post">
+								<input type="text" name="j_username" /> 
+								<input type="password" name="j_password" />
+								<input type="submit" name="submit"
+									value="Send">
+							</form></li>
+					</ul></li>
+<%-- ${pageContext.request.contextPath}/choixLogin/choix --%>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

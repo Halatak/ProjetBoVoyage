@@ -61,7 +61,7 @@ public class DossierController {
 
 		// lier un etudiant au model mvc afin de l'utiliser dans le
 		modele.addAttribute("doModif", new Dossier());
-		return "modifDossier";
+		return "modifierDossier";
 	}
 
 	@RequestMapping(value = "/dossierSoumettreModifier", method = RequestMethod.POST)
