@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Client;
+import fr.adaming.model.ConseillerClientele;
+import fr.adaming.model.ConseillerMarketing;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerClientService;
 import fr.adaming.service.IConseillerMarketingService;
@@ -27,7 +30,9 @@ public class ChoixLoginController {
 	private IConseillerClientService conClientService;
 	@Autowired
 	private IConseillerMarketingService conMarketService;
-	private String mail;
+	private ConseillerClientele conseillerClientele = new ConseillerClientele();
+	private ConseillerMarketing conseillerMarketing = new ConseillerMarketing();
+	private Client client;
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
@@ -35,31 +40,22 @@ public class ChoixLoginController {
 		Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
 
 		// recuperer le mail à partir du context
-		String mail2 = authCxt.getName();
-		mail = mail2;
+		String mail = authCxt.getName();
+		conseillerClientele = conClientService.getConsClientByMail(mail);
+		conseillerMarketing = conMarketService.getConseillerMarkByMail(mail);
+		// client = clientService.getClientByMailService(mail);
 	}
 
 	@RequestMapping(value = "/choix", method = RequestMethod.GET)
 	public ModelAndView afficheConseillerMarketing(RedirectAttributes ra) {
 
-		for (int i2 = 0; i2 < conClientService.afficherListeConseillerClientService().size(); i2++) {
-			if (mail.equals(conClientService.afficherListeConseillerClientService().get(i2).getMail())) {
-				return new ModelAndView("redirect:/conseillerClient/espace");
-			}
+		if (conseillerClientele != null) {
+			return new ModelAndView("redirect:/conseillerClient/espace");
+		} else if (conseillerMarketing != null) {
+			return new ModelAndView("redirect:/conseillerMarketing/espace");
+		} else {
+			return new ModelAndView("redirect:/voyage/voyageListe");
 		}
-		for (int i3 = 0; i3 < conMarketService.afficherListeConseillerMarkService().size(); i3++) {
-			if (mail.equals(conMarketService.afficherListeConseillerMarkService().get(i3).getMail())) {
-
-				return new ModelAndView("redirect:/conseillerMarketing/espace");
-			}
-		}
-		for (int i = 0; i < clientService.afficherListeClientService().size(); i++) {
-			if (mail.equals(clientService.afficherListeClientService().get(i).getMail())) {
-				return new ModelAndView("redirect:/voyage/voyageListe");
-			}
-		}
-		ra.addFlashAttribute("msg", "Mail non enregistré !!");
-		return new ModelAndView("redirect:/voyage/voyageListe");
 
 	}
 

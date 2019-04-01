@@ -15,7 +15,7 @@
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsClient.jsp" />
 
-	coucou conseiller marketing
+	coucou conseiller client
 
 	<table class="table table-bordered">
 		<tr>
