@@ -30,9 +30,6 @@
 						<li><a
 							href="${pageContext.request.contextPath}/avion/avionAfficheModifier">Modifier
 								Avion</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/avion/avionAfficheSupprimer">Supprimer
-								Avion</a></li>
 					</ul></li>
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -64,9 +61,6 @@
 								Hotel</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/hotel/hotelAfficheModifier">Modifier
-								Hotel</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheSupprimer">Supprimer
 								Hotel</a></li>
 					</ul></li>
 
@@ -100,9 +94,6 @@
 								voiture</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/voiture/voitureAfficheModifier">Modifier
-								voiture</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/voiture/voitureAfficheSupprimer">Supprimer
 								voiture</a></li>
 					</ul></li>
 
