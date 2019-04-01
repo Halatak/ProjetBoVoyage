@@ -13,7 +13,7 @@
 <body>
 
 	<%-- La directive include --%>
-	<jsp:include page="/resources/templates/navBar.jsp" />
+	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
 	<table class="table table-bordered">
 		<tr>

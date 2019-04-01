@@ -82,7 +82,7 @@ public class ContinentController {
 			// Appel de la méthode service
 			try {
 				contService.modifierContinentService(contIn);
-				return "redirect:continentListe";
+				return "redirect:/conseillerMarketing/voyageCMListe";
 			} catch (Exception e) {
 				ra.addFlashAttribute("msg", "modif a échoué");
 				return "redirect:continentAfficheModifier";
@@ -106,7 +106,7 @@ public class ContinentController {
 			// Appel de la méthode service
 			try {
 				contService.supprContinentService(contIn);;
-				return "redirect:continentListe";
+				return "redirect:/conseillerMarketing/voyageCMListe";
 			} catch (Exception e) {
 				ra.addFlashAttribute("msg", "suppr a échoué");
 				return "redirect:continentAfficheSupprimer";

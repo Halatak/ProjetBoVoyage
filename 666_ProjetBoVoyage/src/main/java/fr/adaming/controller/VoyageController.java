@@ -110,7 +110,7 @@ public class VoyageController {
 
 		voyOut = voyageService.ajoutVoyageService(voyIn);
 		if (voyOut.getId() != 0) {
-			return "redirect:voyageListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
 			return "redirect:voyageAjouter";
@@ -160,7 +160,7 @@ public class VoyageController {
 		}
 		try {
 			voyageService.modifierVoyageService(voyIn);
-			return "redirect:voyageListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
 			return "redirect:voyageAjouter";
@@ -180,7 +180,7 @@ public class VoyageController {
 	public String soumettreSuppr(@ModelAttribute("voySuppr") Voyage voyIn, RedirectAttributes ra) {
 		try {
 			voyageService.supprVoyageService(voyIn);
-			return "redirect:voyageListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "la suppression a échoué");
 			return "redirect:voyageSupprimer";
@@ -210,7 +210,7 @@ public class VoyageController {
 	@RequestMapping(value = "/soumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		voyageService.supprVoyageByIdService(id);
-		return "redirect:voyageListe";
+		return "redirect:/conseillerMarketing/voyageCMListe";
 	}
 
 	@RequestMapping(value = "/soumettre-modifLien", method = RequestMethod.GET)

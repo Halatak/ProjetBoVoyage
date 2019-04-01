@@ -14,7 +14,7 @@
 </head>
 <body>
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		modifier un hotel</h1>

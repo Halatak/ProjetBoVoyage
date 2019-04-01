@@ -16,7 +16,7 @@
 
 
 <%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		modifier un voyage</h1>
@@ -27,7 +27,7 @@
 		<div class="form-group">
 			<label for="idId" class="col-sm-2 control-label">Id</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idId" path="id"
+				<form:input cssClass="form-control" id="idId" path="idDestination"
 					placeholder="Id" />
 			</div>
 		</div>

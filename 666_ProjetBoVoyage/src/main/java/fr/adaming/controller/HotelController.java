@@ -103,7 +103,7 @@ public class HotelController {
 		// appel de la méthode service
 		try {
 			hService.modifierHotelService(hIn);
-			return "redirect:hotelListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La modification a échouée");
 			return "redirect:hotelAfficheModifier";
@@ -123,7 +123,7 @@ public class HotelController {
 		// appel de la methode service
 		try {
 			hService.supprHotelService(hIn);
-			return "redirect:hotelListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addAttribute("msg", "La suppression a échouée");
 			return "redirect:hotelAfficheSupprimer";
@@ -155,7 +155,7 @@ public class HotelController {
 	@RequestMapping(value = "/hotelSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		hService.supprHotelByIdService(id);
-		return "redirect:hotelListe";
+		return "redirect:/conseillerMarketing/voyageCMListe";
 	}
 
 	@RequestMapping(value = "/hotelSoumettre-modifLien", method = RequestMethod.GET)

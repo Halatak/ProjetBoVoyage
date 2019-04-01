@@ -46,7 +46,7 @@
 					aria-expanded="false">Voyage <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/voyage/voyageListe">Afficher
+							href="${pageContext.request.contextPath}/conseillerMarketing/voyageCMListe">Afficher
 								Voyage</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/voyage/voyageAjouter">Ajouter
@@ -136,7 +136,8 @@
 				<button type="submit" class="btn btn-default">Chercher</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

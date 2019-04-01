@@ -12,7 +12,7 @@
 <body>
 
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
 	<h1 style="color: red" align="center">Formulaire de suppression</h1>
 	<form:form cssClass="form-horizontal" method="post"

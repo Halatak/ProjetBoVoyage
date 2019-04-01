@@ -12,7 +12,7 @@
 <body>
 
 <%-- La directive include --%>
-	<jsp:include page="/resources/templates/navBar.jsp" />
+	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une destination</h1>

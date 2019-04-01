@@ -86,8 +86,8 @@ public class DestinationController {
 		// Appel de la méthode service
 		try {
 			destService.modifierDestinationService(desIn);
-			;
-			return "redirect:destinationListe";
+			
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "modif a échoué");
 			return "redirect:destinationAfficheModifier";
@@ -111,7 +111,7 @@ public class DestinationController {
 		// Appel de la méthode service
 		try {
 			destService.supprDestinationService(desIn);
-			return "redirect:destinationListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "suppr a échoué");
 			return "redirect:destinationAfficheSupprimer";
@@ -147,7 +147,7 @@ public class DestinationController {
 	@RequestMapping(value = "/destinationSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		destService.supprDestinationByIdService(id);
-		return "redirect:destinationListe";
+		return "redirect:/conseillerMarketing/voyageCMListe";
 	}
 
 	@RequestMapping(value = "/destinationSoumettre-modifLien", method = RequestMethod.GET)

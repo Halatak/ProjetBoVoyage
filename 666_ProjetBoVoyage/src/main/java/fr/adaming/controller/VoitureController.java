@@ -104,7 +104,7 @@ public class VoitureController {
 		// appel de la méthode service
 		try {
 			vService.modifierVoitureService(vIn);
-			return "redirect:voitureListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La modification a échouée");
 			return "redirect:voitureAfficheModifier";
@@ -124,7 +124,7 @@ public class VoitureController {
 		// appel de la methode service
 		try {
 			vService.supprVoitureService(vIn);;
-			return "redirect:voitureListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addAttribute("msg", "La suppression a échouée");
 			return "redirect:voitureAfficheSupprimer";
@@ -156,7 +156,7 @@ public class VoitureController {
 	@RequestMapping(value = "/voitureSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		vService.supprVoitureByIdService(id);
-		return "redirect:voitureListe";
+		return "redirect:/conseillerMarketing/voyageCMListe";
 	}
 
 	@RequestMapping(value = "/voitureSoumettre-modifLien", method = RequestMethod.GET)

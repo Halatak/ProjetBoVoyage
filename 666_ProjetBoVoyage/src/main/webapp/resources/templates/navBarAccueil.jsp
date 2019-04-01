@@ -113,16 +113,17 @@
 					aria-expanded="false">Connexion Test one thing<span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a
+							href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
 						<li><form
 								action="${pageContext.request.contextPath}/connexion"
 								method="post">
-								<input type="text" name="j_username" /> 
-								<input type="password" name="j_password" />
-								<input type="submit" name="submit"
+								<input type="text" name="j_username" /> <input type="password"
+									name="j_password" /> <input type="submit" name="submit"
 									value="Send">
 							</form></li>
 					</ul></li>
-<%-- ${pageContext.request.contextPath}/choixLogin/choix --%>
+				<%-- ${pageContext.request.contextPath}/choixLogin/choix --%>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

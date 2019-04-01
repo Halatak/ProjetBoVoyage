@@ -75,7 +75,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.modifierAvionService(aIn);
-			return "redirect:avionListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "modif a échoué");
 			return "redirect:avionAfficheModifier";
@@ -98,7 +98,7 @@ public class AvionController {
 		// Appel de la méthode service
 		try {
 			avService.supprAvionService(aIn);
-			return "redirect:avionListe";
+			return "redirect:/conseillerMarketing/voyageCMListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "suppr a échoué");
 			return "redirect:avionAfficheSupprimer";
@@ -134,7 +134,7 @@ public class AvionController {
 	@RequestMapping(value = "/avionSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
 		avService.supprAvionByIdService(id);
-		return "redirect:avionListe";
+		return "redirect:/conseillerMarketing/voyageCMListe";
 	}
 
 	@RequestMapping(value = "/avionSoumettre-modifLien", method = RequestMethod.GET)
