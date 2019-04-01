@@ -1,5 +1,7 @@
 package fr.adaming.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,13 +18,22 @@ public class ConseillerClientDaoImpl implements IConseillerClientDao {
 
 	@Override
 	public ConseillerClientele getConsClientByMail(String mail) {
-		Session s=sf.getCurrentSession();
-		
-		String req="FROM ConseillerClientele cons WHERE cons.mail=:pMail";
-		
-		Query query=s.createQuery(req);
-		
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM ConseillerClientele cons WHERE cons.mail=:pMail";
+
+		Query query = s.createQuery(req);
+
 		query.setParameter("pMail", mail);
 		return (ConseillerClientele) query.uniqueResult();
+	}
+
+	@Override
+	public List<ConseillerClientele> getAll() {
+		Session s = sf.getCurrentSession();
+		String req = "FROM ConseillerClientele";
+		Query query = s.createQuery(req);
+
+		return query.list();
 	}
 }

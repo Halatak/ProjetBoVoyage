@@ -18,14 +18,9 @@
 		style="text-align: center; font-weight: bold; color: black; -webkit-text-fill-color: white; -webkit-text-stroke-width: 1.5px; -webkit-text-stroke-color: rgb(78, 105, 193); font-size: 3vw;">Bienvenue
 		Conseiller !</h1>
 	<br />
-	<h2 style="text-align: center;
-	font-weight: bold;
-	color: white;
-	-webkit-text-fill-color: white;
-	-webkit-text-stroke-width: 1.5px;
-	-webkit-text-stroke-color: rgb(78, 105, 193);
-	font-size: 2vw;">Connectez-vous pour
-		accéder à votre espace.</h2>
+	<h2
+		style="text-align: center; font-weight: bold; color: white; -webkit-text-fill-color: white; -webkit-text-stroke-width: 1.5px; -webkit-text-stroke-color: rgb(78, 105, 193); font-size: 2vw;">Connectez-vous
+		pour accéder à votre espace.</h2>
 	<br />
 
 	<form class="form-horizontal" action="connexion" method="post"

@@ -19,19 +19,20 @@
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une assurance</h1>
-		
+
 	<form:form cssClass="form-horizontal" method="post"
-		action="panierSoumettreClient" commandName="cliAjout">
+		action="panierSoumettreClient" target="_blank" commandName="cliAjout">
 
 		<div class="form-group">
 			<label for="idMail" class="col-sm-2 control-label">Mail</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idMail"
-					path="mail" placeholder="Mail" />
+				<form:input cssClass="form-control" id="idMail" path="mail"
+					placeholder="Mail" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="idPrix" class="col-sm-2 control-label">Mot de passe</label>
+			<label for="idPrix" class="col-sm-2 control-label">Mot de
+				passe</label>
 			<div class="col-sm-5">
 				<form:input cssClass="form-control" id="idMdp" path="mdp"
 					placeholder="Mot de passe" />
@@ -40,10 +41,13 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">S'enregistrer et ajouter une carte bancaire</button>
+				<button type="submit" class="btn btn-default">S'enregistrer
+					et ajouter une carte bancaire</button>
 			</div>
 		</div>
 	</form:form>
+	
+	
 	<h1>${msg}</h1>
 </body>
 </html>

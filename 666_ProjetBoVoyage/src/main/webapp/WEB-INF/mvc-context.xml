@@ -29,6 +29,8 @@
 		<property name="maxUploadSize" value="100000" />
 	</bean>
 	
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"></bean>
+	
 	<!-- Declaration des ressources pour la couche vue -->
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
 

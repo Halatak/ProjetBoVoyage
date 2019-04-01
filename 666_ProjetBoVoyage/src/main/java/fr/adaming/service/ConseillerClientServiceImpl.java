@@ -1,5 +1,7 @@
 package fr.adaming.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,11 @@ public class ConseillerClientServiceImpl implements IConseillerClientService{
 	@Override
 	public ConseillerClientele getConsClientByMail(String mail) {
 		return conClientDao.getConsClientByMail(mail);
+	}
+
+	@Override
+	public List<ConseillerClientele> afficherListeConseillerClientService() {
+		return conClientDao.getAll();
 	}
 
 }
