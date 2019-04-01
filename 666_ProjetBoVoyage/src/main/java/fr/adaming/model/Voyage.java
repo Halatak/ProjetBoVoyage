@@ -85,8 +85,8 @@ public class Voyage implements Serializable {
 		this.minuteArrive = minuteArrive;
 	}
 
-	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix, String heureDepart,
-			int minuteDepart, String heureArrive, int minuteArrive) {
+	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix,
+			String heureDepart, int minuteDepart, String heureArrive, int minuteArrive) {
 		super();
 		this.id = id;
 		this.dateArrivee = dateArrivee;
@@ -98,6 +98,25 @@ public class Voyage implements Serializable {
 		this.minuteDepart = minuteDepart;
 		this.heureArrive = heureArrive;
 		this.minuteArrive = minuteArrive;
+	}
+
+	public Voyage(Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
+		super();
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.statut = statut;
+		this.nbPlaces = nbPlaces;
+		this.prix = prix;
+	}
+
+	public Voyage(int id, Date dateArrivee, Date dateDepart, boolean statut, int nbPlaces, double prix) {
+		super();
+		this.id = id;
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.statut = statut;
+		this.nbPlaces = nbPlaces;
+		this.prix = prix;
 	}
 
 	// getters setters
