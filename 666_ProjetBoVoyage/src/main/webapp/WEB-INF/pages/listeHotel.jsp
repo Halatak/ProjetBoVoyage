@@ -10,12 +10,17 @@
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
-<body>
+<body
+style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
+	background-attachment: fixed; background-size:cover;">
 
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-	<table class="table table-bordered">
+<br/>
+<br/>
+<br/>
+	<table class="table table-bordered"  style="background-color: white;">
 		<tr>
 			<th>ID</th>
 			<th>Nom</th>
@@ -27,13 +32,13 @@
 		</tr>
 
 		<c:forEach items="${hotelListe}" var="ho">
-			<tr>
+			<tr style="text-align:center; vertical-align: middle;">
 				<td>${ho.id}</td>
 				<td>${ho.nom}</td>
 				<td>${ho.prix}</td>
 				<td>${ho.description}</td>
 				<td>${ho.nbEtoiles}</td>
-				<td><img src="photoHo?idHo=${ho.id}"></td>
+				<td><img src="photoHo?idHo=${ho.id}"  style="max-width: 250px;"></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/hotel/hotelSoumettre-supprLien?pId=${ho.id}">Supprimer</a>|<a
