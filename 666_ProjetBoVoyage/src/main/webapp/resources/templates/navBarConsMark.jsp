@@ -108,20 +108,20 @@
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Hotel <span class="caret"></span></a>
+					aria-expanded="false">Voiture <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelListe">Afficher
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureListe">Afficher
+								voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheAjouter">Ajouter
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheAjouter">Ajouter
+								voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheModifier">Modifier
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheModifier">Modifier
+								voiture</a></li>
 						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheSupprimer">Supprimer
-								Hotel</a></li>
+							href="${pageContext.request.contextPath}/voiture/voitureAfficheSupprimer">Supprimer
+								voiture</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li role="separator" class="divider"></li>

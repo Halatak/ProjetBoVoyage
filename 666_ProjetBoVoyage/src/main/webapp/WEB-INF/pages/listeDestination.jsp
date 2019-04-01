@@ -11,35 +11,35 @@
 
 </head>
 <body>
-<%-- La directive include --%>
-<jsp:include page="/resources/templates/navBarConsMark.jsp" />
+	<%-- La directive include --%>
+	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-<table class="table table-bordered">
-	<tr>
-		<th>ID</th>
-		<th>Pays</th>
-		<th>Description</th>
-		<th>photo</th>
-		<th>Opération</th>
-	</tr>
-
-	<c:forEach items="${destinationListe}" var="des">
+	<table class="table table-bordered">
 		<tr>
-			<td>${des.idDestination}</td>
-			<td>${des.pays}</td>
-			<td>${des.description}</td>
-			<td><img src="photoDes?idDest=${des.idDestination}"></td>
-			<td><a class="btn btn-danger"
-				href="
-									${pageContext.request.contextPath}/destination/destinationSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
-				class="btn btn-success"
-				href="
-									${pageContext.request.contextPath}/destination/destinationSoumettre-modifLien?pId=${av.idAvion}">Modifier</a></td>
+			<th>ID</th>
+			<th>Pays</th>
+			<th>Description</th>
+			<th>photo</th>
+			<th>Opération</th>
 		</tr>
-	</c:forEach>
 
-</table>
-<h1>${msg}</h1>
+		<c:forEach items="${destinationListe}" var="des">
+			<tr>
+				<td>${des.idDestination}</td>
+				<td>${des.pays}</td>
+				<td>${des.description}</td>
+				<td><img src="photoDes?idDest=${des.idDestination}"></td>
+				<td><a class="btn btn-danger"
+					href="
+									${pageContext.request.contextPath}/destination/destinationSoumettre-supprLien?pId=${des.idDestination}">Supprimer</a>|<a
+					class="btn btn-success"
+					href="
+									${pageContext.request.contextPath}/destination/destinationSoumettre-modifLien?pId=${des.idDestination}">Modifier</a></td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	<h1>${msg}</h1>
 
 
 
