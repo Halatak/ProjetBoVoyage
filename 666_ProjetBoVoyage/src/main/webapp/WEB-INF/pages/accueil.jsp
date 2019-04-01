@@ -44,7 +44,7 @@
 								<p>
 									<img
 										src="../destination/photoDes?idDest=${v.destination.idDestination}"
-										style="max-width: 100px;">
+										style="max-width: 250px;">
 								</p>
 							</div>
 							<ul class="list-group text-center">
