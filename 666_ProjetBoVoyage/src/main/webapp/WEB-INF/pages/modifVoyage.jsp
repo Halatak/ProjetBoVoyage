@@ -38,12 +38,30 @@
 					path="dateDepart" placeholder="Date de départ" />
 			</div>
 		</div>
+
+		<div class="form-group">
+			<label for="idHeureDepart" class="col-sm-2 control-label">Horaire
+				départ Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureDepart"
+					path="heureDepart" placeholder="Heure Depart" />
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="idDateArrive" class="col-sm-2 control-label">Date
 				d'arrivé</label>
 			<div class="col-sm-5">
 				<form:input type="date" cssClass="form-control" id="idDateArrive"
 					path="dateArrivee" placeholder="Date d'arrivé" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="idHeureArrive" class="col-sm-2 control-label">Horaire
+				arrivée Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureArrive"
+					path="heureArrive" placeholder="Heure Arrivee" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -61,12 +79,14 @@
 					placeholder="Prix" />
 			</div>
 		</div>
+
 		<div class="form-group">
 			<label for="idStatut" class="col-sm-2 control-label">Statut</label>
-			<div class="col-sm-5">
+			<div class="col-sm-1">
 				<form:checkbox cssClass="form-control" id="idStatut" path="statut" />
 			</div>
 		</div>
+
 		<div class="form-group">
 			<label for="idDestination" class="col-sm-2 control-label">Destination</label>
 			<div class="col-sm-5">
@@ -74,7 +94,6 @@
 					path="destination.idDestination" placeholder="Destination" />
 			</div>
 		</div>
-
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Modifier</button>

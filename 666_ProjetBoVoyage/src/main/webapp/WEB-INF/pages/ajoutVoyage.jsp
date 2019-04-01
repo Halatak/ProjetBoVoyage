@@ -31,12 +31,30 @@
 					path="dateDepart" placeholder="Date de départ" />
 			</div>
 		</div>
+
+		<div class="form-group">
+			<label for="idHeureDepart" class="col-sm-2 control-label">Horaire
+				départ Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureDepart"
+					path="heureDepart" placeholder="Heure Depart" />
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="idDateArrive" class="col-sm-2 control-label">Date
 				d'arrivé</label>
 			<div class="col-sm-5">
 				<form:input type="date" cssClass="form-control" id="idDateArrive"
 					path="dateArrivee" placeholder="Date d'arrivé" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="idHeureArrive" class="col-sm-2 control-label">Horaire
+				arrivée Départ</label>
+			<div class="col-sm-5">
+				<form:input type="time" cssClass="form-control" id="idHeureArrive"
+					path="heureArrive" placeholder="Heure Arrivee" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -55,23 +73,9 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label for="idHeureDepart" class="col-sm-2 control-label">Horaire départ
-				Départ</label>
-			<div class="col-sm-5">
-				<form:input type="time" cssClass="form-control" id="idHeureDepart"
-					path="heureDepart" placeholder="Heure Depart" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="idHeureArrive" class="col-sm-2 control-label">Horaire arrivée
-				Départ</label>
-			<div class="col-sm-5">
-				<form:input type="time" cssClass="form-control" id="idHeureArrive"
-					path="heureArrive" placeholder="Heure Arrivee" />
-			</div>
-		</div>
+
+
+
 
 
 		<div class="form-group">

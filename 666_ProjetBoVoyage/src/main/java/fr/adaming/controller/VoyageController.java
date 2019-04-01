@@ -130,6 +130,17 @@ public class VoyageController {
 	@RequestMapping(value = "/voyageSoumettreModifier", method = RequestMethod.POST)
 	public String soumettreModif(@ModelAttribute("voyModif") Voyage voyIn, RedirectAttributes ra) {
 		Voyage voyOut = null;
+
+		String voyInDepartHeure = voyIn.getHeureDepart().substring(0, 2);
+		String voyInDepartMinute = voyIn.getHeureDepart().substring(3, 5);
+		String voyInArriveHeure = voyIn.getHeureArrive().substring(0, 2);
+		String voyInArriveMinute = voyIn.getHeureArrive().substring(3, 5);
+
+		voyIn.getDateDepart().setHours(Integer.parseInt(voyInDepartHeure));
+		voyIn.getDateDepart().setMinutes(Integer.parseInt(voyInDepartMinute));
+		voyIn.getDateArrivee().setHours(Integer.parseInt(voyInArriveHeure));
+		voyIn.getDateArrivee().setMinutes(Integer.parseInt(voyInArriveMinute));
+
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 		if (voyIn.getDestination().getIdDestination() != 0) {
 
@@ -205,6 +216,10 @@ public class VoyageController {
 	@RequestMapping(value = "/soumettre-modifLien", method = RequestMethod.GET)
 	public String modifLien(Model modele, @RequestParam("pId") int id) {
 		Voyage voyOut = voyageService.getVoyageByIdService(id);
+		voyOut.setHeureDepart(Integer.toString(voyOut.getDateDepart().getHours()) + ":"
+				+ Integer.toString(voyOut.getDateDepart().getMinutes()));
+		voyOut.setHeureArrive(Integer.toString(voyOut.getDateArrivee().getHours()) + ":"
+				+ Integer.toString(voyOut.getDateArrivee().getMinutes()));
 		modele.addAttribute("voyModif", voyOut);
 		return "modifVoyage";
 	}
