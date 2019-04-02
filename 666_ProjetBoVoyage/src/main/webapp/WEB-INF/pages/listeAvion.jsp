@@ -10,17 +10,21 @@
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
-<body>
+<body 
+style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
+	background-attachment: fixed; background-size:cover;">
 
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-	<table class="table table-bordered">
+<br/>
+<br/>
+<br/>
+	<table class="table table-bordered" style="background-color:white;">
 		<tr>
 			<th>ID</th>
 			<th>Prix</th>
 			<th>Description</th>
-			<th>Photo</th>
 			<th>Opération</th>
 		</tr>
 
@@ -29,7 +33,6 @@
 				<td>${av.idAvion}</td>
 				<td>${av.prix}</td>
 				<td>${av.description}</td>
-				<td></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/avion/avionSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
