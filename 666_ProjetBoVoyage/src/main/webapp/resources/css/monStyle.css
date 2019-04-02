@@ -5,10 +5,14 @@
 	url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
 	;
 
-body{
+body {
 	background-image: url("../images/Tropical-Rainforest-Landscape.jpg");
 	background-attachment: fixed;
 	background-size: cover;
+}
+
+.main {
+	padding: 20px 20px 20px 20px;
 }
 
 .panel-pricing {
@@ -57,8 +61,6 @@ body{
 .form-all {
 	border: medium solid red;
 }
-
-
 
 .row {
 	margin-top: 40px;
