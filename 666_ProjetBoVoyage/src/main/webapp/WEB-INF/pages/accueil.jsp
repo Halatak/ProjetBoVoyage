@@ -10,9 +10,7 @@
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
-<body
-	style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
-	background-attachment: fixed; background-size:cover;">
+<body>
 
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarAccueil.jsp" />
@@ -32,7 +30,6 @@
 					<div class="col-md-4 text-center">
 						<div class="panel panel-danger panel-pricing">
 							<div class="panel-heading">
-								<i class="fa fa-desktop"></i>
 								<h3>${v.destination.pays}</h3>
 							</div>
 							<div class="panel-body text-center">

@@ -98,12 +98,7 @@
 					</ul></li>
 
 			</ul>
-			<form class="navbar-form navbar-left">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Rechercher">
-				</div>
-				<button type="submit" class="btn btn-default">Chercher</button>
-			</form>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<li><a
 					href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
