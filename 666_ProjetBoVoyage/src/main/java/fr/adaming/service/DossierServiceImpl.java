@@ -8,21 +8,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IDossierDao;
 import fr.adaming.dao.IGeneriqueDao;
+import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 
 @Service("dossierService")
 @Transactional
-public class DossierServiceImpl implements IDossierService{
+public class DossierServiceImpl implements IDossierService {
 
-	//transformation uml en java
+	// transformation uml en java
 	private IDossierDao dossierDao;
 
-	//setters
+	// setters
 	@Autowired
 	public void setDossierDao(IDossierDao dossierDao) {
 		this.dossierDao = dossierDao;
 		dossierDao.setClazz(Dossier.class);
 	}
+
 	public IGeneriqueDao<Dossier> getDossierDao() {
 		return dossierDao;
 	}
@@ -58,6 +60,11 @@ public class DossierServiceImpl implements IDossierService{
 	@Override
 	public Dossier getDossierByIdService(int id) {
 		return dossierDao.getById(id);
+	}
+
+	@Override
+	public Dossier getDossierByIdClientDao(Client c) {
+		return dossierDao.getDossierByIdClientDao(c);
 	}
 
 }

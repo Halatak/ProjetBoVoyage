@@ -12,21 +12,21 @@ import fr.adaming.model.Client;
 
 @Service("clientService")
 @Transactional
-public class ClientServiceImpl implements IClientService{
+public class ClientServiceImpl implements IClientService {
 
-	//transformation uml en java
+	// transformation uml en java
 	private IClientDao clientDao;
 
-	//setters
+	// setters
 	@Autowired
 	public void setClientDao(IClientDao clientDao) {
 		this.clientDao = clientDao;
 		clientDao.setClazz(Client.class);
 	}
+
 	public IGeneriqueDao<Client> getClientDao() {
 		return clientDao;
 	}
-
 
 	@Override
 	public List<Client> afficherListeClientService() {
@@ -60,6 +60,11 @@ public class ClientServiceImpl implements IClientService{
 	@Override
 	public Client getClientByIdService(int id) {
 		return clientDao.getById(id);
+	}
+
+	@Override
+	public Client getClientByMail(String mail) {
+		return clientDao.getClientByMail(mail);
 	}
 
 }

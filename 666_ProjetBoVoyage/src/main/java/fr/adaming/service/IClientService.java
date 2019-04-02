@@ -17,5 +17,7 @@ public interface IClientService {
 	public void supprClientByIdService (int id);
 	
 	public Client getClientByIdService (int id);
+	
+	public Client getClientByMail(String mail);
 
 }

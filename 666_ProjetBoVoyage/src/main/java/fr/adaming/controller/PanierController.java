@@ -1,7 +1,11 @@
 package fr.adaming.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,6 +37,18 @@ public class PanierController {
 	private IDossierService dossierService;
 	@Autowired
 	private IClientService clientService;
+	private Client client;
+
+	@PostConstruct // initialise les conseillers
+	public void init() {
+		// recuperer le context de spring security
+		Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+		// recuperer le mail à partir du context
+		String mail = authCxt.getName();
+		this.client = clientService.getClientByMail(mail);
+
+	}
 
 	// Ajouter un voyage au panier
 	@RequestMapping(value = "/panierSoumettreAjouter", method = RequestMethod.GET)
@@ -78,15 +94,30 @@ public class PanierController {
 	public String afficheAjoutClient(Model modele) {
 
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("cliAjout", new Client());
-		return "choixClient";
+		if (client != null) {
+			modele.addAttribute("cliAjout", client);
+			return "choixClient";
+		} else {
+			modele.addAttribute("cliAjout", new Client());
+			return "choixClient";
+		}
 	}
 
 	@RequestMapping(value = "/panierSoumettreClient", method = RequestMethod.POST)
 	public String soumettreAjoutClient(ModelMap modele, @ModelAttribute("cliAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
-		cIn = clientService.ajoutClientService(cIn);
-		panier.getDossier().setClient(cIn);
+		System.out.println(client);
+		System.out.println(dossierService.getDossierByIdClientDao(client));
+		if (dossierService.getDossierByIdClientDao(client) == null) {
+			if (client != null && client.getMail() == cIn.getMail()) {
+				clientService.modifierClientService(client);
+				panier.getDossier().setClient(cIn);
+			} else if (client == null) {
+				cIn = clientService.ajoutClientService(cIn);
+				panier.getDossier().setClient(cIn);
+			}
+		}
+
 		if (panier.getDossier().getClient() != null) {
 			return "redirect:dossierPanierSoumettreAjouter";
 		} else {

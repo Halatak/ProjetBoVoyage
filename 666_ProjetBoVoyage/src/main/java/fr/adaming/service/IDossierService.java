@@ -2,6 +2,7 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 
 public interface IDossierService {
@@ -17,5 +18,7 @@ public List<Dossier> afficherListeDossierService();
 	public void supprDossierByIdService (int id);
 	
 	public Dossier getDossierByIdService (int id);
+	
+	public Dossier getDossierByIdClientDao(Client c);
 
 }
