@@ -44,22 +44,20 @@
 		</tr>
 
 
-		<c:forEach items="${voyage}" var="v">
 			<tr>
-				<td>${v.id}</td>
-				<td>${v.dateDepart}</td>
-				<td>${v.dateArrivee}</td>
-				<td>${v.nbPlaces}</td>
-				<td>${v.prix}</td>
-				<td>${v.statut}</td>
-				<td>${v.destination.pays}</td>
+				<td>${voyage.id}</td>
+				<td>${voyage.dateDepart}</td>
+				<td>${voyage.dateArrivee}</td>
+				<td>${voyage.nbPlaces}</td>
+				<td>${voyage.prix}</td>
+				<td>${voyage.statut}</td>
+				<td>${voyage.destination.pays}</td>
 				<!-- 				<td><a class="btn btn-danger" -->
 				<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a> --%>
 				<!-- 					<a class="btn btn-success" -->
 				<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a> --%>
 				<!-- 				</td> -->
 			</tr>
-		</c:forEach>
 	</table>
 
 

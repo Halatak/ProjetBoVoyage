@@ -30,7 +30,7 @@
 					<div class="col-md-4 text-center">
 						<div class="panel panel-danger panel-pricing">
 							<div class="panel-heading">
-								<h3>${v.destination.pays}</h3>
+								<h2>${v.destination.pays}</h2>
 							</div>
 							
 							<div class="panel-body text-center">
@@ -46,11 +46,11 @@
 								</p>
 							</div>
 							<ul class="list-group text-center">
-								<li class="list-group-item"><i class="fa fa-check"></i>
+								<li class="list-group-item"><i class="fa fa-plane"></i>
 									Départ: ${v.dateDepart}</li>
-								<li class="list-group-item"><i class="fa fa-check"></i>
+								<li class="list-group-item"><i class="fa fa-plane"></i>
 									Arrivée: ${v.dateArrivee}</li>
-								<li class="list-group-item"><i class="fa fa-check"></i>
+								<li class="list-group-item">
 									Nombre de places: ${v.nbPlaces}</li>
 								<li class="list-group-item"><i class="fa fa-check"></i>
 									Statut: ${v.statut}</li>
