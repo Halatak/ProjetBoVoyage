@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
+import fr.adaming.model.Continent;
 import fr.adaming.model.Destination;
 import fr.adaming.service.IDestinationService;
 
@@ -81,17 +82,24 @@ public class DestinationController {
 	}
 
 	@RequestMapping(value = "/destinationSoumettreModifier", method = RequestMethod.POST)
-	public String soumettreModif(ModelMap modele, @ModelAttribute("desModif") Destination desIn,
-			RedirectAttributes ra) {
+	public ModelAndView soumettreModif(Model modele, @ModelAttribute("desModif") Destination desIn,
+			RedirectAttributes ra, MultipartFile file) throws IOException {
 		// Appel de la méthode service
-		try {
-			destService.modifierDestinationService(desIn);
-			
-			return "redirect:/conseillerMarketing/voyageCMListe";
-		} catch (Exception e) {
-			ra.addFlashAttribute("msg", "modif a échoué");
-			return "redirect:destinationAfficheModifier";
-		}
+				if (!file.isEmpty()) {
+					desIn.setPhoto(file.getBytes());
+				} else {
+					if (desIn.getIdDestination() != 0) {
+						Destination des = (Destination) modele.asMap().get("contModif");
+						desIn.setPhoto(des.getPhoto());
+					}
+				}
+				try {
+					destService.modifierDestinationService(desIn);;
+					return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
+				} catch (Exception e) {
+					ra.addFlashAttribute("msg", "l'ajout a échoué");
+					return new ModelAndView("redirect:destinationAfficheModifier");
+				}
 
 	}
 

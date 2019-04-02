@@ -26,7 +26,7 @@ style="background: url('${pageContext.request.contextPath}/resources/images/Trop
 		modifier une voiture</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="voitureSoumettreModifier" commandName="voiModif" 
+		action="voitureSoumettreModifier" commandName="voiModif" enctype="multipart/form-data"
 		style="border: medium solid red; width:600px; min-height:100px; display:block; border-radius:50px;
 		border-width:5px; padding-top:20px; padding-left:50px; padding-right:50px; margin:0 auto; background-color: white;">
 
