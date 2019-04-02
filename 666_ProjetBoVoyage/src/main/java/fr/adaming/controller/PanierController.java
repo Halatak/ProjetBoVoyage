@@ -30,6 +30,7 @@ import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Voyage;
+import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDossierService;
 import fr.adaming.service.IVoyageService;
@@ -46,6 +47,8 @@ public class PanierController {
 	private IDossierService dossierService;
 	@Autowired
 	private IClientService clientService;
+	@Autowired
+	private ICarteBancaireService CBService;
 
 	private Client client;
 
@@ -245,7 +248,6 @@ public class PanierController {
 	@RequestMapping(value = "/panierAfficherCB", method = RequestMethod.GET)
 	public String afficheAjoutCB(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		System.out.println(client.getCarteBancaire());
 		try {
 			modele.addAttribute("CBAjout", client.getCarteBancaire());
 			return "choixCB";
@@ -259,15 +261,24 @@ public class PanierController {
 	@RequestMapping(value = "/panierSoumettreCB", method = RequestMethod.POST)
 	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("CBAjout") CarteBancaire cbIn,
 			RedirectAttributes ra) {
-		// Appel de la méthode service
-		panier.getDossier().getClient().setCarteBancaire(cbIn);
-		clientService.modifierClientService(panier.getDossier().getClient());
 
-		if (panier.getDossier().getClient().getCarteBancaire() != null) {
-			return "redirect:panierAfficheRecapitulatif";
+		// Appel de la méthode service
+		System.out.println(panier.getDossier().getClient());
+		if (CBService.getCBByClient(panier.getDossier().getClient()) != null) {
+			cbIn.setClient(panier.getDossier().getClient());
+			cbIn.setIdCarte(CBService.getCBByClient(panier.getDossier().getClient()).getIdCarte());
+			CBService.modifierCarteBancaireService(cbIn);
+			panier.getDossier().getClient().setCarteBancaire(cbIn);
 		} else {
-			ra.addFlashAttribute("msg", "l'ajout d'adresse a échoué");
-			return "redirect:panierAfficheAdresse";
+			cbIn.setClient(panier.getDossier().getClient());
+			CBService.ajoutCarteBancaireService(cbIn);
+			panier.getDossier().getClient().setCarteBancaire(cbIn);
+		}
+		if (panier.getDossier().getClient().getCarteBancaire() != null) {
+			return "redirect:/voyage/voyageListe";
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout de CB a échoué");
+			return "redirect:panierAfficherCB";
 		}
 	}
 

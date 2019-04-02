@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une assurance</h1>
