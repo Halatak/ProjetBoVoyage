@@ -1,17 +1,24 @@
 package fr.adaming.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.adaming.model.ConseillerMarketing;
+import fr.adaming.model.Hotel;
 import fr.adaming.service.IAvionService;
 import fr.adaming.service.IConseillerMarketingService;
 import fr.adaming.service.IFormuleService;
@@ -73,6 +80,17 @@ public class ConseillerMarketingController {
 		modele.addAttribute("hotelListe", hotelService.afficherListeHotelService());
 		modele.addAttribute("formuleListe", formuleService.afficherListeFormuleService());
 		return "accueilConseillerMarketing";
+	}
+
+	@RequestMapping(value = "/photoHo", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idHo) throws IOException {
+		Hotel ho = hotelService.getHotelByIdService(idHo);
+		if (ho.getPhoto() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(ho.getPhoto()));
+		}
 	}
 
 }

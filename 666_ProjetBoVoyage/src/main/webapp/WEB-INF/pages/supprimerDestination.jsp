@@ -16,7 +16,7 @@
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
-	<h1 style="color: red; text-align: center;">Formulaire pour
+	<h1>Formulaire pour
 		supprimer une Destination</h1>
 
 	<form:form cssClass="form-horizontal" method="post"

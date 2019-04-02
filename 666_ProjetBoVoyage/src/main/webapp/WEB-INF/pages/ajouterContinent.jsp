@@ -14,7 +14,7 @@
 <%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-	<h1 style="color: red; text-align: center;">Formulaire pour
+	<h1>Formulaire pour
 		ajouter une destination</h1>
 
 	<form:form cssClass="form-horizontal" method="post"

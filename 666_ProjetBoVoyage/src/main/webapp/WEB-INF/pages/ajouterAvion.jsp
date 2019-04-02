@@ -19,14 +19,12 @@
 <br/>
 <br/>
 <br/>
-	<h1 style="text-align: center; -webkit-text-stroke-color: red; -webkit-text-fill-color: white; -webkit-text-stroke-width: 2px; 
-	font-size: 3.5vw;">Formulaire pour
+	<h1>Formulaire pour
 		ajouter un avion</h1>
 		<br/>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="avionSoumettreAjouter" commandName="avAjout" style="border: medium solid red; width:600px; min-height:100px; display:block; border-radius:50px;
-		border-width:5px; padding-top:20px; padding-left:50px; padding-right:50px; margin:0 auto; background-color: white;">
+		action="avionSoumettreAjouter" commandName="avAjout">
 
 		<div class="form-group">
 			<label for="idDescription" class="col-sm-2 control-label">Description</label>
