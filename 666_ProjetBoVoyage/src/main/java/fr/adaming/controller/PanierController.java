@@ -106,11 +106,11 @@ public class PanierController {
 	@RequestMapping(value = "/panierSoumettreClient", method = RequestMethod.POST)
 	public String soumettreAjoutClient(ModelMap modele, @ModelAttribute("cliAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
-		System.out.println(client);
-		System.out.println(dossierService.getDossierByIdClientDao(client));
 		if (dossierService.getDossierByIdClientDao(client) == null) {
-			if (client != null && client.getMail() == cIn.getMail()) {
-				clientService.modifierClientService(client);
+			if (client != null && client.getMail().equals(cIn.getMail())) {
+				cIn.setIdCl(client.getIdCl());
+				cIn.setActive(true);
+				clientService.modifierClientService(cIn);
 				panier.getDossier().setClient(cIn);
 			} else if (client == null) {
 				cIn = clientService.ajoutClientService(cIn);
