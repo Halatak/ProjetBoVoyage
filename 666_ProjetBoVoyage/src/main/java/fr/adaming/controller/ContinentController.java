@@ -29,99 +29,107 @@ public class ContinentController {
 
 	@Autowired
 	private IContinentService contService;
-	
+
 	// Liste Destination
 	@RequestMapping(value = "/continentListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
 		return new ModelAndView("listeContinent", "continentListe", contService.afficherListeContinentService());
 	}
-	
+
 	// Fonctionnalité ajouter
-		@RequestMapping(value = "/continentAfficheAjouter", method = RequestMethod.GET)
-		public String afficheAjout(Model modele) {
+	@RequestMapping(value = "/continentAfficheAjouter", method = RequestMethod.GET)
+	public String afficheAjout(Model modele) {
 
-			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-			modele.addAttribute("contAjout", new Continent());
-			return "ajouterContinent";
-		}
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		modele.addAttribute("contAjout", new Continent());
+		return "ajouterContinent";
+	}
 
-		@RequestMapping(value = "/continentSoumettreAjouter", method = RequestMethod.POST)
-		public ModelAndView soumettreAjout(Model modele, @ModelAttribute("contAjout") Continent contIn, RedirectAttributes ra,
-				MultipartFile file) throws Exception {
-			// Appel de la méthode service
-			if(!file.isEmpty()){
-				contIn.setPhoto(file.getBytes());
-			}else{
-				if(contIn.getIdContinent()!=0){
-					Continent cont=(Continent) modele.asMap().get("contModif");
-					contIn.setPhoto(cont.getPhoto());
-				}
-			}
-			Continent contOut = contService.ajoutContinentService(contIn);
-			if (contOut.getIdContinent() != 0) {
-				return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
-			} else {
-				ra.addFlashAttribute("msg", "l'ajout a échoué");
-				return new ModelAndView("redirect:continentAfficheAjout");
+	@RequestMapping(value = "/continentSoumettreAjouter", method = RequestMethod.POST)
+	public ModelAndView soumettreAjout(Model modele, @ModelAttribute("contAjout") Continent contIn,
+			RedirectAttributes ra, MultipartFile file) throws Exception {
+		// Appel de la méthode service
+		if (!file.isEmpty()) {
+			contIn.setPhoto(file.getBytes());
+		} else {
+			if (contIn.getIdContinent() != 0) {
+				Continent cont = (Continent) modele.asMap().get("contModif");
+				contIn.setPhoto(cont.getPhoto());
 			}
 		}
-		
-		// Modification
-		@RequestMapping(value = "/continentAfficheModifier", method = RequestMethod.GET)
-		public String afficheModif(Model modele) {
-
-			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-			modele.addAttribute("contModif", new Continent());
-
-			return "modifierContinent";
+		Continent contOut = contService.ajoutContinentService(contIn);
+		if (contOut.getIdContinent() != 0) {
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return new ModelAndView("redirect:continentAfficheAjout");
 		}
+	}
 
-		@RequestMapping(value = "/continentSoumettreModifier", method = RequestMethod.POST)
-		public String soumettreModif(ModelMap modele, @ModelAttribute("desModif") Continent contIn,
-				RedirectAttributes ra) {
-			// Appel de la méthode service
-			try {
-				contService.modifierContinentService(contIn);
-				return "redirect:/conseillerMarketing/voyageCMListe";
-			} catch (Exception e) {
-				ra.addFlashAttribute("msg", "modif a échoué");
-				return "redirect:continentAfficheModifier";
-			}
+	// Modification
+	@RequestMapping(value = "/continentAfficheModifier", method = RequestMethod.GET)
+	public String afficheModif(Model modele) {
 
-		}
-		
-		// Suppression
-		@RequestMapping(value = "/continentAfficheSupprimer", method = RequestMethod.GET)
-		public String afficheSuppr(Model modele) {
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		modele.addAttribute("contModif", new Continent());
 
-			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-			modele.addAttribute("contSuppr", new Continent());
+		return "modifierContinent";
+	}
 
-			return "supprimerContinent";
-		}
-
-		@RequestMapping(value = "/continentSoumettreSupprimer", method = RequestMethod.POST)
-		public String soumettreSuppr(ModelMap modele, @ModelAttribute("desSuppr") Continent contIn,
-				RedirectAttributes ra) {
-			// Appel de la méthode service
-			try {
-				contService.supprContinentService(contIn);;
-				return "redirect:/conseillerMarketing/voyageCMListe";
-			} catch (Exception e) {
-				ra.addFlashAttribute("msg", "suppr a échoué");
-				return "redirect:continentAfficheSupprimer";
-			}
-
-		}
-		
-		@RequestMapping(value="/photoCont",produces=MediaType.IMAGE_JPEG_VALUE)
-		@ResponseBody
-		public byte[] getPhoto(int idCont) throws IOException{
-			Continent cont=contService.getContinentByIdService(idCont);
-			if(cont.getPhoto()==null){
-				return new byte[0];
-			}else{
-				return IOUtils.toByteArray(new ByteArrayInputStream(cont.getPhoto()));
+	@RequestMapping(value = "/continentSoumettreModifier", method = RequestMethod.POST)
+	public ModelAndView soumettreModif(Model modele, @ModelAttribute("desModif") Continent contIn,
+			RedirectAttributes ra, MultipartFile file) throws Exception {
+		// Appel de la méthode service
+		if (!file.isEmpty()) {
+			contIn.setPhoto(file.getBytes());
+		} else {
+			if (contIn.getIdContinent() != 0) {
+				Continent cont = (Continent) modele.asMap().get("contModif");
+				contIn.setPhoto(cont.getPhoto());
 			}
 		}
+		try {
+			contService.modifierContinentService(contIn);
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
+		} catch (Exception e) {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return new ModelAndView("redirect:continentAfficheModifier");
+		}
+
+	}
+
+	// Suppression
+	@RequestMapping(value = "/continentAfficheSupprimer", method = RequestMethod.GET)
+	public String afficheSuppr(Model modele) {
+
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		modele.addAttribute("contSuppr", new Continent());
+
+		return "supprimerContinent";
+	}
+
+	@RequestMapping(value = "/continentSoumettreSupprimer", method = RequestMethod.POST)
+	public String soumettreSuppr(ModelMap modele, @ModelAttribute("desSuppr") Continent contIn, RedirectAttributes ra) {
+		// Appel de la méthode service
+		try {
+			contService.supprContinentService(contIn);
+			;
+			return "redirect:/conseillerMarketing/voyageCMListe";
+		} catch (Exception e) {
+			ra.addFlashAttribute("msg", "suppr a échoué");
+			return "redirect:continentAfficheSupprimer";
+		}
+
+	}
+
+	@RequestMapping(value = "/photoCont", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idCont) throws IOException {
+		Continent cont = contService.getContinentByIdService(idCont);
+		if (cont.getPhoto() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(cont.getPhoto()));
+		}
+	}
 }
