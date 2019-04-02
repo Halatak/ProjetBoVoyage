@@ -15,32 +15,59 @@
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-<br/>
-<br/>
-<br/>
-	<table class="table table-bordered">
-		<tr>
-			<th>ID</th>
-			<th>Prix</th>
-			<th>Description</th>
-			<th>Opération</th>
-		</tr>
 
-		<c:forEach items="${avionListe}" var="av">
-			<tr>
-				<td>${av.idAvion}</td>
-				<td>${av.prix}</td>
-				<td>${av.description}</td>
-				<td><a class="btn btn-danger"
-					href="
+	<div class="main">
+		<div class="row">
+			<div class="panel panel-primary">
+
+				<div class="panel-heading">
+					<h3 class="panel-title">Liste des Avions</h3>
+					<div class="pull-right">
+						<span class="clickable filter" data-toggle="tooltip"
+							title="Toggle table filter" data-container="body"> <i
+							class="glyphicon glyphicon-filter"></i>
+						</span>
+					</div>
+				</div>
+				<div class="input-group">
+					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+					<input class="form-control system-search" name="q"
+						placeholder="Rechercher" required> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</span>
+				</div>
+				<table class="table table-bordered table-list-search"
+					style="background-color: white;">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Prix</th>
+							<th>Description</th>
+							<th>Opération</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${avionListe}" var="av">
+							<tr>
+								<td>${av.idAvion}</td>
+								<td>${av.prix}</td>
+								<td>${av.description}</td>
+								<td><a class="btn btn-danger"
+									href="
 									${pageContext.request.contextPath}/avion/avionSoumettre-supprLien?pId=${av.idAvion}">Supprimer</a>|<a
-					class="btn btn-success"
-					href="
+									class="btn btn-success"
+									href="
 									${pageContext.request.contextPath}/avion/avionSoumettre-modifLien?pId=${av.idAvion}">Modifier</a></td>
-			</tr>
-		</c:forEach>
-
-	</table>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 	<h1>${msg}</h1>
 </body>
 </html>
