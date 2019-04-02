@@ -31,9 +31,17 @@
 		
 		<div class="form-group">
 			<form:radiobutton path="id" value="1"/>
-			Assurance voyage 30 euros<br/>
+			Assurance lowcost 30 euros<br/>
+			Couverture bagages en cas de vol, perte ou dommages<br/>
+			Couverture annulation
+		</div>
+		
+		<div class="form-group">
+			<form:radiobutton path="id" value="2"/>
+			Assurance complete 100 euros<br/>
 			Couverture des frais médicaux à l’étranger<br/>
 			Rapatriement médical<br/>
+			Assistance au voyageur <br/>
 			Couverture bagages en cas de vol, perte ou dommages<br/>
 			Couverture annulation
 		</div>
