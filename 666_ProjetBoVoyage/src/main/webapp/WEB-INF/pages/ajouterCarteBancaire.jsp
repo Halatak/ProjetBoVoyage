@@ -16,7 +16,7 @@
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
-	<h1 style="color: red; text-align: center;">Formulaire pour
+	<h1>Formulaire pour
 		ajouter une carte bancaire</h1>
 
 	<form:form cssClass="form-horizontal" method="post"

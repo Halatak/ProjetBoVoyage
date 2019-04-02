@@ -14,7 +14,7 @@
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
 
-	<table class="table table-bordered" style="background-color: white;">
+	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
 			<th>Pays</th>
@@ -24,11 +24,11 @@
 		</tr>
 
 		<c:forEach items="${destinationListe}" var="des">
-			<tr style="text-align: center;">
+			<tr>
 				<td>${des.idDestination}</td>
 				<td>${des.pays}</td>
 				<td>${des.description}</td>
-				<td><img src="photoDes?idDest=${des.idDestination}" style="max-width: 250px;"></td>
+				<td><img src="photoDes?idDest=${des.idDestination}"></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/destination/destinationSoumettre-supprLien?pId=${des.idDestination}">Supprimer</a>|<a

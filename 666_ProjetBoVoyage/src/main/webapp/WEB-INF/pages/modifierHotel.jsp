@@ -13,22 +13,18 @@
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body
-style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
-	background-attachment: fixed; background-size:cover;">
+>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
 <br/>
 <br/>
 <br/>
-	<h1 style="text-align: center;  -webkit-text-stroke-color: red; -webkit-text-fill-color: white; -webkit-text-stroke-width: 2px; 
-	font-size: 3.5vw;">Formulaire pour
+	<h1>Formulaire pour
 		modifier un hotel</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="hotelSoumettreModifier" commandName="hoModif" enctype="multipart/form-data"
-		style="border: medium solid red; width:600px; min-height:100px; display:block; border-radius:50px;
-		border-width:5px; padding-top:20px; padding-left:50px; padding-right:50px; margin:0 auto; background-color: white;">
+		action="hotelSoumettreModifier" commandName="hoModif" enctype="multipart/form-data">
 
 
 		<div class="form-group">

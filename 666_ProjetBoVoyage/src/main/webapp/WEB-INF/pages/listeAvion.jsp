@@ -18,7 +18,7 @@
 <br/>
 <br/>
 <br/>
-	<table class="table table-bordered" style="background-color:white;">
+	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
 			<th>Prix</th>

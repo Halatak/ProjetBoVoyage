@@ -18,7 +18,7 @@
 <br/>
 <br/>
 <br/>
-	<table class="table table-bordered" style="background-color: white;">
+	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
 			<th>Marque</th>
@@ -34,7 +34,7 @@
 				<td>${voi.marque}</td>
 				<td>${voi.prix}</td>
 				<td>${voi.description}</td>
-				<td><img src="photoVoi?idVoi=${voi.idVoiture}" style="max-width: 250px;"></td>
+				<td><img src="photoVoi?idVoi=${voi.idVoiture}"></td>
 				<td><a class="btn btn-danger"
 					href="
 									${pageContext.request.contextPath}/voiture/voitureSoumettre-supprLien?pId=${voi.idVoiture}">Supprimer</a>|<a
