@@ -31,7 +31,7 @@
 				</div>
 				<div class="input-group">
 					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-					<input class="form-control" id="system-search" name="q"
+					<input class="form-control system-search" name="q"
 						placeholder="Rechercher" required> <span
 						class="input-group-btn">
 						<button type="submit" class="btn btn-default">
@@ -92,7 +92,7 @@
 				</div>
 				<div class="input-group">
 					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-					<input class="form-control" id="system-search" name="q"
+					<input class="form-control system-search" name="q"
 						placeholder="Rechercher" required> <span
 						class="input-group-btn">
 						<button type="submit" class="btn btn-default">
@@ -142,7 +142,7 @@
 				</div>
 				<div class="input-group">
 					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-					<input class="form-control" id="system-search" name="q"
+					<input class="form-control system-search" name="q"
 						placeholder="Rechercher" required> <span
 						class="input-group-btn">
 						<button type="submit" class="btn btn-default">
@@ -203,7 +203,7 @@
 				</div>
 				<div class="input-group">
 					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-					<input class="form-control" id="system-search" name="q"
+					<input class="form-control system-search" name="q"
 						placeholder="Rechercher" required> <span
 						class="input-group-btn">
 						<button type="submit" class="btn btn-default">
