@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Continent;
 import fr.adaming.model.Destination;
 import fr.adaming.model.Hotel;
 import fr.adaming.model.Voiture;
@@ -100,14 +101,22 @@ public class VoitureController {
 	}
 
 	@RequestMapping(value = "/voitureSoumettreModifier", method = RequestMethod.POST)
-	public String soumettreModif(ModelMap modele, @ModelAttribute("voiModif") Voiture vIn, RedirectAttributes ra) {
+	public ModelAndView soumettreModif(Model modele, @ModelAttribute("voiModif") Voiture vIn, RedirectAttributes ra, MultipartFile file) throws IOException {
+		if (!file.isEmpty()) {
+			vIn.setPhoto(file.getBytes());
+		} else {
+			if (vIn.getIdVoiture() != 0) {
+				Voiture cont = (Voiture) modele.asMap().get("contModif");
+				vIn.setPhoto(cont.getPhoto());
+			}
+		}
 		// appel de la méthode service
 		try {
 			vService.modifierVoitureService(vIn);
-			return "redirect:/conseillerMarketing/voyageCMListe";
+			return new ModelAndView("redirect:/conseillerMarketing/voyageCMListe");
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La modification a échouée");
-			return "redirect:voitureAfficheModifier";
+			return new ModelAndView("redirect:voitureAfficheModifier");
 		}
 	}
 
