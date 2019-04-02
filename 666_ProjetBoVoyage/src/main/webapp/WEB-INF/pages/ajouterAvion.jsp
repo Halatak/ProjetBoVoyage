@@ -12,9 +12,7 @@
 <title>Ajouter un avion</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
-<body
-style="background: url('${pageContext.request.contextPath}/resources/images/Tropical-Rainforest-Landscape.jpg');
-	background-attachment: fixed; background-size:cover;">
+<body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
 
