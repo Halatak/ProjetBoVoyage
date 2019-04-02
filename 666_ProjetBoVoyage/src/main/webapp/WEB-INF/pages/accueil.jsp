@@ -32,16 +32,17 @@
 							<div class="panel-heading">
 								<h3>${v.destination.pays}</h3>
 							</div>
-							<div class="panel-body text-center">
-								<p>
-									<strong>Prix: ${v.prix} &#8364;</strong>
-								</p>
-							</div>
+							
 							<div class="panel-body text-center">
 								<p>
 									<img
 										src="../destination/photoDes?idDest=${v.destination.idDestination}"
 										style="max-width: 250px;">
+								</p>
+							</div>
+							<div class="panel-body text-center">
+								<p>
+									<strong>Prix: ${v.prix} &#8364;</strong>
 								</p>
 							</div>
 							<ul class="list-group text-center">
