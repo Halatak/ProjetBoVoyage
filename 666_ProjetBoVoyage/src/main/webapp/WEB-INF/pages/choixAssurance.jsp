@@ -26,7 +26,7 @@
 		action="panierSoumettreAssurance" commandName="asAjout">
 
 		<div class="form-group">
-			<form:radiobutton path="id" value="2"/>Aucune assurance
+			<form:radiobutton path="id" value="0"/>Aucune assurance
 		</div>
 		
 		<div class="form-group">

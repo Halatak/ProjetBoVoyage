@@ -18,36 +18,51 @@
 	<%@ include file='/resources/templates/navBar.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter une assurance</h1>
+		ajouter une addresse</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="panierSoumettreClient" target="_blank" commandName="cliAjout">
+		action="panierSoumettreCB" commandName="CBAjout">
 
 		<div class="form-group">
-			<label for="idMail" class="col-sm-2 control-label">Mail</label>
+			<label for="iddateex" class="col-sm-2 control-label">Date
+				Expiration</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idMail" path="mail"
-					placeholder="Mail" />
+				<form:input type="date" cssClass="form-control" id="iddateex"
+					path="dateExpiration" placeholder="Date Expiration" required="true" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="idnumero" class="col-sm-2 control-label">numero</label>
+			<div class="col-sm-5">
+				<form:input type="number" cssClass="form-control" id="idnumero"
+					path="numeroCarte" placeholder="numero" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="idPrix" class="col-sm-2 control-label">Mot de
-				passe</label>
+			<label for="idnom" class="col-sm-2 control-label">Nom</label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" id="idMdp" path="mdp"
-					placeholder="Mot de passe" />
+				<form:input cssClass="form-control" id="idnom" path="nom"
+					placeholder="Nom" required="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="idPrenom" class="col-sm-2 control-label">Prenom</label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" id="idPrenom" path="prenom"
+					placeholder="Prenom" required="true" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">S'enregistrer
-					et ajouter une carte bancaire</button>
+				<button type="submit" class="btn btn-default">Enregistrer
+					le voyage</button>
 			</div>
 		</div>
 	</form:form>
-	
-	
+
+
 	<h1>${msg}</h1>
 </body>
 </html>
