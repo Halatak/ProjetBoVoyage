@@ -25,10 +25,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Adresse;
 import fr.adaming.model.Assurance;
+import fr.adaming.model.CarteBancaire;
 import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Voyage;
+import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDossierService;
 import fr.adaming.service.IVoyageService;
@@ -45,6 +47,8 @@ public class PanierController {
 	private IDossierService dossierService;
 	@Autowired
 	private IClientService clientService;
+	@Autowired
+	private ICarteBancaireService CBService;
 
 	private Client client;
 
@@ -131,8 +135,9 @@ public class PanierController {
 	@RequestMapping(value = "/panierSoumettreClient", method = RequestMethod.POST)
 	public String soumettreAjoutClient(ModelMap modele, @ModelAttribute("cliAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
-		System.out.println("dada");
-		if (dossierService.getDossierByIdClientDao(client) == null) {
+
+		if (dossierService.getDossierByIdClientDao(client) == null
+				&& dossierService.getDossierByIdClientDao(clientService.getClientByMail(cIn.getMail())) == null) {
 			if (client != null && client.getMail().equals(cIn.getMail())) {
 				cIn.setIdCl(client.getIdCl());
 				cIn.setActive(true);
@@ -151,25 +156,20 @@ public class PanierController {
 		if (panier.getDossier().getClient() != null) {
 			return "redirect:panierAfficheAdresse";
 		} else {
-			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:panierAfficheClient";
+			ra.addFlashAttribute("msg", "Vous avez déjà commandé un voyage, impossible d'en commander un second !");
+			return "redirect:/voyage/voyageListe";
 		}
 
-		/*
-		 * if (panier.getDossier().getClient() != null) { return
-		 * "redirect:dossierPanierSoumettreAjouter"; } else {
-		 * ra.addFlashAttribute("msg", "l'ajout a échoué"); return
-		 * "redirect:panierAfficheClient"; }
-		 */
 	}
 
 	@RequestMapping(value = "/panierAfficheAdresse", method = RequestMethod.GET)
 	public String afficheAjoutAdresse(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		if (client.getAdresse() != null) {
+		try {
 			modele.addAttribute("addAjout", client.getAdresse());
 			return "choixAdresse";
-		} else {
+
+		} catch (Exception e) {
 			modele.addAttribute("addAjout", new Adresse());
 			return "choixAdresse";
 		}
@@ -179,10 +179,8 @@ public class PanierController {
 	public String soumettreAjoutAdresse(ModelMap modele, @ModelAttribute("addAjout") Adresse addIn,
 			RedirectAttributes ra) {
 		// Appel de la méthode service
-
-		client.setAdresse(addIn);
-		clientService.modifierClientService(client);
-		panier.getDossier().setClient(client);
+		panier.getDossier().getClient().setAdresse(addIn);
+		clientService.modifierClientService(panier.getDossier().getClient());
 
 		if (panier.getDossier().getClient().getAdresse() != null) {
 			return "redirect:panierAfficheRecapitulatif";
@@ -190,13 +188,6 @@ public class PanierController {
 			ra.addFlashAttribute("msg", "l'ajout d'adresse a échoué");
 			return "redirect:panierAfficheAdresse";
 		}
-
-		/*
-		 * if (panier.getDossier().getClient() != null) { return
-		 * "redirect:dossierPanierSoumettreAjouter"; } else {
-		 * ra.addFlashAttribute("msg", "l'ajout a échoué"); return
-		 * "redirect:panierAfficheClient"; }
-		 */
 	}
 
 	@RequestMapping(value = "/panierAfficheRecapitulatif", method = RequestMethod.GET)
@@ -208,55 +199,87 @@ public class PanierController {
 
 	@RequestMapping(value = "/dossierPanierSoumettreAjouter", method = RequestMethod.GET)
 	public ModelAndView soumettreAjoutDossierPanier(RedirectAttributes ra) {
+		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
+			panier.getDossier().setEtat("enAttente");
+			panier.getDossier().setNumero(111 * 2 + 13);
 
-		panier.getDossier().setEtat("enAttente");
-		panier.getDossier().setNumero(111 * (client.getIdCl() + 1));
+			dossierService.ajoutDossierService(panier.getDossier());
 
-		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
-		Dossier doOut = dossierService.ajoutDossierService(panier.getDossier());
+			return new ModelAndView("redirect:/paypal");
 
-		// if (doOut.getId() != 0) {
-		return new ModelAndView("redirect:/paypal");
-		// } else {
-		// ra.addFlashAttribute("msg", "l'ajout a échoué");
-		// return "redirect:dossierAjouter";
-		// }
-
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		}
 	}
 
 	@RequestMapping(value = "/dossierPanierSoumettreAjouterSansPayer", method = RequestMethod.GET)
 	public ModelAndView soumettreAjoutDossierPanierSansPayer(RedirectAttributes ra) {
+		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
+			panier.getDossier().setEtat("enAttente");
+			panier.getDossier().setNumero(111 * 2 + 13);
 
-		panier.getDossier().setEtat("enAttente");
-		panier.getDossier().setNumero(111 * (client.getIdCl() + 1));
+			dossierService.ajoutDossierService(panier.getDossier());
 
-		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
-		Dossier doOut = dossierService.ajoutDossierService(panier.getDossier());
-
-		// if (doOut.getId() != 0) {
-		return new ModelAndView("redirect:/voyage/voyageListe");
-		// } else {
-		// ra.addFlashAttribute("msg", "l'ajout a échoué");
-		// return "redirect:dossierAjouter";
-		// }
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		}
 
 	}
 
 	@RequestMapping(value = "/dossierPanierSoumettreAjouterPayerCB", method = RequestMethod.GET)
 	public ModelAndView soumettreAjoutDossierPanierPayerCB(RedirectAttributes ra) {
+		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
+			panier.getDossier().setEtat("enAttente");
+			panier.getDossier().setNumero(111 * 2 + 13);
 
-		panier.getDossier().setEtat("enAttente");
-		panier.getDossier().setNumero(111 * (client.getIdCl() + 1));
+			dossierService.ajoutDossierService(panier.getDossier());
 
-		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
-		Dossier doOut = dossierService.ajoutDossierService(panier.getDossier());
-
-		// if (doOut.getId() != 0) {
-		return new ModelAndView("redirect:/panierAfficherCB");
-		// } else {
-		// ra.addFlashAttribute("msg", "l'ajout a échoué");
-		// return "redirect:dossierAjouter";
-		// }
+			return new ModelAndView("redirect:/panier/panierAfficherCB");
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		}
 
 	}
+
+	@RequestMapping(value = "/panierAfficherCB", method = RequestMethod.GET)
+	public String afficheAjoutCB(Model modele) {
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		try {
+			modele.addAttribute("CBAjout", client.getCarteBancaire());
+			return "choixCB";
+
+		} catch (Exception e) {
+			modele.addAttribute("CBAjout", new CarteBancaire());
+			return "choixCB";
+		}
+	}
+
+	@RequestMapping(value = "/panierSoumettreCB", method = RequestMethod.POST)
+	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("CBAjout") CarteBancaire cbIn,
+			RedirectAttributes ra) {
+
+		// Appel de la méthode service
+		System.out.println(panier.getDossier().getClient());
+		if (CBService.getCBByClient(panier.getDossier().getClient()) != null) {
+			cbIn.setClient(panier.getDossier().getClient());
+			cbIn.setIdCarte(CBService.getCBByClient(panier.getDossier().getClient()).getIdCarte());
+			CBService.modifierCarteBancaireService(cbIn);
+			panier.getDossier().getClient().setCarteBancaire(cbIn);
+		} else {
+			cbIn.setClient(panier.getDossier().getClient());
+			CBService.ajoutCarteBancaireService(cbIn);
+			panier.getDossier().getClient().setCarteBancaire(cbIn);
+		}
+		if (panier.getDossier().getClient().getCarteBancaire() != null) {
+			return "redirect:/voyage/voyageListe";
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout de CB a échoué");
+			return "redirect:panierAfficherCB";
+		}
+	}
+
 }

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une assurance</h1>
@@ -26,7 +26,7 @@
 	<a
 		href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouterPayerCB">Enregistrer
 		Panier et payer via CB</a><
-	<a target="_blank"
+	<a
 		href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouter">Enregistrer
 		Panier et payer via paypal</a>
 
@@ -44,20 +44,20 @@
 		</tr>
 
 
-			<tr>
-				<td>${voyage.id}</td>
-				<td>${voyage.dateDepart}</td>
-				<td>${voyage.dateArrivee}</td>
-				<td>${voyage.nbPlaces}</td>
-				<td>${voyage.prix}</td>
-				<td>${voyage.statut}</td>
-				<td>${voyage.destination.pays}</td>
-				<!-- 				<td><a class="btn btn-danger" -->
-				<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a> --%>
-				<!-- 					<a class="btn btn-success" -->
-				<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a> --%>
-				<!-- 				</td> -->
-			</tr>
+		<tr>
+			<td>${voyage.id}</td>
+			<td>${voyage.dateDepart}</td>
+			<td>${voyage.dateArrivee}</td>
+			<td>${voyage.nbPlaces}</td>
+			<td>${voyage.prix}</td>
+			<td>${voyage.statut}</td>
+			<td>${voyage.destination.pays}</td>
+			<!-- 				<td><a class="btn btn-danger" -->
+			<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-supprLien?pId=${v.id}">Supprimer</a> --%>
+			<!-- 					<a class="btn btn-success" -->
+			<%-- 					href="${pageContext.request.contextPath}/voyage/soumettre-modifLien?pId=${v.id}">Modifier</a> --%>
+			<!-- 				</td> -->
+		</tr>
 	</table>
 
 

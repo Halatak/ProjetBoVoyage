@@ -3,6 +3,7 @@ package fr.adaming.service;
 import java.util.List;
 
 import fr.adaming.model.CarteBancaire;
+import fr.adaming.model.Client;
 
 public interface ICarteBancaireService {
 
@@ -17,5 +18,7 @@ public List<CarteBancaire> afficherListeCarteBancaireService();
 	public void supprCarteBancaireByIdService (int id);
 	
 	public CarteBancaire getCarteBancaireByIdService (int id);
+	
+	public CarteBancaire getCBByClient(Client c);
 	
 }

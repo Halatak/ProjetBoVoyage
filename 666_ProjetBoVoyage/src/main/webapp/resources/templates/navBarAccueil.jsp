@@ -17,27 +17,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Avion <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a
-							href="${pageContext.request.contextPath}/avion/avionListe">Afficher
-								Avion</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/avion/avionAfficheAjouter">Ajouter
-								Avion</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/avion/avionAfficheModifier">Modifier
-								Avion</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/avion/avionAfficheSupprimer">Supprimer
-								Avion</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
+
 
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -55,31 +35,7 @@
 						<li><a
 							href="${pageContext.request.contextPath}/voyage/voyageSupprimer">Supprimer
 								Voyage</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Hotel <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelListe">Afficher
-								Hotel</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheAjouter">Ajouter
-								Hotel</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheModifier">Modifier
-								Hotel</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/hotel/hotelAfficheSupprimer">Supprimer
-								Hotel</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
+
 					</ul></li>
 
 			</ul>
@@ -87,17 +43,16 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Connexion<span
-						class="caret"></span></a>
+					aria-expanded="false">Connexion<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
 						<li><form
 								action="${pageContext.request.contextPath}/connexion"
 								method="post">
-								<input type="text" name="j_username" /> 
-								<input type="password" name="j_password" /> 
-								<input type="submit" name="submit" value="Send">
+								<input type="text" name="j_username" /> <input type="password"
+									name="j_password" /> <input type="submit" name="submit"
+									value="Send">
 							</form></li>
 					</ul></li>
 				<%-- ${pageContext.request.contextPath}/choixLogin/choix --%>

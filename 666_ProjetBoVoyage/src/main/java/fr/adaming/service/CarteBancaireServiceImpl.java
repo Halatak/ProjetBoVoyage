@@ -9,20 +9,22 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.ICarteBancaireDao;
 import fr.adaming.dao.IGeneriqueDao;
 import fr.adaming.model.CarteBancaire;
+import fr.adaming.model.Client;
 
 @Service("carteBancaireService")
 @Transactional
-public class CarteBancaireServiceImpl implements ICarteBancaireService{
+public class CarteBancaireServiceImpl implements ICarteBancaireService {
 
-	//transformation uml en java
+	// transformation uml en java
 	private ICarteBancaireDao carteBancaireDao;
 
-	//setters
+	// setters
 	@Autowired
 	public void setCarteBancaireDao(ICarteBancaireDao carteBancaireDao) {
 		this.carteBancaireDao = carteBancaireDao;
 		carteBancaireDao.setClazz(CarteBancaire.class);
 	}
+
 	public IGeneriqueDao<CarteBancaire> getCarteBancaireDao() {
 		return carteBancaireDao;
 	}
@@ -58,6 +60,11 @@ public class CarteBancaireServiceImpl implements ICarteBancaireService{
 	@Override
 	public CarteBancaire getCarteBancaireByIdService(int id) {
 		return carteBancaireDao.getById(id);
+	}
+
+	@Override
+	public CarteBancaire getCBByClient(Client c) {
+		return carteBancaireDao.getCBByClient(c);
 	}
 
 }

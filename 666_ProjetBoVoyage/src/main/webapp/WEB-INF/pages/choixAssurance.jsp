@@ -17,7 +17,7 @@
 <body>
 
 <%-- La directive include --%>
-	<%@ include file='/resources/templates/navBar.jsp'%>
+	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une assurance</h1>
@@ -26,7 +26,7 @@
 		action="panierSoumettreAssurance" commandName="asAjout">
 
 		<div class="form-group">
-			<form:radiobutton path="id" value="2"/>Aucune assurance
+			<form:radiobutton path="id" value="3"/>Aucune assurance
 		</div>
 		
 		<div class="form-group">
