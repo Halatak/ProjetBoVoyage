@@ -36,8 +36,26 @@ public class Mail {
 				return new PasswordAuthentication(from, password);
 			}
 		});
+		
+		
+		
+		  try {    
+	           MimeMessage message = new MimeMessage(session);    
+	           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+	           message.setSubject(sub);    
+	           message.setText(msg);    
+	           //send message  
+	           Transport.send(message);  
+	           // Décommenter pour vérifier que le message est envoyé
+	          // System.out.println("message sent successfully");    
+	          } catch (MessagingException e) {throw new RuntimeException(e);}    
+	             
+	    }  
+		
+		
+		
 		// Ici, on crée ce qu'il y aura dans le message, pas besoin de modifier
-		try {
+		/*try {
 			MimeMessage message = new MimeMessage(session);
 
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
@@ -55,14 +73,14 @@ public class Mail {
 			multipart.addBodyPart(partieMessage);
 
 			// Pièces jointes
-			// String chemin =
-			// "C:\\Users\\IN-BR-006\\PDFeCommerce\\FicheProduit"
-			// + Integer.toString(ListeCommandeManagedBean.getNumero()) +
-			// ".pdf";
+			 String chemin =
+			 "C:\\Users\\IN-BR-006\\PDFeCommerce\\FicheProduit"
+			+ Integer.toString(ListeCommandeManagedBean.getNumero()) +
+			".pdf";
 			partieMessage = new MimeBodyPart();
-			// DataSource source = new FileDataSource(chemin);
-			// partieMessage.setDataHandler(new DataHandler(source));
-			// partieMessage.setFileName("Commande.pdf");
+			DataSource source = new FileDataSource(chemin);
+			partieMessage.setDataHandler(new DataHandler(source));
+			partieMessage.setFileName("Commande.pdf");
 			multipart.addBodyPart(partieMessage);
 			message.setContent(multipart);
 
@@ -74,5 +92,5 @@ public class Mail {
 			throw new RuntimeException(e);
 		}
 
-	}
+	}*/
 }

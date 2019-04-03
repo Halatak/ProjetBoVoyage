@@ -4,9 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Client;
 import fr.adaming.model.Destination;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IClientService;
@@ -43,7 +48,17 @@ public class VoyageController {
 	@Autowired
 	private IConseillerMarketingService conMarketService;
 
+	private Client client;
 	// Methode pour convertir et afficher correctement les dates
+	@PostConstruct // initialise les conseillers
+	public void init() {
+		// recuperer le context de spring security
+		Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+		// recuperer le mail à partir du context
+		String mail = authCxt.getName();
+		client = clientService.getClientByMail(mail);
+	}
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		// l'objet WebDataBinder sert à faire le lien entre les params de la
@@ -63,8 +78,9 @@ public class VoyageController {
 	// page d'accueil qui affiche la liste des voyages
 	@RequestMapping(value = "/voyageListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe(Model modele) {
-		modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
-		modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
+		//modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
+		//modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
+		modele.addAttribute("client",client);
 		return new ModelAndView("accueil", "voyageListe", voyageService.afficherListeVoyageService());
 	}
 

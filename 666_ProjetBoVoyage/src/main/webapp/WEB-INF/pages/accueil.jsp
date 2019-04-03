@@ -17,7 +17,8 @@
 
 	<br />
 	<br />
-	<br />
+	
+	<h1>${msg}</h1>
 
 	<!-- Plans -->
 	<section id="plans">
@@ -69,7 +70,7 @@
 	</section>
 	<!-- /Plans -->
 
-	<h1>${msg}</h1>
+	
 	
 </body>
 </html>
