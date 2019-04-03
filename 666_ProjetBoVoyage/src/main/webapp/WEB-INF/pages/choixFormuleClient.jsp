@@ -14,7 +14,7 @@
 </head>
 <body>
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<%@ include file='/resources/templates/navBarClient.jsp'%>
 
 	<h1>Choisir une Formule</h1>
 

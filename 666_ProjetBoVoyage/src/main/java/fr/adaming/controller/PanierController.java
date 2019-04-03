@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -59,6 +60,7 @@ public class PanierController {
 	private IAssuranceService aService;
 
 	private Client client;
+	private Client client2;
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
@@ -68,6 +70,7 @@ public class PanierController {
 		// recuperer le mail à partir du context
 		String mail = authCxt.getName();
 		this.client = clientService.getClientByMail(mail);
+		client2 = client;
 
 	}
 
@@ -90,14 +93,25 @@ public class PanierController {
 	// Ajouter un voyage au panier
 	@RequestMapping(value = "/panierSoumettreAjouter", method = RequestMethod.GET)
 	public String soumettreAjoutPanier(@RequestParam("pId") int id, RedirectAttributes ra) {
-		Voyage voyIn = voyageService.getVoyageByIdService(id);
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
 		panier.setDossier(dossier);
+		Voyage voyIn = voyageService.getVoyageByIdService(id);
 		panier.getDossier().setVoyage(voyIn);
 
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 
 		// if (panier != null) {
-		//return "redirect:panierAfficheAssurance";
+		// return "redirect:panierAfficheAssurance";
+
 		return "redirect:panierAfficheFormule";
 		// } else {
 		// ra.addFlashAttribute("msg", "l'ajout a échoué");
@@ -106,39 +120,77 @@ public class PanierController {
 	}
 
 	// Lier une assurance au panier
-		@RequestMapping(value = "/panierAfficheFormule", method = RequestMethod.GET)
-		public String afficheAjoutFormule(Model modele) {
+	@RequestMapping(value = "/panierAfficheFormule", method = RequestMethod.GET)
+	public String afficheAjoutFormule(Model modele) {
 
-			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
+
+		if (client2 != null) {
+			modele.addAttribute("client", client2);
+			modele.addAttribute("foAjout", fService.getFormuleByVoyage(panier.getDossier().getVoyage().getId()));
+			return "choixFormuleClient";
+
+		} else {
 			modele.addAttribute("foAjout", fService.getFormuleByVoyage(panier.getDossier().getVoyage().getId()));
 			return "choixFormule";
 		}
 
-		@RequestMapping(value = "/panierSoumettreFormule", method = RequestMethod.POST)
-		public String soumettreAjoutFormule(ModelMap modele, @ModelAttribute("foAjout") List<Formule> listefIn, RedirectAttributes ra) {
-			// Appel de la méthode service
-			panier.getDossier().getVoyage().setListeFormule(listefIn);
+	}
 
-			if (panier.getDossier().getVoyage().getListeFormule() != null) {
-				return "redirect:panierAfficheAssurance";
-			} else {
-				ra.addFlashAttribute("msg", "l'ajout a échoué");
-				return "redirect:panierAfficheFormule";
-			}
+	@RequestMapping(value = "/panierSoumettreFormule", method = RequestMethod.POST)
+	public String soumettreAjoutFormule(ModelMap modele, @ModelAttribute("foAjout") List<Formule> listefIn,
+			RedirectAttributes ra) {
+		// Appel de la méthode service
+		panier.getDossier().getVoyage().setListeFormule(listefIn);
+
+		if (panier.getDossier().getVoyage().getListeFormule() != null) {
+			return "redirect:panierAfficheAssurance";
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout a échoué");
+			return "redirect:panierAfficheFormule";
 		}
-		
+	}
+
 	// Lier une assurance au panier
 	@RequestMapping(value = "/panierAfficheAssurance", method = RequestMethod.GET)
 	public String afficheAjout(Model modele) {
 
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("asAjout", new Assurance());
-		return "choixAssurance";
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
+		if (client2 != null) {
+			modele.addAttribute("client", client2);
+			modele.addAttribute("asAjout", new Assurance());
+			return "choixAssuranceClient";
+
+		} else {
+			modele.addAttribute("asAjout", new Assurance());
+			return "choixAssurance";
+		}
+
 	}
 
 	@RequestMapping(value = "/panierSoumettreAssurance", method = RequestMethod.POST)
 	public String soumettreAjout(ModelMap modele, @ModelAttribute("asAjout") Assurance aIn, RedirectAttributes ra) {
-		//recupere l'assurance
+		// recupere l'assurance
 		Assurance aOut = aService.getAssuranceByIdService(aIn.getId());
 		// Appel de la méthode service
 		panier.getDossier().setAssurance(aOut);
@@ -156,13 +208,36 @@ public class PanierController {
 	public String afficheAjoutClient(Model modele) {
 
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		if (client != null) {
-			modele.addAttribute("cliAjout", client);
-			return "choixClient";
-		} else {
-			modele.addAttribute("cliAjout", new Client());
-			return "choixClient";
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
 		}
+		if (client2 != null) {
+			modele.addAttribute("client", client2);
+			if (client != null) {
+				modele.addAttribute("cliAjout", client);
+				return "choixClientClient";
+			} else {
+				modele.addAttribute("cliAjout", new Client());
+				return "choixClientClient";
+			}
+
+		} else {
+			if (client != null) {
+				modele.addAttribute("cliAjout", client);
+				return "choixClient";
+			} else {
+				modele.addAttribute("cliAjout", new Client());
+				return "choixClient";
+			}
+		}
+
 	}
 
 	@RequestMapping(value = "/panierSoumettreClient", method = RequestMethod.POST)
@@ -199,12 +274,34 @@ public class PanierController {
 	public String afficheAjoutAdresse(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
 		try {
-			modele.addAttribute("addAjout", client.getAdresse());
-			return "choixAdresse";
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
 
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
 		} catch (Exception e) {
-			modele.addAttribute("addAjout", new Adresse());
-			return "choixAdresse";
+
+		}
+		if (client2 != null) {
+			modele.addAttribute("cliAjout", client2);
+			try {
+				modele.addAttribute("addAjout", client.getAdresse());
+				return "choixAdresseClient";
+
+			} catch (Exception e) {
+				modele.addAttribute("addAjout", new Adresse());
+				return "choixAdresseClient";
+			}
+		} else {
+			try {
+				modele.addAttribute("addAjout", client.getAdresse());
+				return "choixAdresse";
+
+			} catch (Exception e) {
+				modele.addAttribute("addAjout", new Adresse());
+				return "choixAdresse";
+			}
 		}
 	}
 
@@ -225,9 +322,27 @@ public class PanierController {
 
 	@RequestMapping(value = "/panierAfficheRecapitulatif", method = RequestMethod.GET)
 	public String afficheAjoutRecapitulatif(Model modele) {
-		modele.addAttribute("voyage", panier.getDossier().getVoyage());
-		modele.addAttribute("dossier", panier.getDossier());
-		return "recapPanier";
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
+		if (client2 != null) {
+			modele.addAttribute("client", client2);
+			modele.addAttribute("voyage", panier.getDossier().getVoyage());
+			modele.addAttribute("dossier", panier.getDossier());
+			return "recapPanierClient";
+
+		} else {
+			modele.addAttribute("voyage", panier.getDossier().getVoyage());
+			modele.addAttribute("dossier", panier.getDossier());
+			return "recapPanier";
+		}
 
 	}
 
@@ -286,13 +401,38 @@ public class PanierController {
 	public String afficheAjoutCB(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
 		try {
-			modele.addAttribute("CBAjout", client.getCarteBancaire());
-			return "choixCB";
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
 
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
 		} catch (Exception e) {
-			modele.addAttribute("CBAjout", new CarteBancaire());
-			return "choixCB";
+
 		}
+		if (client2 != null) {
+			modele.addAttribute("client", client2);
+
+			if (client.getCarteBancaire() != null) {
+				modele.addAttribute("CBAjout", client.getCarteBancaire());
+				return "choixCBClient";
+
+			} else {
+				modele.addAttribute("CBAjout", new CarteBancaire());
+				return "choixCBClient";
+			}
+
+		} else {
+			if (client.getCarteBancaire() != null) {
+				modele.addAttribute("CBAjout", client.getCarteBancaire());
+				return "choixCB";
+
+			} else {
+				modele.addAttribute("CBAjout", new CarteBancaire());
+				return "choixCB";
+			}
+		}
+
 	}
 
 	@RequestMapping(value = "/panierSoumettreCB", method = RequestMethod.POST)
@@ -300,7 +440,7 @@ public class PanierController {
 			RedirectAttributes ra) {
 
 		// Appel de la méthode service
-		System.out.println(panier.getDossier().getClient());
+
 		if (CBService.getCBByClient(panier.getDossier().getClient()) != null) {
 			cbIn.setClient(panier.getDossier().getClient());
 			cbIn.setIdCarte(CBService.getCBByClient(panier.getDossier().getClient()).getIdCarte());

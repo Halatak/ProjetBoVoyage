@@ -43,15 +43,16 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li>
 			</ul>
-			
 
-			<ul>
-			<li value="${client.mail}"></li>
-			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a
 					href="${pageContext.request.contextPath}/j_spring_security_logout">Déconnexion</a></li>
 			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a>${client.mail}</a></li>
+			</ul>
+
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
