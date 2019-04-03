@@ -25,12 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Accompagnant;
 import fr.adaming.model.Adresse;
 import fr.adaming.model.Assurance;
 import fr.adaming.model.CarteBancaire;
 import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 import fr.adaming.model.Formule;
+import fr.adaming.model.NombreCopain;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IAssuranceService;
@@ -61,6 +63,7 @@ public class PanierController {
 
 	private Client client;
 	private Client client2;
+	private int copInt;
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
@@ -308,6 +311,77 @@ public class PanierController {
 	@RequestMapping(value = "/panierSoumettreAdresse", method = RequestMethod.POST)
 	public String soumettreAjoutAdresse(ModelMap modele, @ModelAttribute("addAjout") Adresse addIn,
 			RedirectAttributes ra) {
+		// Appel de la méthode service
+		panier.getDossier().getClient().setAdresse(addIn);
+		clientService.modifierClientService(panier.getDossier().getClient());
+
+		if (panier.getDossier().getClient().getAdresse() != null) {
+			return "redirect:panierAfficheNombreCopain";
+		} else {
+			ra.addFlashAttribute("msg", "l'ajout d'adresse a échoué");
+			return "redirect:panierAfficheAdresse";
+		}
+	}
+
+	@RequestMapping(value = "/panierAfficheNombreCopain", method = RequestMethod.GET)
+	public String afficheAjoutNBCopain(Model modele) {
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
+		if (client2 != null) {
+			modele.addAttribute("cliAjout", client2);
+			modele.addAttribute("copInt", new NombreCopain());
+			return "choixNBCopainClient";
+		} else {
+			modele.addAttribute("copInt", new NombreCopain());
+			return "choixNBCopain";
+		}
+	}
+
+	@RequestMapping(value = "/panierSoumettreNombreCopain", method = RequestMethod.POST)
+	public String soumettreAjoutCopainNB(ModelMap modele, @ModelAttribute("copInt") NombreCopain coIn,
+			RedirectAttributes ra) {
+		// Appel de la méthode service
+		copInt = coIn.getNbCop();
+		return "redirect:panierAfficheCopain";
+	}
+
+	@RequestMapping(value = "/panierAfficheCopain", method = RequestMethod.GET)
+	public String afficheAjoutCopain(Model modele) {
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client2 = clientService.getClientByMail(mail);
+			client = client2;
+		} catch (Exception e) {
+
+		}
+		if (client2 != null) {
+			modele.addAttribute("cliAjout", client2);
+			modele.addAttribute("copain", new Accompagnant());
+			modele.addAttribute("copain", new Adresse());
+			return "choixCopainClient";
+		} else {
+			modele.addAttribute("copain", new Accompagnant());
+			modele.addAttribute("copain", new Adresse());
+			return "choixCopain";
+		}
+	}
+
+	@RequestMapping(value = "/panierSoumettreCopain", method = RequestMethod.POST)
+	public String soumettreAjoutCopain(ModelMap modele, @ModelAttribute("copain") Accompagnant accIn,
+			@ModelAttribute("addCo") Adresse addIn, @ModelAttribute("copInt") int coIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		panier.getDossier().getClient().setAdresse(addIn);
 		clientService.modifierClientService(panier.getDossier().getClient());
