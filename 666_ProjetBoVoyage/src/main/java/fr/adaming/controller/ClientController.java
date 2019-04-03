@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Adresse;
 import fr.adaming.model.CarteBancaire;
 import fr.adaming.model.Client;
 import fr.adaming.service.ICarteBancaireService;
@@ -23,43 +24,20 @@ import fr.adaming.service.IClientService;
 public class ClientController {
 
 	Client client = new Client();
-	
+
 	@Autowired
 	private IClientService cService;
 	@Autowired
 	private ICarteBancaireService cbService;
-	
+
 	// Liste Client
 	@RequestMapping(value = "/clientListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
 		return new ModelAndView("listeClient", "clientListe", cService.afficherListeClientService());
 	}
 
-	// Fonctionnalité ajouter
-	@RequestMapping(value = "/clientAfficheAjouter", method = RequestMethod.GET)
-	public String afficheAjout(Model modele) {
 
-		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("clAjout", new Client());
-		return "ajouterClient";
-	}
-	
-	//commentaire
-	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
-	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
-		// Appel de la méthode service
-		Client cOut = cService.ajoutClientService(cIn);
-		if (cOut.getIdCl() != 0) {
-			client=cOut;
-//			return new ModelAndView("ajouterCarteBancaire", "cOut", cService.afficherListeClientService());
-			return new ModelAndView("ajouterCarteBancaire");
-		} else {
-			ra.addFlashAttribute("msg", "L'ajout a échoué");
-//			return new ModelAndView("ajouterClient");
-			return new ModelAndView("ajouterClient");
-		}
-	}
-	
+
 	// Fonctionnalité ajouter carte bancaire
 	@RequestMapping(value = "/cbAfficheAjouter", method = RequestMethod.GET)
 	public String afficheAjoutCB(Model modele) {
@@ -70,7 +48,8 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/cbSoumettreAjouter", method = RequestMethod.POST)
-	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("cbAjout") CarteBancaire cbIn, RedirectAttributes ra) {
+	public String soumettreAjoutCB(ModelMap modele, @ModelAttribute("cbAjout") CarteBancaire cbIn,
+			RedirectAttributes ra) {
 		// Appel de la méthode service
 		CarteBancaire cbOut = cbService.ajoutCarteBancaireService(cbIn);
 		if (cbOut.getIdCarte() != 0) {
@@ -96,7 +75,8 @@ public class ClientController {
 	public String soumettreModif(ModelMap modele, @ModelAttribute("clModif") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		try {
-			cService.modifierClientService(cIn);;
+			cService.modifierClientService(cIn);
+			;
 			return "redirect:clientListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La modification a échouée");
@@ -119,7 +99,8 @@ public class ClientController {
 	public String soumettreSuppr(ModelMap modele, @ModelAttribute("clSuppr") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
 		try {
-			cService.supprClientService(cIn);;
+			cService.supprClientService(cIn);
+			;
 			return "redirect:clientListe";
 		} catch (Exception e) {
 			ra.addFlashAttribute("msg", "La suppression a échouée");
@@ -155,7 +136,8 @@ public class ClientController {
 
 	@RequestMapping(value = "/clientSoumettre-supprLien", method = RequestMethod.GET)
 	public String suppLien(@RequestParam("pId") int id) {
-		cService.supprClientByIdService(id);;
+		cService.supprClientByIdService(id);
+		;
 		return "redirect:clientListe";
 	}
 

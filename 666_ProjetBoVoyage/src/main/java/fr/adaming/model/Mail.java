@@ -5,7 +5,6 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class Mail {
-
 	public static void send(String from, String password, String to, String sub, String msg) {
 		// Ici on configure les paramètres de ta boite mail
 		// Ils sont réglés pour gmail, donc utilise gmail si tu peux, en créant
@@ -33,7 +31,7 @@ public class Mail {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
 		// get Session
-		Session session = Session.getDefaultInstance(props, new Authenticator() {
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(from, password);
 			}
@@ -45,7 +43,7 @@ public class Mail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(sub);
 			message.setText(msg);
-			
+
 			// Multipart
 			Multipart multipart = new MimeMultipart();
 
@@ -55,15 +53,19 @@ public class Mail {
 			// Ajouter du texte au message
 			partieMessage.setText(msg);
 			multipart.addBodyPart(partieMessage);
-			
+
 			// Pièces jointes
+			// String chemin =
+			// "C:\\Users\\IN-BR-006\\PDFeCommerce\\FicheProduit"
+			// + Integer.toString(ListeCommandeManagedBean.getNumero()) +
+			// ".pdf";
 			partieMessage = new MimeBodyPart();
-			DataSource source = new FileDataSource("C:\\Users\\IN-BR-003\\FicheProduit.pdf");
-			partieMessage.setDataHandler(new DataHandler(source));
-			partieMessage.setFileName("Fiche Produit");
+			// DataSource source = new FileDataSource(chemin);
+			// partieMessage.setDataHandler(new DataHandler(source));
+			// partieMessage.setFileName("Commande.pdf");
 			multipart.addBodyPart(partieMessage);
 			message.setContent(multipart);
-			
+
 			// send message
 			Transport.send(message);
 			// Décommenter pour vérifier que le message est envoyé
