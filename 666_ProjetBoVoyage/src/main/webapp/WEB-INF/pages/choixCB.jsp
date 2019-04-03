@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choisir une Assurance</title>
+<title>Formulaire Carte bancaire</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
@@ -18,7 +18,7 @@
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter une addresse</h1>
+		ajouter une carte bancaire</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
 		action="panierSoumettreCB" commandName="CBAjout">
@@ -57,7 +57,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Enregistrer
-					le voyage</button>
+					la carte</button>
 			</div>
 		</div>
 	</form:form>

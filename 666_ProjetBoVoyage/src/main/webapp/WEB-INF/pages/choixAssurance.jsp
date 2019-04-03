@@ -19,7 +19,7 @@
 <%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
 
-	<h1 style="color: red; text-align: center;">Formulaire pour
+	<h1 >Formulaire pour
 		ajouter une assurance</h1>
 		
 		<form:form cssClass="form-horizontal" method="post"
