@@ -26,16 +26,19 @@ import fr.adaming.model.Adresse;
 import fr.adaming.model.Client;
 import fr.adaming.model.ConseillerClientele;
 import fr.adaming.model.ConseillerMarketing;
-import fr.adaming.service.ICarteBancaireService;
+import fr.adaming.model.Role;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerClientService;
 import fr.adaming.service.IConseillerMarketingService;
+import fr.adaming.service.IRoleService;
 
 @Controller
 @RequestMapping("/choixLogin")
 @Scope("session")
 public class ChoixLoginController {
 
+	@Autowired
+	private IRoleService roleService;
 	@Autowired
 	private IClientService clientService;
 	@Autowired
@@ -123,7 +126,26 @@ public class ChoixLoginController {
 			RedirectAttributes ra) {
 		// Appel de la méthode service
 		client.setAdresse(addIn);
-		clientService.ajoutClientService(client);
+		Client cOut = clientService.ajoutClientService(client);
+		System.out.println(cOut);
+		cOut.setRole(new Role());
+		cOut.getRole().setClient(cOut);
+		cOut.getRole().setRoleName("ROLE_CLIENT");
+		roleService.ajoutRoleService(cOut.getRole());
+		/*String message = "Bonjour "+cOut.getCivilite() +" " + cOut.getNom() +" "+cOut.getPrenom()
+				+ "\n Nous vous informons que votre commande: " + coOut.getIdCommande() + " passée le "
+				+ coOut.getDateCommande()
+				+ " a bien été validée.\n Nous esperons que vos articles vous plairont (cf, pdf). \n A bientot !";*/
+		return new ModelAndView("redirect:/voyage/voyageListe");
+
+	}
+
+	@RequestMapping(value = "/clientSoumettreActiver", method = RequestMethod.GET)
+	public ModelAndView soumettreAjoutActiver(ModelMap modele, RedirectAttributes ra) {
+		// Appel de la méthode service
+		System.out.println(client);
+		client.setActive(true);
+		clientService.modifierClientService(client);
 		return new ModelAndView("redirect:/voyage/voyageListe");
 
 	}

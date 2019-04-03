@@ -12,7 +12,7 @@ import fr.adaming.model.Role;
 
 @Service("roleService")
 @Transactional
-public class IRoleServiceImpl implements IRoleService{
+public class RoleServiceImpl implements IRoleService{
 
 	//transformation uml en java
 	private IRoleDao roleDao;

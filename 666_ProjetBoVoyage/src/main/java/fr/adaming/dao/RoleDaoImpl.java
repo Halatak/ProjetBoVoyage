@@ -1,7 +1,10 @@
 package fr.adaming.dao;
 
+import org.springframework.stereotype.Repository;
+
 import fr.adaming.model.Role;
 
-public class RoleDaoImpl extends AbstraitHibernateDao<Role> implements IRoleDao{
+@Repository
+public class RoleDaoImpl extends AbstraitHibernateDao<Role> implements IRoleDao {
 
 }
