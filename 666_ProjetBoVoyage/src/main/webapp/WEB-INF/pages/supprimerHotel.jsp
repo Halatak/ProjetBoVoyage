@@ -15,6 +15,9 @@
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarConsMark.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1>Formulaire pour
 		supprimer un hotel</h1>

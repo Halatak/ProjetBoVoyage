@@ -9,22 +9,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>ChoisirClient</title>
+<title>Accompagnant</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
 <body>
 	<%-- La directive include --%>
-	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<%@ include file='/resources/templates/navBarClient.jsp'%>
 	<br />
 	<br />
 	<br />
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter un Client</h1>
+		ajouter un Accompagnant</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
-		action="panierSoumettreClient" commandName="cliAjout">
+		action="panierSoumettreCopain" commandName="copain">
 		<div class="form-group">
 			<label for="idciv" class="col-sm-2 control-label">Civilitée</label>
 			<div class="col-sm-5">
@@ -68,12 +68,12 @@
 					placeholder="Mail" required="true" />
 			</div>
 		</div>
+		
 
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">S'enregistrer
-					et ajouter une adresse</button>
+				<button type="submit" class="btn btn-default">Enregistrer</button>
 			</div>
 		</div>
 	</form:form>

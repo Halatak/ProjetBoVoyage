@@ -15,6 +15,9 @@
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBar.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1>Formulaire pour s'enregistrer</h1>
 
@@ -76,8 +79,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Enregistrer
-					le voyage</button>
+				<button type="submit" class="btn btn-default">Créer un Compte</button>
 			</div>
 		</div>
 

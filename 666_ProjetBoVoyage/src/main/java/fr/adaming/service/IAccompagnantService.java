@@ -17,5 +17,7 @@ public List<Accompagnant> afficherListeAccompagnantService();
 	public void supprAccompagnantByIdService (int id);
 	
 	public Accompagnant getAccompagnantByIdService (int id);
+	
+	public Accompagnant getAccompagnantByMail(String mail);
 
 }

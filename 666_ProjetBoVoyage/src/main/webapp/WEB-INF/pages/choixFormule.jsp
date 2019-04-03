@@ -9,12 +9,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Formule</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 </head>
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1>Choisir une Formule</h1>
 
@@ -73,7 +76,7 @@
 							</c:if>
 							<div class="panel-footer">
 								<a class="btn btn-lg btn-block btn-success"
-									href="${pageContext.request.contextPath}/panier/panierAfficheAssurance">Réserver</a>
+									href="${pageContext.request.contextPath}/panier/panierSoumettreFormule?pId=${f.id}">Réserver</a>
 							</div>
 
 

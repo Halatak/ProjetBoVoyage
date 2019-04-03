@@ -12,17 +12,18 @@ import fr.adaming.model.Accompagnant;
 
 @Service("accompagnantService")
 @Transactional
-public class AccompagnantServiceImpl implements IAccompagnantService{
+public class AccompagnantServiceImpl implements IAccompagnantService {
 
-	//transformation uml en java
+	// transformation uml en java
 	private IAccompagnantDao accompagnantDao;
 
-	//setters
+	// setters
 	@Autowired
 	public void setAccompagnantDao(IAccompagnantDao accompagnantDao) {
 		this.accompagnantDao = accompagnantDao;
 		accompagnantDao.setClazz(Accompagnant.class);
 	}
+
 	public IGeneriqueDao<Accompagnant> getAccompagnantDao() {
 		return accompagnantDao;
 	}
@@ -58,6 +59,11 @@ public class AccompagnantServiceImpl implements IAccompagnantService{
 	@Override
 	public Accompagnant getAccompagnantByIdService(int id) {
 		return accompagnantDao.getById(id);
+	}
+
+	@Override
+	public Accompagnant getAccompagnantByMail(String mail) {
+		return accompagnantDao.getAccompagnantByMail(mail);
 	}
 
 }

@@ -13,6 +13,9 @@
 
 <%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
+	<br />
+	<br />
+	<br />
 
 	<h1>Formulaire pour
 		ajouter une destination</h1>

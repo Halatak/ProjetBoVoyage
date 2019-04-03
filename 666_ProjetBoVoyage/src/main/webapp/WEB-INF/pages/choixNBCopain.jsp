@@ -9,16 +9,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choisir une Assurance</title>
+<title>ChoisirAccompagnant</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<br />
+	<br />
+	<br />
 
-	<h1 style="color: red; text-align: center;">Formulaire pour
-		ajouter un Client</h1>
+	<h1 style="color: red; text-align: center;">Ajouter un Accompagnant</h1>
 
 	<form:form cssClass="form-horizontal" method="post"
 		action="panierSoumettreNombreCopain" commandName="copInt">
@@ -34,8 +36,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">S'enregistrer
-					et ajouter une adresse</button>
+				<button type="submit" class="btn btn-default">Enregistrer</button>
 			</div>
 		</div>
 	</form:form>

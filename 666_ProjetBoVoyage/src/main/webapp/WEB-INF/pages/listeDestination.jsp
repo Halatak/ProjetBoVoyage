@@ -13,6 +13,9 @@
 <body>
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
+	<br />
+	<br />
+	<br />
 
 	<div class="main">
 		<div class="row">

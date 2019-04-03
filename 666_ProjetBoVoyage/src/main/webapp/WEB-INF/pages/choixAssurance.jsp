@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Assurance</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 
@@ -18,6 +18,9 @@
 
 <%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1 >Formulaire pour
 		ajouter une assurance</h1>

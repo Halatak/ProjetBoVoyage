@@ -13,53 +13,55 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="accompagnants")
-public class Accompagnant extends Personne implements Serializable{
-	
+@Table(name = "accompagnants")
+public class Accompagnant extends Personne implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//déclaration des attributs
+	// déclaration des attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_accomp")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_accomp")
 	private int numeroSequentiel;
-	
-	//association uml
+	private String mail;
+
+	// association uml
 	@ManyToOne
-	@JoinColumn(name="cl_id",referencedColumnName="id_cl")
+	@JoinColumn(name = "cl_id", referencedColumnName = "id_cl")
 	private Client client;
-	
-	
-	
-	
-	//constructeurs
+
+	// constructeurs
 	public Accompagnant() {
 		super();
 	}
 
-	public Accompagnant(int numeroSequentiel) {
+	public Accompagnant(int numeroSequentiel, String mail) {
 		super();
+		this.mail = mail;
 		this.numeroSequentiel = numeroSequentiel;
 	}
 
-	//getter et setters
+	// getter et setters
+
 	public int getNumeroSequentiel() {
 		return numeroSequentiel;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public void setNumeroSequentiel(int numeroSequentiel) {
 		this.numeroSequentiel = numeroSequentiel;
 	}
 
-	
-	
-	
-	
-	
-	
 	public Client getClient() {
 		return client;
 	}
@@ -68,14 +70,12 @@ public class Accompagnant extends Personne implements Serializable{
 		this.client = client;
 	}
 
-	//ToString
+	// ToString
 	@Override
 	public String toString() {
-		return "Accompagnant [numeroSequentiel=" + numeroSequentiel + ", getCivilite()=" + getCivilite() + ", getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
-				+ ", getTelephone()=" + getTelephone() + ", getDateNaissance()=" + getDateNaissance()
-				+ "]";
+		return "Accompagnant [numeroSequentiel=" + numeroSequentiel + ", getCivilite()=" + getCivilite() + ", getNom()="
+				+ getNom() + ", getPrenom()=" + getPrenom() + ", getTelephone()=" + getTelephone()
+				+ ", getDateNaissance()=" + getDateNaissance() + "]";
 	}
-	
-	
 
 }

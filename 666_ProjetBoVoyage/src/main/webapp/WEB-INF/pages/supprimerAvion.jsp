@@ -18,6 +18,9 @@
 
 	<h1>Formulaire pour
 		modifier un avion</h1>
+		<br />
+	<br />
+	<br />
 
 	<form:form cssClass="form-horizontal" method="post"
 		action="avionSoumettreSupprimer" commandName="avSuppr">

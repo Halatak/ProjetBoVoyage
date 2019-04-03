@@ -16,6 +16,9 @@
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarClient.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une carte bancaire</h1>

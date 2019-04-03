@@ -12,6 +12,9 @@
 
 	<%-- La directive include --%>
 	<jsp:include page="/resources/templates/navBarConsMark.jsp" />
+	<br />
+	<br />
+	<br />
 
 	<table class="table table-bordered">
 		<tr>

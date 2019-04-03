@@ -2,11 +2,11 @@ package fr.adaming.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -34,12 +34,15 @@ import fr.adaming.model.Dossier;
 import fr.adaming.model.Formule;
 import fr.adaming.model.NombreCopain;
 import fr.adaming.model.Panier;
+import fr.adaming.model.SendMailSSL;
 import fr.adaming.model.Voyage;
+import fr.adaming.service.IAccompagnantService;
 import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDossierService;
 import fr.adaming.service.IFormuleService;
+import fr.adaming.service.IPDFService;
 import fr.adaming.service.IVoyageService;
 
 @Controller
@@ -60,10 +63,23 @@ public class PanierController {
 	private IFormuleService fService;
 	@Autowired
 	private IAssuranceService aService;
+	@Autowired
+	private IAccompagnantService accService;
+	@Autowired
+	private IPDFService pdfService;
 
 	private Client client;
 	private Client client2;
 	private int copInt;
+	private int copInt2;
+	private List<Accompagnant> listeAcc;
+	private List<Formule> listeFormule;
+	private static int numero;
+	private double prixTotal = 0;
+
+	public static int getNumero() {
+		return numero;
+	}
 
 	@PostConstruct // initialise les conseillers
 	public void init() {
@@ -150,17 +166,19 @@ public class PanierController {
 
 	}
 
-	@RequestMapping(value = "/panierSoumettreFormule", method = RequestMethod.POST)
-	public String soumettreAjoutFormule(ModelMap modele, @ModelAttribute("foAjout") List<Formule> listefIn,
-			RedirectAttributes ra) {
+	@RequestMapping(value = "/panierSoumettreFormule", method = RequestMethod.GET)
+	public String soumettreAjoutFormule(ModelMap modele, @RequestParam("pId") int id, RedirectAttributes ra) {
 		// Appel de la méthode service
-		panier.getDossier().getVoyage().setListeFormule(listefIn);
-
+		if (listeFormule == null) {
+			listeFormule = new ArrayList<>();
+		}
+		listeFormule.add(fService.getFormuleByIdService(id));
+		panier.getDossier().getVoyage().setListeFormule(listeFormule);
 		if (panier.getDossier().getVoyage().getListeFormule() != null) {
 			return "redirect:panierAfficheAssurance";
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
-			return "redirect:panierAfficheFormule";
+			return "redirect:/voyage/listeVoyage";
 		}
 	}
 
@@ -246,6 +264,15 @@ public class PanierController {
 	@RequestMapping(value = "/panierSoumettreClient", method = RequestMethod.POST)
 	public String soumettreAjoutClient(ModelMap modele, @ModelAttribute("cliAjout") Client cIn, RedirectAttributes ra) {
 		// Appel de la méthode service
+		String mailTest = null;
+		Client clicli = new Client();
+		try {
+			mailTest = clientService.getClientByMail(cIn.getMail()).getMail();
+			clicli = clientService.getClientByMail(mailTest);
+
+		} catch (Exception e) {
+
+		}
 
 		if (dossierService.getDossierByIdClientDao(client) == null
 				&& dossierService.getDossierByIdClientDao(clientService.getClientByMail(cIn.getMail())) == null) {
@@ -258,12 +285,18 @@ public class PanierController {
 				clientService.modifierClientService(cIn);
 				client = cIn;
 				panier.getDossier().setClient(cIn);
+			} else if (client == null && cIn.getMail().equals(mailTest)) {
+				cIn.setIdCl(clicli.getIdCl());
+				cIn.setAdresse(clicli.getAdresse());
+				cIn.setCarteBancaire(clicli.getCarteBancaire());
+				clientService.modifierClientService(cIn);
+				client = cIn;
+				panier.getDossier().setClient(cIn);
 			} else if (client == null) {
 				cIn = clientService.ajoutClientService(cIn);
 				panier.getDossier().setClient(cIn);
 			}
 		}
-
 		if (panier.getDossier().getClient() != null) {
 			return "redirect:panierAfficheAdresse";
 		} else {
@@ -351,46 +384,58 @@ public class PanierController {
 			RedirectAttributes ra) {
 		// Appel de la méthode service
 		copInt = coIn.getNbCop();
+		copInt2 = copInt;
 		return "redirect:panierAfficheCopain";
 	}
 
 	@RequestMapping(value = "/panierAfficheCopain", method = RequestMethod.GET)
 	public String afficheAjoutCopain(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		try {
-			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+		if (copInt > 0) {
+			try {
+				Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
 
-			// recuperer le mail à partir du context
-			String mail = authCxt.getName();
-			client2 = clientService.getClientByMail(mail);
-			client = client2;
-		} catch (Exception e) {
+				// recuperer le mail à partir du context
+				String mail = authCxt.getName();
+				client2 = clientService.getClientByMail(mail);
+				client = client2;
+			} catch (Exception e) {
 
-		}
-		if (client2 != null) {
-			modele.addAttribute("cliAjout", client2);
-			modele.addAttribute("copain", new Accompagnant());
-			modele.addAttribute("copain", new Adresse());
-			return "choixCopainClient";
+			}
+			if (client2 != null) {
+				modele.addAttribute("cliAjout", client2);
+				modele.addAttribute("copain", new Accompagnant());
+				return "choixCopainClient";
+			} else {
+				modele.addAttribute("copain", new Accompagnant());
+				return "choixCopain";
+			}
 		} else {
-			modele.addAttribute("copain", new Accompagnant());
-			modele.addAttribute("copain", new Adresse());
-			return "choixCopain";
+			return "redirect:panierAfficheRecapitulatif";
 		}
 	}
 
 	@RequestMapping(value = "/panierSoumettreCopain", method = RequestMethod.POST)
 	public String soumettreAjoutCopain(ModelMap modele, @ModelAttribute("copain") Accompagnant accIn,
-			@ModelAttribute("addCo") Adresse addIn, @ModelAttribute("copInt") int coIn, RedirectAttributes ra) {
+			RedirectAttributes ra) {
 		// Appel de la méthode service
-		panier.getDossier().getClient().setAdresse(addIn);
-		clientService.modifierClientService(panier.getDossier().getClient());
+		if (copInt > 0) {
+			if (listeAcc == null) {
+				listeAcc = new ArrayList<>();
+			}
+			accIn.setClient(panier.getDossier().getClient());
+			listeAcc.add(accIn);
+			panier.getDossier().getClient().setListeAccompagnant(listeAcc);
+			accService.ajoutAccompagnantService(accIn);
+			copInt--;
 
-		if (panier.getDossier().getClient().getAdresse() != null) {
-			return "redirect:panierAfficheRecapitulatif";
+			if (copInt > 0) {
+				return "redirect:panierAfficheCopain";
+			} else {
+				return "redirect:panierAfficheRecapitulatif";
+			}
 		} else {
-			ra.addFlashAttribute("msg", "l'ajout d'adresse a échoué");
-			return "redirect:panierAfficheAdresse";
+			return "redirect:panierAfficheRecapitulatif";
 		}
 	}
 
@@ -406,15 +451,61 @@ public class PanierController {
 		} catch (Exception e) {
 
 		}
+		if (panier.getDossier().getVoyage().getListeFormule().get(0).getAvion() != null
+				&& panier.getDossier().getVoyage().getListeFormule().get(0).getHotel() != null
+				&& panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getAvion().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getHotel().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getAvion() != null
+				&& panier.getDossier().getVoyage().getListeFormule().get(0).getHotel() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getAvion().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getHotel().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getAvion() != null
+				&& panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getAvion().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getHotel() != null
+				&& panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getHotel().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getAvion() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getAvion().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getHotel() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getHotel().getPrix());
+		} else if (panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture() != null) {
+			prixTotal = (1 + copInt2)
+					* (panier.getDossier().getVoyage().getPrix() + panier.getDossier().getAssurance().getPrix()
+							+ panier.getDossier().getVoyage().getListeFormule().get(0).getVoiture().getPrix());
+		}
+
+		panier.getDossier().getVoyage().setPrix(prixTotal);
+
 		if (client2 != null) {
+
 			modele.addAttribute("client", client2);
 			modele.addAttribute("voyage", panier.getDossier().getVoyage());
 			modele.addAttribute("dossier", panier.getDossier());
+			modele.addAttribute("formule", panier.getDossier().getVoyage().getListeFormule().get(0));
+
 			return "recapPanierClient";
 
 		} else {
 			modele.addAttribute("voyage", panier.getDossier().getVoyage());
 			modele.addAttribute("dossier", panier.getDossier());
+			modele.addAttribute("formule", panier.getDossier().getVoyage().getListeFormule().get(0));
 			return "recapPanier";
 		}
 
@@ -428,7 +519,23 @@ public class PanierController {
 					1 + 111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl());
 
 			dossierService.ajoutDossierService(panier.getDossier());
+			String message = "Bonjour " + panier.getDossier().getClient().getCivilite() + " "
+					+ panier.getDossier().getClient().getNom() + " " + panier.getDossier().getClient().getPrenom()
+					+ "\n Nous vous informons que votre voyage a bien été réservé, nous allons vous mettre en relation avec un conseiller pour vous aider. "
+					+ "\n A bientot !";
 
+			// On "test" l'envoi du mail
+			try {
+				// création du pdf
+				pdfService.creerPDF(panier.getDossier(), panier.getDossier().getClient(), numero);
+				SendMailSSL sm = new SendMailSSL();
+				sm.sendMailDeux(panier.getDossier().getClient().getMail(), message);
+				numero++;
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "Mail non joint");
+			}
+			panier.getDossier().getVoyage().setNbPlaces(panier.getDossier().getVoyage().getNbPlaces() - 1 - copInt2);
+			voyageService.modifierVoyageService(panier.getDossier().getVoyage());
 			return new ModelAndView("redirect:/paypal");
 
 		} else {
@@ -445,7 +552,23 @@ public class PanierController {
 					1 + 111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl());
 
 			dossierService.ajoutDossierService(panier.getDossier());
+			String message = "Bonjour " + panier.getDossier().getClient().getCivilite() + " "
+					+ panier.getDossier().getClient().getNom() + " " + panier.getDossier().getClient().getPrenom()
+					+ "\n Nous vous informons que votre voyage a bien été réservé, nous allons vous mettre en relation avec un conseiller pour vous aider. "
+					+ "\n A bientot !";
 
+			// On "test" l'envoi du mail
+			try {
+				// création du pdf
+				pdfService.creerPDF(panier.getDossier(), panier.getDossier().getClient(), numero);
+				SendMailSSL sm = new SendMailSSL();
+				sm.sendMailDeux(panier.getDossier().getClient().getMail(), message);
+				numero++;
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "Mail non joint");
+			}
+			panier.getDossier().getVoyage().setNbPlaces(panier.getDossier().getVoyage().getNbPlaces() - 1 - copInt2);
+			voyageService.modifierVoyageService(panier.getDossier().getVoyage());
 			return new ModelAndView("redirect:/voyage/voyageListe");
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");
@@ -462,7 +585,23 @@ public class PanierController {
 					111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl() + 1);
 
 			dossierService.ajoutDossierService(panier.getDossier());
+			String message = "Bonjour " + panier.getDossier().getClient().getCivilite() + " "
+					+ panier.getDossier().getClient().getNom() + " " + panier.getDossier().getClient().getPrenom()
+					+ "\n Nous vous informons que votre voyage a bien été réservé, nous allons vous mettre en relation avec un conseiller pour vous aider. "
+					+ "\n A bientot !";
 
+			// On "test" l'envoi du mail
+			try {
+				// création du pdf
+				pdfService.creerPDF(panier.getDossier(), panier.getDossier().getClient(), numero);
+				SendMailSSL sm = new SendMailSSL();
+				sm.sendMailDeux(panier.getDossier().getClient().getMail(), message);
+				numero++;
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "Mail non joint");
+			}
+			panier.getDossier().getVoyage().setNbPlaces(panier.getDossier().getVoyage().getNbPlaces() - 1 - copInt2);
+			voyageService.modifierVoyageService(panier.getDossier().getVoyage());
 			return new ModelAndView("redirect:/panier/panierAfficherCB");
 		} else {
 			ra.addFlashAttribute("msg", "l'ajout a échoué");

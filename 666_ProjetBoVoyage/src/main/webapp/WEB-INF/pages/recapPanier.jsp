@@ -16,6 +16,9 @@
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarAccueil.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1 style="color: red; text-align: center;">Récapitulatif panier</h1>
 
@@ -61,9 +64,10 @@
 										<strong>Voyage:</strong>
 									</p>
 								</div>
-								<div class="column" style="float: left; width: 50%; text-align: right;">
+								<div class="column"
+									style="float: left; width: 50%; text-align: right;">
 									<p>
-										<strong>Prix: ${dossier.voyage.prix} &#8364;</strong>
+										<strong>Prix total : ${dossier.voyage.prix} &#8364;</strong>
 									</p>
 								</div>
 							</div>
@@ -81,12 +85,13 @@
 						<!-- Assurance -->
 						<div class="panel-body text-center">
 							<div class="row">
-								<div class="column"  style="float: left; width: 50%;">
+								<div class="column" style="float: left; width: 50%;">
 									<p>
 										<strong>Assurance:</strong>
 									</p>
 								</div>
-								<div class="column" style="float: left; width: 50%; text-align: right;">
+								<div class="column"
+									style="float: left; width: 50%; text-align: right;">
 									<p>
 										<strong>Prix: ${dossier.assurance.prix} &#8364;</strong>
 									</p>
@@ -104,7 +109,7 @@
 							</p>
 						</div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">${dossier.formule.typeFormule}</li>
+							<li class="list-group-item">${formule.typeFormule}</li>
 						</ul>
 
 						<!-- Info client -->
@@ -114,8 +119,8 @@
 							</p>
 						</div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">Nom - prénom:
-								${dossier.client.nom}</li>
+							<li class="list-group-item">Nom :${dossier.client.nom} -
+								prénom: ${dossier.client.prenom}</li>
 							<li class="list-group-item">Téléphone:
 								${dossier.client.telephone}</li>
 							<li class="list-group-item">E-Mail: ${dossier.client.mail}</li>

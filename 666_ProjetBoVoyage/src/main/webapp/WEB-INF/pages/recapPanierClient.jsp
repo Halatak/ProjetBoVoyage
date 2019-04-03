@@ -16,6 +16,9 @@
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarClient.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1 style="color: red; text-align: center;">Récapitulatif panier</h1>
 
@@ -54,7 +57,22 @@
 						</ul>
 
 						<!-- Groupe d'info -->
-						<div class="panel-body text-center"><p><strong>Infos voyage:</strong></p></div>
+						<div class="panel-body text-center">
+							<div class="row">
+								<div class="column" style="float: left; width: 50%;">
+									<p>
+										<strong>Voyage:</strong>
+									</p>
+								</div>
+								<div class="column"
+									style="float: left; width: 50%; text-align: right;">
+									<p>
+										<strong>Prix: ${dossier.voyage.prix} &#8364;</strong>
+									</p>
+								</div>
+							</div>
+
+						</div>
 						<ul class="list-group text-center">
 							<li class="list-group-item"><i class="fa fa-plane"></i>
 								Départ: ${dossier.voyage.dateDepart}</li>
@@ -65,29 +83,54 @@
 						</ul>
 
 						<!-- Assurance -->
-						<div class="panel-body text-center"><p><strong>Assurance choisie:</strong></p></div>
+						<div class="panel-body text-center">
+							<div class="row">
+								<div class="column" style="float: left; width: 50%;">
+									<p>
+										<strong>Assurance:</strong>
+									</p>
+								</div>
+								<div class="column"
+									style="float: left; width: 50%; text-align: right;">
+									<p>
+										<strong>Prix: ${dossier.assurance.prix} &#8364;</strong>
+									</p>
+								</div>
+							</div>
+						</div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">${dossier.assurance.id}</li>
+							<li class="list-group-item">${dossier.assurance.type}</li>
 						</ul>
 
 						<!-- Formule -->
-						<div class="panel-body text-center"><p><strong>Formule choisie:</strong></p></div>
+						<div class="panel-body text-center">
+							<p>
+								<strong>Formule choisie:</strong>
+							</p>
+						</div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">${formule.id}</li>
+							<li class="list-group-item">${formule.typeFormule}</li>
 						</ul>
 
 						<!-- Info client -->
-						<div class="panel-body text-center"><p><strong>Infos client:</strong></p></div>
+						<div class="panel-body text-center">
+							<p>
+								<strong>Infos client:</strong>
+							</p>
+						</div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">Nom - prénom: ${dossier.client.nom}</li>
-							<li class="list-group-item">Téléphone: ${dossier.client.telephone}</li>
+							<li class="list-group-item">Nom :${dossier.client.nom} -
+								prénom: ${dossier.client.prenom}</li>
+							<li class="list-group-item">Téléphone:
+								${dossier.client.telephone}</li>
 							<li class="list-group-item">E-Mail: ${dossier.client.mail}</li>
 						</ul>
 
 						<!-- Prix -->
 						<div class="panel-body text-center">
 							<p>
-								<strong>Prix: ${dossier.voyage.prix} &#8364;</strong>
+								<strong>Prix Total: ${dossier.voyage.prix + dossier.assurance.prix}
+									&#8364;</strong>
 							</p>
 						</div>
 

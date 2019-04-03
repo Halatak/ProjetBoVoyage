@@ -1,5 +1,7 @@
 package fr.adaming.dao;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,4 +19,15 @@ public class AccompagnantDaoImpl extends AbstraitHibernateDao<Accompagnant> impl
 		this.sf = sf;
 	}
 
+	@Override
+	public Accompagnant getAccompagnantByMail(String mail) {
+		Session s = sf.getCurrentSession();
+
+		String req = "FROM Accompagnant acc WHERE acc.mail=:pMail";
+
+		Query query = s.createQuery(req);
+
+		query.setParameter("pMail", mail);
+		return (Accompagnant) query.uniqueResult();
+	}
 }

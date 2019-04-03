@@ -9,13 +9,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choisir une Assurance</title>
+<title>Adresse</title>
 <%@ include file='/resources/templates/TagCSSJS.jsp'%>
 
 </head>
 <body>
 	<%-- La directive include --%>
 	<%@ include file='/resources/templates/navBarClient.jsp'%>
+	<br />
+	<br />
+	<br />
 
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une addresse</h1>
@@ -54,7 +57,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Enregistrer le voyage</button>
+				<button type="submit" class="btn btn-default">Enregistrer</button>
 			</div>
 		</div>
 	</form:form>
