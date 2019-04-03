@@ -27,7 +27,7 @@
 
 				<c:forEach items="${voyageListe}" var="v">
 					<!-- item -->
-					<div class="col-md-4 text-center">
+					<div class="col-md-4 text-center panel-accueil">
 						<div class="panel panel-danger panel-pricing">
 							<div class="panel-heading">
 								<h2>${v.destination.pays}</h2>
