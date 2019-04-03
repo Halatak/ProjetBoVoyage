@@ -18,7 +18,13 @@
 }
 </style>
 
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
+ 
+</head>
+
+<body>
+coucou
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
 
     <script type="text/javascript">
         var markerLat, markerLong;
@@ -62,10 +68,6 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
-</head>
-
-<body>
 
 </body>
 </html>

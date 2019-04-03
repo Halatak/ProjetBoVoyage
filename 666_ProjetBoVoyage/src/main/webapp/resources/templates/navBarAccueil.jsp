@@ -42,7 +42,7 @@
 			
 			<ul class="nav navbar-nav">
 			<li><a
-							href="${pageContext.request.contextPath}/carte">TestCarte</a></li>
+							href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
