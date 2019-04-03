@@ -201,7 +201,8 @@ public class PanierController {
 	public ModelAndView soumettreAjoutDossierPanier(RedirectAttributes ra) {
 		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
 			panier.getDossier().setEtat("enAttente");
-			panier.getDossier().setNumero(111 * 2 + 13);
+			panier.getDossier().setNumero(
+					1 + 111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl());
 
 			dossierService.ajoutDossierService(panier.getDossier());
 
@@ -217,7 +218,8 @@ public class PanierController {
 	public ModelAndView soumettreAjoutDossierPanierSansPayer(RedirectAttributes ra) {
 		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
 			panier.getDossier().setEtat("enAttente");
-			panier.getDossier().setNumero(111 * 2 + 13);
+			panier.getDossier().setNumero(
+					1 + 111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl());
 
 			dossierService.ajoutDossierService(panier.getDossier());
 
@@ -233,7 +235,8 @@ public class PanierController {
 	public ModelAndView soumettreAjoutDossierPanierPayerCB(RedirectAttributes ra) {
 		if (dossierService.getDossierByIdClientDao(panier.getDossier().getClient()) == null) {
 			panier.getDossier().setEtat("enAttente");
-			panier.getDossier().setNumero(111 * 2 + 13);
+			panier.getDossier().setNumero(
+					111 * clientService.getClientByMail(panier.getDossier().getClient().getMail()).getIdCl() + 1);
 
 			dossierService.ajoutDossierService(panier.getDossier());
 
