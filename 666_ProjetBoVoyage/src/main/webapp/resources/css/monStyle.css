@@ -80,6 +80,10 @@ h1 {
 	margin: 0px;
 }
 
+.panel-accueil {
+	height: 700px;
+}
+
 .form-all {
 	border: medium solid red;
 }
