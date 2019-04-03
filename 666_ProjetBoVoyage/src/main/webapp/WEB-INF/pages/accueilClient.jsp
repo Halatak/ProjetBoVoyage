@@ -13,7 +13,7 @@
 <body>
 
 	<%-- La directive include --%>
-	<jsp:include page="/resources/templates/navBarAccueil.jsp" />
+	<jsp:include page="/resources/templates/navBarClient.jsp" />
 
 	<br />
 	<br />
