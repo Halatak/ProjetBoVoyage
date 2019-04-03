@@ -28,6 +28,7 @@ public class Hotel implements Serializable{
 	@Column(name = "id_ho")
 	private int id;
 	private String nom;
+	@Column(name="description", columnDefinition="VARCHAR(5000)")
 	private String description;
 	private int nbEtoiles;
 	private double prix;

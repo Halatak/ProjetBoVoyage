@@ -20,15 +20,65 @@
 	<h1 style="color: red; text-align: center;">Formulaire pour
 		ajouter une assurance</h1>
 
-	<a
-		href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouterSansPayer">Enregistrer
+
+	<!-- Plans -->
+	<section id="plans">
+		<div class="container">
+			<div class="row">
+			
+			<!-- item -->
+					<div class="col-md-10 col-md-offset-1 text-center">
+						<div class="panel panel-danger panel-pricing">
+						
+							<!-- Nom du pays de la destination -->
+							<div class="panel-heading">
+								<h2>${voyage.destination.pays}</h2>
+							</div>
+							<!-- Photo -->
+							<div class="panel-body text-center">
+								<p>
+									<img
+										src="../destination/photoDes?idDest=${voyage.destination.idDestination}"
+										style="max-width: 250px;">
+								</p>
+							</div>
+							
+							<!-- Prix -->
+							<div class="panel-body text-center">
+								<p>
+									<strong>Prix: ${voyage.prix} &#8364;</strong>
+								</p>
+							</div>
+							
+							<!-- Groupe d'info -->
+							<ul class="list-group text-center">
+								<li class="list-group-item"><i class="fa fa-plane"></i>
+									Départ: ${voyage.dateDepart}</li>
+								<li class="list-group-item"><i class="fa fa-plane"></i>
+									Arrivée: ${voyage.dateArrivee}</li>
+								<li class="list-group-item">
+									Nombre de places: ${voyage.nbPlaces}</li>
+							</ul>
+							<div class="panel-footer">
+								<a class="btn btn-lg btn-block btn-success"
+									href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouterSansPayer">Enregistrer
 		panier et payer plus tard</a>
-	<a
-		href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouterPayerCB">Enregistrer
-		Panier et payer via CB</a><
-	<a
-		href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouter">Enregistrer
+								<a class="btn btn-lg btn-block btn-success"
+									href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouterPayerCB">Enregistrer
+		Panier et payer via CB</a>
+								<a class="btn btn-lg btn-block btn-success"
+									href="${pageContext.request.contextPath}/panier/dossierPanierSoumettreAjouter">Enregistrer
 		Panier et payer via paypal</a>
+		
+							</div>
+						</div>
+					</div>
+					<!-- /item -->
+					
+					</div>
+		</div>
+	</section>
+	<!-- /Plans -->
 
 	<table class="table table-bordered" style="background-color: white;">
 
