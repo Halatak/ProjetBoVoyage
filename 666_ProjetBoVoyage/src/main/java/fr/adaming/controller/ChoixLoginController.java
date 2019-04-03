@@ -1,20 +1,32 @@
 package fr.adaming.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Adresse;
 import fr.adaming.model.Client;
 import fr.adaming.model.ConseillerClientele;
 import fr.adaming.model.ConseillerMarketing;
+import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerClientService;
 import fr.adaming.service.IConseillerMarketingService;
@@ -46,6 +58,22 @@ public class ChoixLoginController {
 		// client = clientService.getClientByMailService(mail);
 	}
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		// l'objet WebDataBinder sert à faire le lien entre les params de la
+		// requete et les objets java
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		df.setLenient(false);
+
+		// la methode registerCustomEditor: à configurer la conversion du param
+		// recu au type de l'attribut
+
+		// l'objet CustomDateEditor: sert à lier la date recue comme params de
+		// la requete à l'attribut de l'objet etudiant
+
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
+	}
+
 	@RequestMapping(value = "/choix", method = RequestMethod.GET)
 	public ModelAndView afficheConseillerMarketing(RedirectAttributes ra) {
 
@@ -56,6 +84,47 @@ public class ChoixLoginController {
 		} else {
 			return new ModelAndView("redirect:/voyage/voyageListe");
 		}
+
+	}
+
+	// Fonctionnalité ajouter
+	@RequestMapping(value = "/clientAfficheAjouter", method = RequestMethod.GET)
+	public String afficheAjout(Model modele) {
+
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		modele.addAttribute("clAjout", new Client());
+		return "ajouterClient";
+	}
+
+	// commentaire
+	@RequestMapping(value = "/clientSoumettreAjouter", method = RequestMethod.POST)
+	public ModelAndView soumettreAjout(ModelMap modele, @ModelAttribute("clAjout") Client cIn, RedirectAttributes ra) {
+		// Appel de la méthode service
+		System.out.println(clientService.getClientByMail(cIn.getMail()));
+		if (clientService.getClientByMail(cIn.getMail()) == null) {
+			client = cIn;
+			return new ModelAndView("redirect:clientAdresseAfficherAjouter");
+		} else {
+			ra.addFlashAttribute("msg", "Client déjà existant");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		}
+	}
+
+	@RequestMapping(value = "/clientAdresseAfficherAjouter", method = RequestMethod.GET)
+	public String afficheAjoutAdresse(Model modele) {
+		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+		modele.addAttribute("addAjout", new Adresse());
+		return "ajoutAdresse";
+	}
+
+	// commentaire
+	@RequestMapping(value = "/clientAdresseSoumettreAjouter", method = RequestMethod.POST)
+	public ModelAndView soumettreAjoutAdresseClient(ModelMap modele, @ModelAttribute("addAjout") Adresse addIn,
+			RedirectAttributes ra) {
+		// Appel de la méthode service
+		client.setAdresse(addIn);
+		clientService.ajoutClientService(client);
+		return new ModelAndView("redirect:/voyage/voyageListe");
 
 	}
 

@@ -39,10 +39,9 @@
 					</ul></li>
 
 			</ul>
-			
+
 			<ul class="nav navbar-nav">
-			<li><a
-							href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li>
+				<li><a href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -59,6 +58,8 @@
 									name="j_password" /> <input type="submit" name="submit"
 									value="Send">
 							</form></li>
+						<li><a
+							href="${pageContext.request.contextPath}/choixLogin/clientAfficheAjouter">S'inscrire</a></li>
 					</ul></li>
 				<%-- ${pageContext.request.contextPath}/choixLogin/choix --%>
 			</ul>
