@@ -31,13 +31,13 @@
 
 						<!-- Nom du pays de la destination -->
 						<div class="panel-heading">
-							<h2>${voyage.destination.pays}</h2>
+							<h2>${dossier.voyage.destination.pays}</h2>
 						</div>
 						<!-- Photo -->
 						<div class="panel-body text-center">
 							<p>
 								<img
-									src="../destination/photoDes?idDest=${voyage.destination.idDestination}"
+									src="../destination/photoDes?idDest=${dossier.voyage.destination.idDestination}"
 									style="max-width: 250px;">
 							</p>
 						</div>
@@ -50,24 +50,24 @@
 						</div>
 						<ul class="list-group text-center">
 							<li class="list-group-item">
-								${voyage.destination.description}</li>
+								${dossier.voyage.destination.description}</li>
 						</ul>
 
 						<!-- Groupe d'info -->
 						<div class="panel-body text-center"><p><strong>Infos voyage:</strong></p></div>
 						<ul class="list-group text-center">
 							<li class="list-group-item"><i class="fa fa-plane"></i>
-								Départ: ${voyage.dateDepart}</li>
+								Départ: ${dossier.voyage.dateDepart}</li>
 							<li class="list-group-item"><i class="fa fa-plane"></i>
-								Arrivée: ${voyage.dateArrivee}</li>
+								Arrivée: ${dossier.voyage.dateArrivee}</li>
 							<li class="list-group-item">Nombre de places choisies:
-								${voyage.nbPlaces}</li>
+								${dossier.voyage.nbPlaces}</li>
 						</ul>
 
 						<!-- Assurance -->
 						<div class="panel-body text-center"><p><strong>Assurance choisie:</strong></p></div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">${assurance.id}</li>
+							<li class="list-group-item">${dossier.assurance.id}</li>
 						</ul>
 
 						<!-- Formule -->
@@ -79,15 +79,15 @@
 						<!-- Info client -->
 						<div class="panel-body text-center"><p><strong>Infos client:</strong></p></div>
 						<ul class="list-group text-center">
-							<li class="list-group-item">Nom - prénom: ${client.nom}</li>
-							<li class="list-group-item">Téléphone: ${client.telephone}</li>
-							<li class="list-group-item">E-Mail: ${client.mail}</li>
+							<li class="list-group-item">Nom - prénom: ${dossier.client.nom}</li>
+							<li class="list-group-item">Téléphone: ${dossier.client.telephone}</li>
+							<li class="list-group-item">E-Mail: ${dossier.client.mail}</li>
 						</ul>
 
 						<!-- Prix -->
 						<div class="panel-body text-center">
 							<p>
-								<strong>Prix: ${voyage.prix} &#8364;</strong>
+								<strong>Prix: ${dossier.voyage.prix} &#8364;</strong>
 							</p>
 						</div>
 
