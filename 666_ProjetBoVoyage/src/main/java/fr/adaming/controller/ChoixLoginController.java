@@ -27,6 +27,7 @@ import fr.adaming.model.Client;
 import fr.adaming.model.ConseillerClientele;
 import fr.adaming.model.ConseillerMarketing;
 import fr.adaming.model.Role;
+import fr.adaming.model.SendMailSSL;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerClientService;
 import fr.adaming.service.IConseillerMarketingService;
@@ -58,7 +59,7 @@ public class ChoixLoginController {
 		String mail = authCxt.getName();
 		conseillerClientele = conClientService.getConsClientByMail(mail);
 		conseillerMarketing = conMarketService.getConseillerMarkByMail(mail);
-		// client = clientService.getClientByMailService(mail);
+		client = clientService.getClientByMail(mail);
 	}
 
 	@InitBinder
@@ -95,8 +96,13 @@ public class ChoixLoginController {
 	public String afficheAjout(Model modele) {
 
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("clAjout", new Client());
-		return "ajouterClient";
+		if (client != null) {
+			modele.addAttribute("clAjout", client);
+			return "ajouterClient";
+		} else {
+			modele.addAttribute("clAjout", new Client());
+			return "ajouterClient";
+		}
 	}
 
 	// commentaire
@@ -116,38 +122,53 @@ public class ChoixLoginController {
 	@RequestMapping(value = "/clientAdresseAfficherAjouter", method = RequestMethod.GET)
 	public String afficheAjoutAdresse(Model modele) {
 		// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
-		modele.addAttribute("addAjout", new Adresse());
-		return "ajoutAdresse";
+		if (client.getAdresse() != null) {
+			modele.addAttribute("addAjout", client.getAdresse());
+			return "ajoutAdresse";
+		} else {
+			modele.addAttribute("addAjout", new Adresse());
+			return "ajoutAdresse";
+		}
 	}
 
 	// commentaire
 	@RequestMapping(value = "/clientAdresseSoumettreAjouter", method = RequestMethod.POST)
 	public ModelAndView soumettreAjoutAdresseClient(ModelMap modele, @ModelAttribute("addAjout") Adresse addIn,
 			RedirectAttributes ra) {
+		String message = "Bonjour " + client.getCivilite() + " " + client.getNom() + " " + client.getPrenom()
+				+ "\n Pour valider votre inscription, veuillez copier coller le lien suivant dans votre navigateur: http://localhost:8080/666_ProjetBoVoyage/choixLogin/clientSoumettreActiver "
+				+ "\n A bientot !";
 		// Appel de la méthode service
-		client.setAdresse(addIn);
-		Client cOut = clientService.ajoutClientService(client);
-		System.out.println(cOut);
-		cOut.setRole(new Role());
-		cOut.getRole().setClient(cOut);
-		cOut.getRole().setRoleName("ROLE_CLIENT");
-		roleService.ajoutRoleService(cOut.getRole());
-		/*String message = "Bonjour "+cOut.getCivilite() +" " + cOut.getNom() +" "+cOut.getPrenom()
-				+ "\n Nous vous informons que votre commande: " + coOut.getIdCommande() + " passée le "
-				+ coOut.getDateCommande()
-				+ " a bien été validée.\n Nous esperons que vos articles vous plairont (cf, pdf). \n A bientot !";*/
-		return new ModelAndView("redirect:/voyage/voyageListe");
+		try {
+			SendMailSSL sm = new SendMailSSL();
+			sm.sendMail(client.getMail(), message);
+			client.setAdresse(addIn);
+			Client cOut = clientService.ajoutClientService(client);
+			cOut.setRole(new Role());
+			cOut.getRole().setClient(cOut);
+			cOut.getRole().setRoleName("ROLE_CLIENT");
+			roleService.ajoutRoleService(cOut.getRole());
+			ra.addFlashAttribute("msg", "Bravo, validez votre mail!");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		} catch (Exception e) {
+			ra.addFlashAttribute("msg", "Echec, votre mail n'existe pas, veuillez le modifier");
+			return new ModelAndView("redirect:clientAfficheAjouter");
+		}
 
 	}
 
 	@RequestMapping(value = "/clientSoumettreActiver", method = RequestMethod.GET)
 	public ModelAndView soumettreAjoutActiver(ModelMap modele, RedirectAttributes ra) {
 		// Appel de la méthode service
-		System.out.println(client);
-		client.setActive(true);
-		clientService.modifierClientService(client);
-		return new ModelAndView("redirect:/voyage/voyageListe");
-
+		try {
+			client.setActive(true);
+			clientService.modifierClientService(client);
+			ra.addFlashAttribute("msg", "Vous avez bien validé votre mail ! Vous pouvez vous connecter !");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		} catch (Exception e) {
+			ra.addFlashAttribute("msg", "Echec, votre session est expirée");
+			return new ModelAndView("redirect:/voyage/voyageListe");
+		}
 	}
 
 }
