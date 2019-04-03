@@ -61,5 +61,10 @@ public class FormuleServiceImpl implements IFormuleService{
 	public Formule getFormuleByIdService(int id) {
 		return formuleDao.getById(id);
 	}
+	@Override
+	public List<Formule> getFormuleByVoyage(int id) {
+		
+		return formuleDao.getFormuleByVoyage(id);
+	}
 
 }

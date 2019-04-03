@@ -17,5 +17,7 @@ public interface IFormuleService {
 	public void supprFormuleByIdService (int id);
 	
 	public Formule getFormuleByIdService (int id);
+	
+	public List<Formule> getFormuleByVoyage(int id);
 
 }

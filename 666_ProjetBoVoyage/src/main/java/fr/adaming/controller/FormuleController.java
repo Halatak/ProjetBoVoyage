@@ -1,5 +1,7 @@
 package fr.adaming.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Client;
 import fr.adaming.model.Formule;
 import fr.adaming.service.IFormuleService;
 
@@ -95,6 +98,31 @@ public class FormuleController {
 			} catch (Exception e) {
 				ra.addFlashAttribute("msg", "suppr a échoué");
 				return "redirect:continentAfficheSupprimer";
+			}
+
+		}
+		
+		// Rechercher
+		@RequestMapping(value = "/formuleAfficheRechercher", method = RequestMethod.GET)
+		public String afficheSearch(Model modele) {
+
+			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+			modele.addAttribute("fRecher", new Formule());
+
+			return "rechercheFormule";
+		}
+
+		// Rechercher
+		@RequestMapping(value = "/formuleSoumettreSearch", method = RequestMethod.POST)
+		public ModelAndView soumettreSearch(@ModelAttribute("fRecher") Formule fIn, RedirectAttributes ra) {
+			// Appel de la méthode service
+
+			List<Formule> listefOut = fService.getFormuleByVoyage(fIn.getId());
+			if (listefOut != null) {
+				return new ModelAndView("choixFormule", "formuleList", listefOut);
+			} else {
+				ra.addFlashAttribute("msg", "La recherche a échouée");
+				return new ModelAndView("redirect:formuleAfficheRechercher");
 			}
 
 		}

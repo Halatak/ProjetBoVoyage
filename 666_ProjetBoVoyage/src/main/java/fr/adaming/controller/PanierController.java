@@ -3,6 +3,7 @@ package fr.adaming.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -28,11 +29,14 @@ import fr.adaming.model.Assurance;
 import fr.adaming.model.CarteBancaire;
 import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
+import fr.adaming.model.Formule;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Voyage;
+import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.ICarteBancaireService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDossierService;
+import fr.adaming.service.IFormuleService;
 import fr.adaming.service.IVoyageService;
 
 @Controller
@@ -49,6 +53,10 @@ public class PanierController {
 	private IClientService clientService;
 	@Autowired
 	private ICarteBancaireService CBService;
+	@Autowired
+	private IFormuleService fService;
+	@Autowired
+	private IAssuranceService aService;
 
 	private Client client;
 
@@ -89,13 +97,36 @@ public class PanierController {
 		// lier un etudiant au model mvc afin de l'utiliser dans le formulaire
 
 		// if (panier != null) {
-		return "redirect:panierAfficheAssurance";
+		//return "redirect:panierAfficheAssurance";
+		return "redirect:panierAfficheFormule";
 		// } else {
 		// ra.addFlashAttribute("msg", "l'ajout a échoué");
 		// return "redirect:accueil";
 		// }
 	}
 
+	// Lier une assurance au panier
+		@RequestMapping(value = "/panierAfficheFormule", method = RequestMethod.GET)
+		public String afficheAjoutFormule(Model modele) {
+
+			// Lier un étudiant au modèle MVC afin de l'utiliser dans le formulaire
+			modele.addAttribute("foAjout", fService.getFormuleByVoyage(panier.getDossier().getVoyage().getId()));
+			return "choixFormule";
+		}
+
+		@RequestMapping(value = "/panierSoumettreFormule", method = RequestMethod.POST)
+		public String soumettreAjoutFormule(ModelMap modele, @ModelAttribute("foAjout") List<Formule> listefIn, RedirectAttributes ra) {
+			// Appel de la méthode service
+			panier.getDossier().getVoyage().setListeFormule(listefIn);
+
+			if (panier.getDossier().getVoyage().getListeFormule() != null) {
+				return "redirect:panierAfficheAssurance";
+			} else {
+				ra.addFlashAttribute("msg", "l'ajout a échoué");
+				return "redirect:panierAfficheFormule";
+			}
+		}
+		
 	// Lier une assurance au panier
 	@RequestMapping(value = "/panierAfficheAssurance", method = RequestMethod.GET)
 	public String afficheAjout(Model modele) {
@@ -107,8 +138,10 @@ public class PanierController {
 
 	@RequestMapping(value = "/panierSoumettreAssurance", method = RequestMethod.POST)
 	public String soumettreAjout(ModelMap modele, @ModelAttribute("asAjout") Assurance aIn, RedirectAttributes ra) {
+		//recupere l'assurance
+		Assurance aOut = aService.getAssuranceByIdService(aIn.getId());
 		// Appel de la méthode service
-		panier.getDossier().setAssurance(aIn);
+		panier.getDossier().setAssurance(aOut);
 
 		if (panier.getDossier().getAssurance() != null) {
 			return "redirect:panierAfficheClient";
@@ -193,6 +226,7 @@ public class PanierController {
 	@RequestMapping(value = "/panierAfficheRecapitulatif", method = RequestMethod.GET)
 	public String afficheAjoutRecapitulatif(Model modele) {
 		modele.addAttribute("voyage", panier.getDossier().getVoyage());
+		modele.addAttribute("dossier", panier.getDossier());
 		return "recapPanier";
 
 	}
