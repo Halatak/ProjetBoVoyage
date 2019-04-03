@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -54,9 +55,8 @@ public class Voyage implements Serializable {
 	private Hebergement hebergement;
 
 	// formule
-	@OneToOne
-	@JoinColumn(name = "f_id", referencedColumnName = "id_f")
-	private Formule formule;
+	@OneToMany(mappedBy = "voyage")
+	private List<Formule> listeFormule;
 
 	// dossierOffreVoyage
 	@OneToOne(mappedBy = "voyage")
@@ -216,12 +216,12 @@ public class Voyage implements Serializable {
 		this.hebergement = hebergement;
 	}
 
-	public Formule getFormule() {
-		return formule;
+	public List<Formule> getListeFormule() {
+		return listeFormule;
 	}
 
-	public void setFormule(Formule formule) {
-		this.formule = formule;
+	public void setListeFormule(List<Formule> listeFormule) {
+		this.listeFormule = listeFormule;
 	}
 
 	public DossierOffreVoyage getDossierOffreVoyage() {

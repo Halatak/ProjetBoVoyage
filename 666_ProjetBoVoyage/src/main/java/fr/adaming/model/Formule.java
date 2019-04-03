@@ -8,45 +8,49 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="formules")
-public class Formule implements Serializable{
-	
+@Table(name = "formules")
+public class Formule implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	//attributs
+
+	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_f")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_f")
 	private int id;
-	@Column(name="type_f")
+	@Column(name = "type_f")
 	private String typeFormule;
-	
-	//transformation de l'asso
-	@OneToOne(mappedBy="formule")
+
+	// transformation de l'asso
+	@ManyToOne
+	@JoinColumn(name = "v_id", referencedColumnName = "id_v")
 	private Voyage voyage;
-	
-	//avion
+
+	// avion
 	@OneToOne
-	@JoinColumn(name="av_id",referencedColumnName="id_av")
+	@JoinColumn(name = "av_id", referencedColumnName = "id_av")
 	private Avion avion;
-	
-	//voiture
+
+	// voiture
 	@OneToOne
-	@JoinColumn(name="voit_id",referencedColumnName="id_voit")
+	@JoinColumn(name = "voit_id", referencedColumnName = "id_voit")
 	private Voiture voiture;
-	
-	//hotel
+
+	// hotel
 	@OneToOne
-	@JoinColumn(name="ho_id",referencedColumnName="id_ho")
+	@JoinColumn(name = "ho_id", referencedColumnName = "id_ho")
 	private Hotel hotel;
-	//constructeurs
+
+	// constructeurs
 	public Formule() {
 		super();
 	}
@@ -62,7 +66,7 @@ public class Formule implements Serializable{
 		this.typeFormule = typeFormule;
 	}
 
-	//getters et setters
+	// getters et setters
 	public int getId() {
 		return id;
 	}
@@ -115,7 +119,5 @@ public class Formule implements Serializable{
 	public String toString() {
 		return "Formule [id=" + id + ", typeFormule=" + typeFormule + "]";
 	}
-	
-	
 
 }
