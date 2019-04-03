@@ -49,16 +49,22 @@ public class VoyageController {
 	private IConseillerMarketingService conMarketService;
 
 	private Client client;
+
 	// Methode pour convertir et afficher correctement les dates
 	@PostConstruct // initialise les conseillers
 	public void init() {
 		// recuperer le context de spring security
-		Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
 
-		// recuperer le mail à partir du context
-		String mail = authCxt.getName();
-		client = clientService.getClientByMail(mail);
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client = clientService.getClientByMail(mail);
+		} catch (Exception e) {
+
+		}
 	}
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		// l'objet WebDataBinder sert à faire le lien entre les params de la
@@ -78,10 +84,14 @@ public class VoyageController {
 	// page d'accueil qui affiche la liste des voyages
 	@RequestMapping(value = "/voyageListe", method = RequestMethod.GET)
 	public ModelAndView afficheListe(Model modele) {
-		//modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
-		//modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
-		modele.addAttribute("client",client);
-		return new ModelAndView("accueil", "voyageListe", voyageService.afficherListeVoyageService());
+		// modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
+		// modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
+		if (client != null) {
+			modele.addAttribute("client", client);
+			return new ModelAndView("accueilClient", "voyageListe", voyageService.afficherListeVoyageService());
+		} else {
+			return new ModelAndView("accueil", "voyageListe", voyageService.afficherListeVoyageService());
+		}
 	}
 
 	// ===================== fonctionnalité ajouter voyage
