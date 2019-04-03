@@ -86,6 +86,16 @@ public class VoyageController {
 	public ModelAndView afficheListe(Model modele) {
 		// modele.addAllAttributes(conMarketService.afficherListeConseillerMarkService());
 		// modele.addAllAttributes(conClientService.afficherListeConseillerClientService());
+		try {
+			Authentication authCxt = SecurityContextHolder.getContext().getAuthentication();
+
+			// recuperer le mail à partir du context
+			String mail = authCxt.getName();
+			client = clientService.getClientByMail(mail);
+		} catch (Exception e) {
+
+		}
+		System.out.println(client);
 		if (client != null) {
 			modele.addAttribute("client", client);
 			return new ModelAndView("accueilClient", "voyageListe", voyageService.afficherListeVoyageService());
