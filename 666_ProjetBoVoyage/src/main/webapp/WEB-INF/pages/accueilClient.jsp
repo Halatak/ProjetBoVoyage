@@ -69,7 +69,100 @@
 		</div>
 	</section>
 	<!-- /Plans -->
+<div>
+		<!-- Nous chargeons les fichiers CDN de Leaflet. Le CSS AVANT le JS -->
+		<link rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+			integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+			crossorigin="" />
+		<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+			integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+			crossorigin=""></script>
+		<script type="text/javascript">
+			// Nous initialisons une liste de marqueurs
+			var lat = 30.291017;
+			var lon = 11.78305;
+			var macarte = null;
+			var villes = {
+				"Oslo" : {
+					"lat" : 59.9138688,
+					"lon" : 10.7522454
+				},
+				"Lima" : {
+					"lat" : -12.046374,
+					"lon" : -77.0427934
+				},
+				"Brasilia" : {
+					"lat" : -14.235004,
+					"lon" : -51.925280
+				},
+				"Manila" : {
+					"lat" : 14.602137,
+					"lon" : 121.050904
+				},
+				"Bangkok" : {
+					"lat" : 13.7563309,
+					"lon" : 100.5017651
+				},
+				"Guatemala" : {
+					"lat" : 15.783471,
+					"lon" : -90.230759
+				}
+			};
+			// Fonction d'initialisation de la carte
+			function initMap() {
+				// Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+				macarte = L.map('map').setView([ lat, lon ], 1);
+				// Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+				L
+						.tileLayer(
+								'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+								{
+									// Il est toujours bien de laisser le lien vers la source des données
+									attribution : 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+									minZoom : 1,
+									maxZoom : 20
+								}).addTo(macarte);
+				// var marker = L.marker([lat, lon]).addTo(macarte);
+				// var markerNorvege = L.marker([59.9138688, 10.7522454]).addTo(macarte);
+				// var markerPerou = L.marker([-12.046374, -77.0427934]).addTo(macarte);
+				// var markerBresil = L.marker([-14.235004, -51.925280]).addTo(macarte);
+				// var markerPhilippines = L.marker([14.602137, 121.050904]).addTo(macarte);
+				// var markerThaïlande = L.marker([13.7563309, 100.5017651]).addTo(macarte);
+				// Nous parcourons la liste des villes
+				for (ville in villes) {
+					var marker = L.marker(
+							[ villes[ville].lat, villes[ville].lon ]).addTo(
+							macarte);
+					
+					marker.bindPopup(ville);
+				}
 
+				//             for (ville in villes) {
+				//         		var marker = L.marker([villes[ville].lat, villes[ville].lon]).addTo(macarte);
+				//         	} 
+			}
+			window.onload = function() {
+				// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+				initMap();
+			};
+		</script>
+
+		<style type="text/css">
+#map { 
+	height: 400px;
+	width: 600px;
+}
+</style>
+		
+	</div>
+	<div>
+		<center>
+			<div id="map">
+				<!-- Ici s'affichera la carte -->
+			</div>
+		</center>
+	</div>
 	
 	
 </body>

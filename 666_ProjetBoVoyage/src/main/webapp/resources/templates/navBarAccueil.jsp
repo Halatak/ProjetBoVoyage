@@ -40,9 +40,9 @@
 
 			</ul>
 
-			<ul class="nav navbar-nav">
-				<li><a href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li>
-			</ul>
+<!-- 			<ul class="nav navbar-nav"> -->
+<%-- 				<li><a href="${pageContext.request.contextPath}/map/carte">TestCarte</a></li> --%>
+<!-- 			</ul> -->
 
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
