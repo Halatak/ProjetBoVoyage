@@ -38,7 +38,7 @@
 								<p>
 									<img
 										src="../destination/photoDes?idDest=${v.destination.idDestination}"
-										style="max-width: 250px;">
+										style="width: 250px; height: 150px;">
 								</p>
 							</div>
 							<div class="panel-body text-center">
